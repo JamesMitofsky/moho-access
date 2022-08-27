@@ -3,9 +3,13 @@ import ExistingData from "./components/ExistingData.jsx";
 import firebase from "./firebase";
 import { useState, useEffect } from "react";
 import Login from "./components/Login.jsx";
+import SignOut from "./components/Signout.jsx";
+import "./App.css";
+import { Container } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState(null);
+  console.log(user);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -14,13 +18,18 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      {user ? `Our user is: ${user}` : <Login />}
-      <main>
-        <h1>Welcome to Moho Login</h1>
-      </main>
-      <ExistingData />
+    <Container>
+      {user ? (
+        <main>
+          <h1>Welcome to Moho Login</h1>
+          <SignOut />
+          <ExistingData />
+        </main>
+      ) : (
+        <Login />
+      )}
+
       <Footer />
-    </>
+    </Container>
   );
 }

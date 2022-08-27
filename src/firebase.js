@@ -19,15 +19,6 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
-// const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-// const provider = new firebase.auth.GoogleAuthProvider();
-// provider.setCustomParameters({ prompt: "select_account" });
-
-// const auth = firebase.auth();
-
-// export { db, auth };
-
 firebase.initializeApp(firebaseConfig);
 export const db = getFirestore();
 
