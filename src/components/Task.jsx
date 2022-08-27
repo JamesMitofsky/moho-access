@@ -1,8 +1,7 @@
-export default function Task({ id, key, title, description }) {
+export default function Task({ id, title, description }) {
   return (
-    <div>
+    <div key={id}>
       <div>{id}</div>
-      <div>{key}</div>
       <div>{title}</div>
       <div>{description}</div>
     </div>

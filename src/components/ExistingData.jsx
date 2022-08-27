@@ -31,7 +31,6 @@ export default function ExistingData() {
       {tasks.map((task) => (
         <Task
           id={task.id}
-          key={task.id}
           title={task.data.title}
           description={task.data.description}
         />
