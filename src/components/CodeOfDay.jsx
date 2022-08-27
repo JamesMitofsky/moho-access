@@ -7,6 +7,19 @@ import { db } from "../firebase";
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
 
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const d = new Date();
+  let day = weekday[d.getDay()];
+
   /* function to get all tasks from firestore in realtime */
   useEffect(() => {
     const taskColRef = query(collection(db, "loginCodes"));
@@ -22,5 +35,5 @@ export default function CodeOfDay() {
   }, []);
   console.log(codes);
 
-  return <div>live</div>;
+  return <div>{codes.filter((item) => item.weekday === day)}</div>;
 }
