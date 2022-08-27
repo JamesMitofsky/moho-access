@@ -1,14 +1,15 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import firebase from "firebase/compat/app";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  where,
+  query,
+  getDocs,
+} from "firebase/firestore";
+import "firebase/compat/auth";
 
 const firebaseConfig = {
-  // apiKey: "AIzaSyCMXlK1ETvFsc_jggy9mKhe_rcwqd-4yPM",
-  // authDomain: "moho-auth.firebaseapp.com",
-  // projectId: "moho-auth",
-  // storageBucket: "moho-auth.appspot.com",
-  // messagingSenderId: "1034566431316",
-  // appId: "1:1034566431316:web:168d6186d1596c1073b3c1",
-  // measurementId: "G-NWL9M7L43L",
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_PROJECT_ID,
@@ -18,7 +19,62 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
+// const provider = new firebase.auth.GoogleAuthProvider();
+// provider.setCustomParameters({ prompt: "select_account" });
 
-export { db };
+// const auth = firebase.auth();
+
+// export { db, auth };
+
+firebase.initializeApp(firebaseConfig);
+export const db = getFirestore();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+
+export const auth = firebase.auth();
+export default firebase;
+
+export const signInWithGoogle = async () => {
+  try {
+    const res = await auth.signInWithPopup(provider);
+    const user = res.user;
+    const userRef = collection(db, "users");
+    const result = await getDocs(query(userRef, where("uid", "==", user.uid)));
+    if (result.empty) {
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: user.displayName,
+        authProvider: "google",
+        email: user.email,
+      });
+    }
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const signInWithEmailAndPassword = async (email, password) => {
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const registerWithEmailAndPassword = async (name, email, password) => {
+  try {
+    const res = await auth.createUserWithEmailAndPassword(email, password);
+    const user = res.user;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      name,
+      authProvider: "local",
+      email,
+    });
+  } catch (err) {
+    alert(err.message);
+  }
+};
