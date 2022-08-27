@@ -28,6 +28,7 @@ export default function ExistingData() {
   }, []);
   return (
     <>
+      <AddTask />
       {tasks.map((task) => (
         <Task
           id={task.id}
@@ -35,7 +36,6 @@ export default function ExistingData() {
           description={task.data.description}
         />
       ))}
-      <AddTask />
     </>
   );
 }

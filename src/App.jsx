@@ -6,6 +6,7 @@ import Login from "./components/Login.jsx";
 import SignOut from "./components/Signout.jsx";
 import "./App.css";
 import { Container } from "@mui/material";
+import CodeOfDay from "./components/CodeOfDay.jsx";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -22,8 +23,9 @@ export default function App() {
       {user ? (
         <main>
           <h1>Welcome to Moho Login</h1>
-          <SignOut />
+          <CodeOfDay />
           <ExistingData />
+          <SignOut />
         </main>
       ) : (
         <Login />
