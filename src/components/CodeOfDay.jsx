@@ -4,21 +4,16 @@ import { collection, query, onSnapshot } from "firebase/firestore";
 // local db config
 import { db } from "../firebase";
 
+import { QRCodeSVG } from "qrcode.react";
+
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
 
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const d = new Date();
-  let day = weekday[d.getDay()];
+  const day = weekdays[d.getDay()];
+  const isWeekday = weekdays.includes(d);
 
   /* function to get all tasks from firestore in realtime */
   useEffect(() => {
@@ -33,7 +28,10 @@ export default function CodeOfDay() {
       );
     });
   }, []);
-  console.log(codes);
 
-  return <div>{codes.filter((item) => item.weekday === day)}</div>;
+  return isWeekday ? (
+    <QRCodeSVG value={codes.filter((item) => item.weekday === day)} />
+  ) : (
+    "Enjoy your weekend!"
+  );
 }
