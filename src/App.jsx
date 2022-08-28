@@ -61,7 +61,6 @@ export default function App() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mt: 3,
         }}
       >
         {pageLoaded && user ? (
