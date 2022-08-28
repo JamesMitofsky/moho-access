@@ -7,9 +7,7 @@ const Footer = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        width: "100%",
-        padding: 0.5,
-        margin: 2,
+        padding: 2,
       }}
     >
       Powered by ☕️ and James Mitofsky 🤙

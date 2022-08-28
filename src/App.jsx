@@ -48,41 +48,45 @@ export default function App() {
   // }, [user]);
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-      }}
-    >
-      <Grid
+    <>
+      <Container
         sx={{
-          flex: 1,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
         }}
       >
-        {pageLoaded && user && (
-          <>
-            <CodeOfDay />
-            <Typography sx={{ textAlign: "center", mt: 7, mb: 7 }} variant="h1">
-              Welcome to <img src={logo} alt="Moho Logo" /> Auth
-            </Typography>
-            <SignOut />
-          </>
-        )}
+        <Grid
+          sx={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {pageLoaded && user && (
+            <>
+              <CodeOfDay />
+              <Typography
+                sx={{ textAlign: "center", mt: 7, mb: 7 }}
+                variant="h1"
+              >
+                Welcome to <img src={logo} alt="Moho Logo" /> Auth
+              </Typography>
+              <SignOut />
+            </>
+          )}
 
-        {pageLoaded && !user && (
-          <>
-            <Typography sx={{ textAlign: "center" }} variant="h1">
-              Welcome to <img src={logo} alt="Moho Logo" /> Auth
-            </Typography>
-            <Login />
-          </>
-        )}
-      </Grid>
+          {pageLoaded && !user && (
+            <>
+              <Typography sx={{ textAlign: "center" }} variant="h1">
+                Welcome to <img src={logo} alt="Moho Logo" /> Auth
+              </Typography>
+              <Login />
+            </>
+          )}
+        </Grid>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 }
