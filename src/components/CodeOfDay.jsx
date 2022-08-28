@@ -39,7 +39,7 @@ export default function CodeOfDay() {
         />
       )}
       {!isWeekday && (
-        <Typography sx={{ textAlign: "center" }} variant="h2">
+        <Typography sx={{ textAlign: "center", mt: 7 }} variant="h2">
           🚧 No codes on the weekend — profitez!
         </Typography>
       )}
