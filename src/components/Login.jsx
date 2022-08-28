@@ -22,7 +22,7 @@ const Login = () => {
       gap={4}
     >
       <Grid>
-        <Typography variant="h5">Login</Typography>
+        <Typography variant="h4">Login</Typography>
         <form>
           <TextField
             fullWidth
@@ -57,7 +57,7 @@ const Login = () => {
         </Button>
       </Grid>
       <Grid>
-        <Typography variant="h5">Register</Typography>
+        <Typography variant="h4">Register</Typography>
         <form>
           <TextField
             fullWidth
