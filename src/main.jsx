@@ -8,6 +8,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   typography: {
     h1: { fontSize: 55, marginTop: 40, marginBottom: 40 },
+    h2: { fontSize: 34 },
   },
   palette: {
     primary: {

@@ -5,6 +5,7 @@ import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 import { QRCodeSVG } from "qrcode.react";
+import { Typography } from "@mui/material";
 
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
@@ -29,12 +30,19 @@ export default function CodeOfDay() {
     });
   }, []);
 
-  return !isWeekday ? (
-    <QRCodeSVG
-      style={{ height: "auto", width: "70%", maxWidth: "250px" }}
-      value={codes.filter((item) => item.weekday === day)}
-    />
-  ) : (
-    "You're signed in, but it's the weekend. Kick back and relax! 😎"
+  return (
+    <>
+      {isWeekday && (
+        <QRCodeSVG
+          style={{ height: "auto", width: "70%", maxWidth: "250px" }}
+          value={codes.filter((item) => item.weekday === day)}
+        />
+      )}
+      {!isWeekday && (
+        <Typography sx={{ textAlign: "center" }} variant="h2">
+          🚧 No codes on the weekend — profitez!
+        </Typography>
+      )}
+    </>
   );
 }
