@@ -63,7 +63,7 @@ export default function App() {
           alignItems: "center",
         }}
       >
-        {pageLoaded && user ? (
+        {pageLoaded && user && (
           <>
             <CodeOfDay />
             <Typography sx={{ textAlign: "center", mt: 7, mb: 7 }} variant="h1">
@@ -71,7 +71,9 @@ export default function App() {
             </Typography>
             <SignOut />
           </>
-        ) : (
+        )}
+
+        {pageLoaded && !user && (
           <>
             <Typography sx={{ textAlign: "center" }} variant="h1">
               Welcome to <img src={logo} alt="Moho Logo" /> Auth
