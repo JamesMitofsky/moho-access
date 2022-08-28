@@ -6,8 +6,8 @@ export default function SignOut() {
 
   return (
     <Button
-      style={{ margin: "5%" }}
-      variant="outline-danger"
+      variant="contained"
+      fullWidth
       type="submit"
       onClick={() => auth.signOut()}
     >

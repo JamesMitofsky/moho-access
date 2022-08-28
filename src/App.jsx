@@ -47,7 +47,11 @@ export default function App() {
 
   return (
     <Container
-      sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
     >
       {user ? (
         <Grid
