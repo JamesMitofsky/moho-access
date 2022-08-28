@@ -7,7 +7,7 @@ export default function WelcomeText() {
     <>
       <Typography sx={{ textAlign: "center" }} variant="h1">
         Bienvenue à <img className="mohoLogo" src={logo} alt="Moho Logo" />{" "}
-        Authentication
+        Authentification
       </Typography>
     </>
   );
