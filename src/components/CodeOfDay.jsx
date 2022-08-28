@@ -29,8 +29,11 @@ export default function CodeOfDay() {
     });
   }, []);
 
-  return isWeekday ? (
-    <QRCodeSVG value={codes.filter((item) => item.weekday === day)} />
+  return !isWeekday ? (
+    <QRCodeSVG
+      style={{ height: "auto", width: "70%", maxWidth: "250px" }}
+      value={codes.filter((item) => item.weekday === day)}
+    />
   ) : (
     "You're signed in, but it's the weekend. Kick back and relax! 😎"
   );

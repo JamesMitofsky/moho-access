@@ -56,12 +56,13 @@ export default function App() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            mt: 6,
           }}
         >
+          <CodeOfDay />
           <h1>
             Welcome to <img src={logo} alt="Moho Logo" /> Login
           </h1>
-          <CodeOfDay />
           <SignOut />
         </Grid>
       ) : (
