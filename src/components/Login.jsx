@@ -45,7 +45,7 @@ const Login = () => {
         </form>
 
         <Button
-          variant="outlined"
+          variant="contained"
           type="submit"
           onClick={() => {
             signInWithEmailAndPassword(loginEmail, loginPassword);
@@ -53,7 +53,7 @@ const Login = () => {
         >
           Login
         </Button>
-        <Button variant="outlined" onClick={signInWithGoogle}>
+        <Button variant="contained" onClick={signInWithGoogle}>
           Sign-in with Goolge
         </Button>
       </Grid>

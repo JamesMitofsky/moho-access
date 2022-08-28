@@ -6,7 +6,7 @@ export default function SignOut() {
 
   return (
     <Button
-      variant="contained"
+      variant="outlined"
       fullWidth
       type="submit"
       onClick={() => auth.signOut()}
