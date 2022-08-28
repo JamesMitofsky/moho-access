@@ -6,8 +6,29 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiTextField: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          margin: 4,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          margin: 4,
+        },
+      },
+    },
+  },
   typography: {
-    h1: { fontSize: 55 },
+    h1: { fontSize: 55, marginTop: 15, marginBottom: 15 },
     h2: { fontSize: 34 },
   },
   palette: {
