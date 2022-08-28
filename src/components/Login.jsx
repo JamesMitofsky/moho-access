@@ -23,11 +23,9 @@ const Login = () => {
     >
       <Grid>
         <Typography variant="h5">Login</Typography>
-        <Typography variant="subtitle1">
-          We'll never share your email with anyone else.
-        </Typography>
         <form>
           <TextField
+            fullWidth
             type="email"
             placeholder="Enter email"
             value={loginEmail}
@@ -37,6 +35,7 @@ const Login = () => {
 
         <form>
           <TextField
+            fullWidth
             type="password"
             placeholder="Password"
             value={loginPassword}
@@ -59,9 +58,9 @@ const Login = () => {
       </Grid>
       <Grid>
         <Typography variant="h5">Register</Typography>
-        <Typography variant="subtitle1">First time visiting?</Typography>
         <form>
           <TextField
+            fullWidth
             type="name"
             placeholder="Enter name"
             value={name}
@@ -70,6 +69,7 @@ const Login = () => {
         </form>
         <form>
           <TextField
+            fullWidth
             type="email"
             placeholder="Enter email"
             value={email}
@@ -79,6 +79,7 @@ const Login = () => {
 
         <form>
           <TextField
+            fullWidth
             type="password"
             placeholder="Password"
             value={password}

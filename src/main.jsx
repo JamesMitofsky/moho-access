@@ -7,21 +7,16 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   components: {
-    // Name of the component
     MuiTextField: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          // Some CSS
-          margin: 4,
+          marginBottom: 8,
         },
       },
     },
     MuiButton: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          // Some CSS
           margin: 4,
         },
       },
