@@ -1,7 +1,8 @@
 import Footer from "./components/Footer.jsx";
 import CodeOfDay from "./components/CodeOfDay.jsx";
+import WelcomeText from "./components/WelcomeText.jsx";
+
 import "./App.css";
-import logo from "./assets/moho-logo.png";
 
 import { useState, useEffect } from "react";
 
@@ -66,21 +67,14 @@ export default function App() {
           {pageLoaded && user && (
             <>
               <CodeOfDay />
-              <Typography
-                sx={{ textAlign: "center", mt: 7, mb: 7 }}
-                variant="h1"
-              >
-                Welcome to <img src={logo} alt="Moho Logo" /> Auth
-              </Typography>
+              <WelcomeText />
               <SignOut />
             </>
           )}
 
           {pageLoaded && !user && (
             <>
-              <Typography sx={{ textAlign: "center" }} variant="h1">
-                Welcome to <img src={logo} alt="Moho Logo" /> Auth
-              </Typography>
+              <WelcomeText />
               <Login />
             </>
           )}
