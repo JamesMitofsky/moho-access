@@ -2,7 +2,8 @@ import firebase from "firebase/compat/app";
 import {
   getFirestore,
   collection,
-  addDoc,
+  setDoc,
+  doc,
   where,
   query,
   getDocs,
@@ -35,12 +36,11 @@ export const signInWithGoogle = async () => {
     const userRef = collection(db, "users");
     const result = await getDocs(query(userRef, where("uid", "==", user.uid)));
     if (result.empty) {
-      await addDoc(collection(db, "users"), {
+      await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
-        access: "",
       });
     }
   } catch (err) {
@@ -60,12 +60,11 @@ export const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await auth.createUserWithEmailAndPassword(email, password);
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
-      access,
     });
   } catch (err) {
     alert(err.message);
