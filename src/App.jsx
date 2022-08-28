@@ -11,7 +11,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import Login from "./components/Login.jsx";
 import SignOut from "./components/SignOut.jsx";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState({});
@@ -64,9 +64,9 @@ export default function App() {
           }}
         >
           <CodeOfDay />
-          <h1>
-            Welcome to <img src={logo} alt="Moho Logo" /> Login
-          </h1>
+          <Typography sx={{ textAlign: "center" }} variant="h1">
+            Welcome to <img src={logo} alt="Moho Logo" /> Auth
+          </Typography>
           <SignOut />
         </Grid>
       ) : (
