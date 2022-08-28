@@ -1,4 +1,4 @@
-import Footer from "./components/footer.jsx";
+import Footer from "./components/Footer.jsx";
 import CodeOfDay from "./components/CodeOfDay.jsx";
 import "./App.css";
 import logo from "./assets/moho-logo.png";
