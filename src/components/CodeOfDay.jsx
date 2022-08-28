@@ -32,6 +32,6 @@ export default function CodeOfDay() {
   return isWeekday ? (
     <QRCodeSVG value={codes.filter((item) => item.weekday === day)} />
   ) : (
-    "Enjoy your weekend!"
+    "You're signed in, but it's the weekend. Kick back and relax! 😎"
   );
 }
