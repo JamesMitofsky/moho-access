@@ -26,7 +26,14 @@ export default function App() {
       sx={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
       {user ? (
-        <Grid sx={{ flex: 1 }}>
+        <Grid
+          sx={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <h1>
             Welcome to <img src={logo} alt="Moho Logo" /> Login
           </h1>
