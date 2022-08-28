@@ -53,26 +53,27 @@ export default function App() {
         height: "100%",
       }}
     >
-      {user ? (
-        <Grid
-          sx={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            mt: 6,
-          }}
-        >
-          <CodeOfDay />
-          <Typography sx={{ textAlign: "center" }} variant="h1">
-            Welcome to <img src={logo} alt="Moho Logo" /> Auth
-          </Typography>
-          <SignOut />
-        </Grid>
-      ) : (
-        <Login />
-      )}
-
+      <Grid
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          mt: 6,
+        }}
+      >
+        {user ? (
+          <>
+            <CodeOfDay />
+            <Typography sx={{ textAlign: "center" }} variant="h1">
+              Welcome to <img src={logo} alt="Moho Logo" /> Auth
+            </Typography>
+            <SignOut />
+          </>
+        ) : (
+          <Login />
+        )}
+      </Grid>
       <Footer />
     </Container>
   );
