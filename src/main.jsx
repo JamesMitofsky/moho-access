@@ -32,6 +32,7 @@ const theme = createTheme({
     h2: { fontSize: 34 },
   },
   palette: {
+    mode: "light",
     primary: {
       main: "#000",
     },
