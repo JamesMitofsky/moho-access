@@ -15,11 +15,13 @@ import { Container, Grid, Typography } from "@mui/material";
 
 export default function App() {
   const [user, setUser] = useState({});
+  const [pageLoaded, setPageLoaded] = useState(false);
   // const [userRef, setUserRef] = useState("");
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
+      setPageLoaded(true);
     });
   }, []);
 
@@ -62,13 +64,10 @@ export default function App() {
           mt: 3,
         }}
       >
-        {user ? (
+        {pageLoaded && user ? (
           <>
             <CodeOfDay />
-            <Typography
-              sx={{ textAlign: "center", mt: 40, mb: 40 }}
-              variant="h1"
-            >
+            <Typography sx={{ textAlign: "center", mt: 7, mb: 7 }} variant="h1">
               Welcome to <img src={logo} alt="Moho Logo" /> Auth
             </Typography>
             <SignOut />
