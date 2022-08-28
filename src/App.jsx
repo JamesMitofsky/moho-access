@@ -59,19 +59,27 @@ export default function App() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          mt: 6,
+          mt: 3,
         }}
       >
         {user ? (
           <>
             <CodeOfDay />
-            <Typography sx={{ textAlign: "center" }} variant="h1">
+            <Typography
+              sx={{ textAlign: "center", mt: 40, mb: 40 }}
+              variant="h1"
+            >
               Welcome to <img src={logo} alt="Moho Logo" /> Auth
             </Typography>
             <SignOut />
           </>
         ) : (
-          <Login />
+          <>
+            <Typography sx={{ textAlign: "center" }} variant="h1">
+              Welcome to <img src={logo} alt="Moho Logo" /> Auth
+            </Typography>
+            <Login />
+          </>
         )}
       </Grid>
       <Footer />
