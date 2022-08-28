@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import firebase from "./firebase";
 
 import Login from "./components/Login.jsx";
-import SignOut from "./components/Signout.jsx";
+import SignOut from "./components/SignOut.jsx";
 import { Container, Grid } from "@mui/material";
 
 export default function App() {
