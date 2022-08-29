@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
+  const [codeOfDay, setCodeOfDay] = useState("");
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -28,8 +29,15 @@ export default function CodeOfDay() {
           weekday: doc.data().weekday,
         }))
       );
+      currentCode();
     });
   }, []);
+
+  const currentCode = () => {
+    if (codes.length === 0) return;
+    const code = codes.find((code) => code.weekday === day);
+    setCodeOfDay(code.code);
+  };
 
   return (
     <>
@@ -37,13 +45,12 @@ export default function CodeOfDay() {
         <QRCodeSVG
           style={{
             height: "auto",
-            width: "70%",
-            maxWidth: 250,
-            marginTop: 50,
+            width: 230,
+            marginTop: 100,
+            marginBottom: 100,
           }}
-          value={codes.filter((item) => {
-            item.weekday === day;
-          })}
+          level="H"
+          value={codeOfDay.toString()}
         />
       )}
       {!isWeekday && (
