@@ -21,27 +21,24 @@ const Login = () => {
       alignItems="space-around"
       gap={4}
     >
-      <Grid>
+      <Grid component="form">
         <Typography variant="h2">Login</Typography>
-        <form>
-          <TextField
-            fullWidth
-            type="email"
-            placeholder="Enter email"
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
-          />
-        </form>
-
-        <form>
-          <TextField
-            fullWidth
-            type="password"
-            placeholder="Password"
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-          />
-        </form>
+        <TextField
+          fullWidth
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={loginEmail}
+          onChange={(e) => setLoginEmail(e.target.value)}
+        />
+        <TextField
+          fullWidth
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
+        />
 
         <Button
           variant="contained"
@@ -56,37 +53,29 @@ const Login = () => {
           Sign-in with Goolge
         </Button>
       </Grid>
-      <Grid>
+      <Grid component="form">
         <Typography variant="h2">Register</Typography>
-        <form>
-          <TextField
-            fullWidth
-            type="name"
-            placeholder="Enter name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </form>
-        <form>
-          <TextField
-            fullWidth
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </form>
-
-        <form>
-          <TextField
-            fullWidth
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </form>
-
+        <TextField
+          fullWidth
+          type="name"
+          placeholder="Enter name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          fullWidth
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          fullWidth
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button
           variant="outlined"
           type="submit"
