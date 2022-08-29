@@ -27,6 +27,7 @@ const Login = () => {
           fullWidth
           type="email"
           name="email"
+          autoComplete="email"
           placeholder="Enter email"
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
@@ -35,6 +36,7 @@ const Login = () => {
           fullWidth
           type="password"
           name="password"
+          autoComplete="password"
           placeholder="Password"
           value={loginPassword}
           onChange={(e) => setLoginPassword(e.target.value)}
