@@ -14,7 +14,7 @@ export default function CodeOfDay() {
 
   const d = new Date();
   const day = weekdays[d.getDay()];
-  const isWeekday = weekdays.includes(d);
+  const isWeekday = weekdays.includes(day);
 
   /* function to get all tasks from firestore in realtime */
   useEffect(() => {
