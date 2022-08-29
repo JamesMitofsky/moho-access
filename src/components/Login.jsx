@@ -36,7 +36,7 @@ const Login = () => {
           fullWidth
           type="password"
           name="password"
-          autoComplete="password"
+          autoComplete="current-password"
           placeholder="Password"
           value={loginPassword}
           onChange={(e) => setLoginPassword(e.target.value)}
@@ -45,7 +45,8 @@ const Login = () => {
         <Button
           variant="contained"
           type="submit"
-          onClick={() => {
+          onClick={(e) => {
+            e.prevetDefault();
             signInWithEmailAndPassword(loginEmail, loginPassword);
           }}
         >
@@ -81,7 +82,8 @@ const Login = () => {
         <Button
           variant="outlined"
           type="submit"
-          onClick={() => {
+          onClick={(e) => {
+            e.prevetDefault();
             registerWithEmailAndPassword(name, email, password);
           }}
         >
