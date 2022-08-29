@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
-import { auth } from "../firebase";
+import { auth } from "../services/firebase";
 
 export default function SignOut() {
+  ``;
   return (
     <Button
       variant="outlined"

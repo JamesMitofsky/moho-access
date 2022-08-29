@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 // firebase library
 import { collection, query, onSnapshot } from "firebase/firestore";
 // local db config
-import { db } from "../firebase";
+import { db } from "../services/firebase";
 
 import { QRCodeSVG } from "qrcode.react";
 import { Typography, CircularProgress, Box } from "@mui/material";

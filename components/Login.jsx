@@ -2,7 +2,7 @@ import {
   signInWithGoogle,
   signInWithEmailAndPassword,
   registerWithEmailAndPassword,
-} from "../firebase";
+} from "../services/firebase";
 import { useState } from "react";
 import { Typography, TextField, Button, Grid } from "@mui/material";
 
