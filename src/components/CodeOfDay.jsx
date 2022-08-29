@@ -36,7 +36,9 @@ export default function CodeOfDay() {
       {isWeekday && (
         <QRCodeSVG
           style={{ height: "auto", width: "70%", maxWidth: "250px" }}
-          value={codes.filter((item) => item.weekday === day)}
+          value={codes.filter((item) => {
+            item.weekday === day;
+          })}
         />
       )}
       {!isWeekday && (
