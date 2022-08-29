@@ -44,9 +44,7 @@ const Login = () => {
 
         <Button
           variant="contained"
-          type="submit"
-          onClick={(e) => {
-            e.prevetDefault();
+          onClick={() => {
             signInWithEmailAndPassword(loginEmail, loginPassword);
           }}
         >
@@ -81,9 +79,7 @@ const Login = () => {
         />
         <Button
           variant="outlined"
-          type="submit"
-          onClick={(e) => {
-            e.prevetDefault();
+          onClick={() => {
             registerWithEmailAndPassword(name, email, password);
           }}
         >
