@@ -41,6 +41,7 @@ export const signInWithGoogle = async () => {
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        created: Timestamp.now(),
       });
     }
   } catch (err) {
@@ -65,6 +66,7 @@ export const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      created: Timestamp.now(),
     });
   } catch (err) {
     alert(err.message);
