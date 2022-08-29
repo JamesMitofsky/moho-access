@@ -13,7 +13,8 @@ export default function CodeOfDay() {
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const d = new Date();
-  const day = weekdays[d.getDay()];
+  // subtract 1 from day to get correct day of week (because JS starts at 0)
+  const day = weekdays[d.getDay() - 1];
   const isWeekday = weekdays.includes(day);
 
   /* function to get all tasks from firestore in realtime */
