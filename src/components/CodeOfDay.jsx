@@ -9,7 +9,7 @@ import { Typography } from "@mui/material";
 
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
-  const [codeOfDay, setCodeOfDay] = useState("");
+  const [codeOfDay, setCodeOfDay] = useState();
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -29,14 +29,17 @@ export default function CodeOfDay() {
           weekday: doc.data().weekday,
         }))
       );
-      currentCode();
     });
   }, []);
+
+  useEffect(() => {
+    currentCode();
+  }, [codes]);
 
   const currentCode = () => {
     if (codes.length === 0) return;
     const code = codes.find((code) => code.weekday === day);
-    setCodeOfDay(code.code);
+    setCodeOfDay(code.code.toString());
   };
 
   return (
@@ -50,7 +53,7 @@ export default function CodeOfDay() {
             marginBottom: 100,
           }}
           level="H"
-          value={codeOfDay.toString()}
+          value={codeOfDay}
         />
       )}
       {!isWeekday && (
