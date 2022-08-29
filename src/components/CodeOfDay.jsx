@@ -5,11 +5,12 @@ import { collection, query, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 import { QRCodeSVG } from "qrcode.react";
-import { Typography } from "@mui/material";
+import { Typography, CircularProgress, Box } from "@mui/material";
 
 export default function CodeOfDay() {
   const [codes, setCodes] = useState([]);
   const [codeOfDay, setCodeOfDay] = useState();
+  const [loaded, setLoaded] = useState(false);
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -40,11 +41,13 @@ export default function CodeOfDay() {
     if (codes.length === 0) return;
     const code = codes.find((code) => code.weekday === day);
     setCodeOfDay(code.code.toString());
+    setLoaded(true);
   };
 
   return (
     <>
-      {isWeekday && (
+      {!loaded && <CircularProgress />}
+      {isWeekday && loaded && (
         <QRCodeSVG
           style={{
             height: "auto",
@@ -56,7 +59,7 @@ export default function CodeOfDay() {
           value={codeOfDay}
         />
       )}
-      {!isWeekday && (
+      {!isWeekday && loaded && (
         <Typography sx={{ textAlign: "center", mt: 7 }} variant="h2">
           🚧 No codes on the weekend — profitez!
         </Typography>
