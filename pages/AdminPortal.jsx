@@ -93,6 +93,10 @@ export default function AdminPortal() {
     }
   }
 
+  function objToString(roles) {
+    return Object.keys(roles).join(", ");
+  }
+
   return (
     <>
       {!loaded && <CircularProgress />}
@@ -103,7 +107,10 @@ export default function AdminPortal() {
           <List>
             {users.map((role) => (
               <ListItem divider key={role.id}>
-                <ListItemText primary={role.email} secondary={role.uid} />
+                <ListItemText
+                  primary={role.email}
+                  secondary={objToString(role.roles)}
+                />
               </ListItem>
             ))}
           </List>
