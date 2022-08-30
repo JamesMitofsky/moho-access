@@ -10,10 +10,13 @@ import {
   Grid,
   TextField,
   Button,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 export default function AdminPortal() {
   const [loaded, setLoaded] = useState(false);
-  const [roles, setRoles] = useState([]);
+  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
 
   // TODO:
@@ -25,7 +28,7 @@ export default function AdminPortal() {
     const taskColRef = query(collection(db, "userRoles"));
     onSnapshot(taskColRef, (snapshot) => {
       // todo: spread roles into an array that can be flattened.
-      setRoles(
+      setUsers(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           uid: doc.data().uid,
@@ -36,6 +39,25 @@ export default function AdminPortal() {
       setLoaded(true);
     });
   }, []);
+
+  // useEffect(() => {
+  //   setGroupedRoles(() => {
+  //     const groupedRoles = {
+  //       residents: [],
+  //       admins: [],
+  //     };
+  //     users.forEach((user) => {
+  //       if (user.roles.includes("admin")) {
+  //         groupedRoles.admins.push(role);
+  //       } else {
+  //         groupedRoles.residents.push(role);
+  //       }
+  //     });
+  //     return groupedRoles;
+  //   });
+
+  //   setLoaded(true);
+  // }, [groupedRoles]);
 
   async function giveUserAccess() {
     await setDoc(doc(db, "userRoles", "USER_ID_HERE"), {
@@ -50,15 +72,14 @@ export default function AdminPortal() {
       {!loaded && <CircularProgress />}
       {loaded && (
         <>
-          <Typography variant="h2">Give Resident Status</Typography>
-          <ul>
-            {roles.map((role) => (
-              <ul key={role.id}>
-                <li>{role.uid}</li>
-                <li>{role.email}</li>
-              </ul>
+          <Typography variant="h2">Authorized Users</Typography>
+          <List>
+            {users.map((role) => (
+              <ListItem divider key={role.id}>
+                <ListItemText primary={role.email} secondary={role.uid} />
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <Grid component="form">
             <TextField
               fullWidth
