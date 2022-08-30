@@ -23,38 +23,29 @@ export default function App() {
 
   return (
     <>
-      <Container
+      <Grid
         sx={{
+          flex: 1,
           display: "flex",
           flexDirection: "column",
-          flex: 1,
+          alignItems: "center",
         }}
       >
-        <Grid
-          sx={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          {pageLoaded && user && (
-            <>
-              <CodeOfDay />
-              <WelcomeText />
-              <SignOut />
-            </>
-          )}
+        {pageLoaded && user && (
+          <>
+            <CodeOfDay />
+            <WelcomeText />
+            <SignOut />
+          </>
+        )}
 
-          {pageLoaded && !user && (
-            <>
-              <WelcomeText />
-              <Login />
-            </>
-          )}
-        </Grid>
-      </Container>
-      <Footer />
+        {pageLoaded && !user && (
+          <>
+            <WelcomeText />
+            <Login />
+          </>
+        )}
+      </Grid>
     </>
   );
 }

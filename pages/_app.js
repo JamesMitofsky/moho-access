@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container } from "@mui/material";
 import "../styles/global.css";
+import Footer from "../components/Footer";
 
 const theme = createTheme({
   components: {
@@ -42,6 +43,7 @@ export default function App({ Component, pageProps }) {
       >
         <Component {...pageProps} />
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 }
