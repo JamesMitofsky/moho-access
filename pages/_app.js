@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Container } from "@mui/material";
 import "../styles/global.css";
 import Footer from "../components/Footer";
+import { AppWrapper } from "../context/state";
 
 const theme = createTheme({
   components: {
@@ -31,19 +32,22 @@ const theme = createTheme({
     },
   },
 });
+
 export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-        }}
-      >
-        <Component {...pageProps} />
-      </Container>
-      <Footer />
+      <AppWrapper>
+        <Container
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+          }}
+        >
+          <Component {...pageProps} />
+        </Container>
+        <Footer />
+      </AppWrapper>
     </ThemeProvider>
   );
 }
