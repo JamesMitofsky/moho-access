@@ -84,9 +84,9 @@ export default function AdminPortal() {
     );
 
     if (!alreadyExistsAsAuthorized && existsInGlobalUsers) {
-      await setDoc(doc(db, "userRoles", "USER_ID_HERE"), {
-        uid: "USER_ID_HERE",
-        email: "EMAIL",
+      await setDoc(doc(db, "userRoles", existsInGlobalUsers.uid), {
+        uid: existsInGlobalUsers.uid,
+        email: existsInGlobalUsers.email,
         roles: { resident: true },
       });
     } else {
