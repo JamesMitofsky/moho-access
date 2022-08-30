@@ -18,7 +18,7 @@ import {
 export default function AdminPortal() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
-  const [newUsers, setNewUsers] = useState([]);
+  const [globalUsers, setGlobalUsers] = useState([]);
   const [emailInput, setEmailInput] = useState("");
 
   // TODO:
@@ -44,7 +44,7 @@ export default function AdminPortal() {
     // get all users in database
     const usersColRef = query(collection(db, "users"));
     onSnapshot(usersColRef, (snapshot) => {
-      setNewUsers(
+      setGlobalUsers(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           uid: doc.data().uid,
@@ -53,7 +53,7 @@ export default function AdminPortal() {
       );
     });
   }, []);
-  console.log(newUsers);
+  console.log(globalUsers);
 
   // useEffect(() => {
   //   setGroupedRoles(() => {
@@ -75,12 +75,15 @@ export default function AdminPortal() {
   // }, [groupedRoles]);
 
   async function giveUserAccess() {
-    // const existsInGlobalUsers =
+    // set conditions to be used in if-statement
+    const existsInGlobalUsers = globalUsers.find(
+      (user) => user.email === emailInput
+    );
     const alreadyExistsAsAuthorized = users.find(
       (user) => user.email === emailInput
     );
 
-    if (!alreadyExistsAsAuthorized) {
+    if (!alreadyExistsAsAuthorized && existsInGlobalUsers) {
       await setDoc(doc(db, "userRoles", "USER_ID_HERE"), {
         uid: "USER_ID_HERE",
         email: "EMAIL",
@@ -88,7 +91,13 @@ export default function AdminPortal() {
       });
     } else {
       alert(
-        "Could not add this user because either:\n\n1. User is already authorized.\n2. This user has not yet registered themselves."
+        `Sorry, we couldn't add this user.\n${
+          alreadyExistsAsAuthorized ? "User is already authorized." : ""
+        }${
+          !existsInGlobalUsers
+            ? "This user has not yet registered themselves."
+            : ""
+        }`
       );
     }
   }
