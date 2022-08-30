@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { collection, query, onSnapshot, doc, setDoc } from "firebase/firestore";
 // local db config
 import { db } from "../services/firebase";
+import WelcomeText from "../components/WelcomeText.jsx";
 
 import {
   Typography,
@@ -17,16 +18,17 @@ import {
 export default function AdminPortal() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
-  const [email, setEmail] = useState("");
+  const [newUsers, setNewUsers] = useState([]);
+  const [emailInput, setEmailInput] = useState("");
 
   // TODO:
   // add drop down list for type of access to be provisioned (admin, resident, etc) (maybe functions can be used for day pass)
   // check database to make sure use exists before giving them access
 
-  /* get all user roles to render on screen */
   useEffect(() => {
-    const taskColRef = query(collection(db, "userRoles"));
-    onSnapshot(taskColRef, (snapshot) => {
+    /* get all user roles to render on screen */
+    const userRolesColRef = query(collection(db, "userRoles"));
+    onSnapshot(userRolesColRef, (snapshot) => {
       // todo: spread roles into an array that can be flattened.
       setUsers(
         snapshot.docs.map((doc) => ({
@@ -38,7 +40,20 @@ export default function AdminPortal() {
       );
       setLoaded(true);
     });
+
+    // get all users in database
+    const usersColRef = query(collection(db, "users"));
+    onSnapshot(usersColRef, (snapshot) => {
+      setNewUsers(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          uid: doc.data().uid,
+          email: doc.data().email,
+        }))
+      );
+    });
   }, []);
+  console.log(newUsers);
 
   // useEffect(() => {
   //   setGroupedRoles(() => {
@@ -60,11 +75,22 @@ export default function AdminPortal() {
   // }, [groupedRoles]);
 
   async function giveUserAccess() {
-    await setDoc(doc(db, "userRoles", "USER_ID_HERE"), {
-      uid: "USER_ID_HERE",
-      email: "EMAIL",
-      roles: { resident: true },
-    });
+    // const existsInGlobalUsers =
+    const alreadyExistsAsAuthorized = users.find(
+      (user) => user.email === emailInput
+    );
+
+    if (!alreadyExistsAsAuthorized) {
+      await setDoc(doc(db, "userRoles", "USER_ID_HERE"), {
+        uid: "USER_ID_HERE",
+        email: "EMAIL",
+        roles: { resident: true },
+      });
+    } else {
+      alert(
+        "Could not add this user because either:\n\n1. User is already authorized.\n2. This user has not yet registered themselves."
+      );
+    }
   }
 
   return (
@@ -72,6 +98,7 @@ export default function AdminPortal() {
       {!loaded && <CircularProgress />}
       {loaded && (
         <>
+          <WelcomeText />
           <Typography variant="h2">Authorized Users</Typography>
           <List>
             {users.map((role) => (
@@ -86,8 +113,8 @@ export default function AdminPortal() {
               type="email"
               name="email"
               placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={emailInput}
+              onChange={(e) => setEmailInput(e.target.value)}
             />
             <Button onClick={giveUserAccess} variant="contained">
               Add Resident
