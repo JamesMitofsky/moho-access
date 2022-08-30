@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@mui/material/styles";
-import { createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Container } from "@mui/material";
 import "../styles/global.css";
 
 const theme = createTheme({
@@ -33,7 +33,15 @@ const theme = createTheme({
 export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />{" "}
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+        }}
+      >
+        <Component {...pageProps} />
+      </Container>
     </ThemeProvider>
   );
 }
