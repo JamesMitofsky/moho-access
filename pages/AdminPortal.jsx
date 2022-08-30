@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 // firebase library
-import { collection, query, onSnapshot, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  onSnapshot,
+  doc,
+  setDoc,
+  Timestamp,
+} from "firebase/firestore";
 // local db config
 import { db } from "../services/firebase";
 import WelcomeText from "../components/WelcomeText.jsx";
@@ -88,6 +95,7 @@ export default function AdminPortal() {
         uid: existsInGlobalUsers.uid,
         email: existsInGlobalUsers.email,
         roles: { resident: true },
+        Timestamp,
       });
     } else {
       alert(
