@@ -4,7 +4,7 @@ import firebase from "../services/firebase";
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
