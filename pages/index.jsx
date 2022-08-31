@@ -7,7 +7,7 @@ import { useAppContext } from "../context/state";
 import Router from "next/router";
 
 export default function App() {
-  const [pageLoaded, setPageLoaded] = useState(true);
+  const [pageLoaded, setPageLoaded] = useState(false);
   const user = useAppContext();
   useEffect(() => {
     // if user has been checked for but does not exist
