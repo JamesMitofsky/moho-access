@@ -9,25 +9,21 @@ const AppContext = createContext();
 export function AppWrapper({ children }) {
   const [user, setUser] = useState(null);
 
-  async function getUserInfo(userObj) {
+  async function getUserInfo(userObj, userAuthorized) {
     const docRef = doc(db, "users", userObj.uid);
     const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
+    const userWithAuth = { ...docSnap.data(), authorized: userAuthorized };
+    return userWithAuth;
   }
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
-      console.log(
-        "isuserauthorized",
-        await isUserAuthorized(userObj.uid, ["admin", "resident"])
-      );
-      // getUserInfo(userObj);
-      // setUser(user);
+      const isAuthorized = await isUserAuthorized(userObj.uid, [
+        "admin",
+        "resident",
+      ]);
+      const userWithAuthStatus = await getUserInfo(userObj, isAuthorized);
+      setUser(userWithAuthStatus);
     });
   }, []);
 
