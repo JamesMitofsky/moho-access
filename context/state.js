@@ -25,6 +25,9 @@ export function AppWrapper({ children }) {
         setUser(null);
         return;
       }
+
+      // if user is already saved to system, exit logging function
+      if (user) return;
       // otherwise, process user info
       const isAuthorized = await isUserAuthorized(userObj.uid, [
         "admin",
