@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-// firebase library
+import { Typography, Grid } from "@mui/material";
 import { collection, query, onSnapshot } from "firebase/firestore";
-// local db config
 import { db } from "../services/firebase";
-
 import { QRCodeSVG } from "qrcode.react";
-import { Typography, CircularProgress, Box } from "@mui/material";
 
-export default function CodeOfDay() {
+export default function CodeOfDay({ loaded, setLoaded }) {
   const [codes, setCodes] = useState([]);
   const [codeOfDay, setCodeOfDay] = useState();
-  const [loaded, setLoaded] = useState(false);
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -45,8 +41,15 @@ export default function CodeOfDay() {
   };
 
   return (
-    <>
-      {!loaded && <CircularProgress />}
+    <Grid
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+      }}
+    >
       {isWeekday && loaded && (
         <QRCodeSVG
           style={{
@@ -64,6 +67,6 @@ export default function CodeOfDay() {
           🚧 No codes on the weekend — profitez!
         </Typography>
       )}
-    </>
+    </Grid>
   );
 }
