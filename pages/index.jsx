@@ -11,7 +11,12 @@ import { useAppContext } from "../context/state";
 export default function App() {
   const [pageLoaded, setPageLoaded] = useState(true);
   const user = useAppContext();
-  console.log(user);
+  if (user) {
+    console.log(user, user.displayName);
+  }
+
+  // todo: run UID search to return if user is authorized before doing any screen changes.
+  // also, forward user to a new page /QRCode or something
 
   return (
     <>

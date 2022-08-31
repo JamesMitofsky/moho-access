@@ -60,7 +60,6 @@ export default function AdminPortal() {
       );
     });
   }, []);
-  console.log(globalUsers);
 
   // useEffect(() => {
   //   setGroupedRoles(() => {
