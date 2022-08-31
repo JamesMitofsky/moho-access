@@ -10,12 +10,19 @@ export default function App() {
   const [pageLoaded, setPageLoaded] = useState(true);
   const user = useAppContext();
   useEffect(() => {
-    if (!user) {
+    // if user has been checked for but does not exist
+
+    // has user been evaluated by state.js?
+    if (!user) return;
+
+    // has state.js determined no user is logged in?
+    const notLoggedIn = user === "empty";
+    if (notLoggedIn) {
       setPageLoaded(true);
       return;
     }
+    // has state.js determined user is authorized to access QR codes?
     if (user.authorized) {
-      console.log(user);
       Router.push("/Access");
     }
   }, [user]);
@@ -34,7 +41,7 @@ export default function App() {
         }}
       >
         {!pageLoaded && <CircularProgress />}
-        {pageLoaded && !user && (
+        {pageLoaded && (
           <>
             <WelcomeText />
             <Login />

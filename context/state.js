@@ -22,13 +22,14 @@ export function AppWrapper({ children }) {
       // if no user is logged in, empty the user obj
       if (!userObj) {
         Router.push("/");
-        setUser(null);
+        setUser("empty");
         return;
       }
 
       // if user is already saved to system, exit logging function
       if (user) return;
-      // otherwise, process user info
+
+      // if user signs in for first time, record their info
       const isAuthorized = await isUserAuthorized(userObj.uid, [
         "admin",
         "resident",
