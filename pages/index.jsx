@@ -32,7 +32,19 @@ export default function App() {
 
   return (
     <>
-      {!pageLoaded && <CircularProgress />}
+      {!pageLoaded && (
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
+          <CircularProgress />
+        </Grid>
+      )}
       {pageLoaded && (
         <>
           <WelcomeText />
