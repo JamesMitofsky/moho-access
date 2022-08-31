@@ -1,19 +1,23 @@
-import CodeOfDay from "../components/CodeOfDay.jsx";
 import WelcomeText from "../components/WelcomeText.jsx";
-
-import { useState } from "react";
-
 import Login from "../components/Login.jsx";
-import SignOut from "../components/SignOut.jsx";
-import { Grid } from "@mui/material";
+
+import { useState, useEffect } from "react";
+import { Grid, CircularProgress } from "@mui/material";
 import { useAppContext } from "../context/state";
+import Router from "next/router";
 
 export default function App() {
-  const [pageLoaded, setPageLoaded] = useState(true);
+  const [pageLoaded, setPageLoaded] = useState(false);
   const user = useAppContext();
-  if (user) {
-    console.log(user, user.displayName);
-  }
+  useEffect(() => {
+    if (!user) return;
+    if (user.authorized) {
+      console.log(user);
+      Router.push("/Access");
+    } else {
+      setPageLoaded(true);
+    }
+  }, [user]);
 
   // todo: run UID search to return if user is authorized before doing any screen changes.
   // also, forward user to a new page /QRCode or something
@@ -28,14 +32,7 @@ export default function App() {
           alignItems: "center",
         }}
       >
-        {pageLoaded && user && (
-          <>
-            <CodeOfDay />
-            <WelcomeText />
-            <SignOut />
-          </>
-        )}
-
+        {!pageLoaded && <CircularProgress />}
         {pageLoaded && !user && (
           <>
             <WelcomeText />

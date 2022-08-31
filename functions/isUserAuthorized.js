@@ -12,6 +12,5 @@ export default async function isUserAuthorized(uidInquiry, authTypes) {
   const isAuthorized = authTypes.some((authType) => {
     return response.roles[authType] === true;
   });
-  //   const isAuthorized = response.roles[authType] === true ? true : false;
   return isAuthorized;
 }
