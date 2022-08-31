@@ -1,8 +1,8 @@
 import WelcomeText from "../components/WelcomeText.jsx";
 import Login from "../components/Login.jsx";
+import Loading from "../components/Loading.jsx";
 
 import { useState, useEffect } from "react";
-import { Grid, CircularProgress } from "@mui/material";
 import { useAppContext } from "../context/state";
 import Router from "next/router";
 
@@ -32,19 +32,7 @@ export default function App() {
 
   return (
     <>
-      {!pageLoaded && (
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
-          <CircularProgress />
-        </Grid>
-      )}
+      <Loading loaded={pageLoaded} />
       {pageLoaded && (
         <>
           <WelcomeText />
