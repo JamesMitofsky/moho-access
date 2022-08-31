@@ -7,15 +7,16 @@ import { useAppContext } from "../context/state";
 import Router from "next/router";
 
 export default function App() {
-  const [pageLoaded, setPageLoaded] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(true);
   const user = useAppContext();
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      setPageLoaded(true);
+      return;
+    }
     if (user.authorized) {
       console.log(user);
       Router.push("/Access");
-    } else {
-      setPageLoaded(true);
     }
   }, [user]);
 

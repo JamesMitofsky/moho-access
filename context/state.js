@@ -3,6 +3,7 @@ import firebase from "../services/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import isUserAuthorized from "../functions/isUserAuthorized";
+import Router from "next/router";
 
 const AppContext = createContext();
 
@@ -18,6 +19,13 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
+      // if no user is logged in, empty the user obj
+      if (!userObj) {
+        Router.push("/");
+        setUser(null);
+        return;
+      }
+      // otherwise, process user info
       const isAuthorized = await isUserAuthorized(userObj.uid, [
         "admin",
         "resident",
