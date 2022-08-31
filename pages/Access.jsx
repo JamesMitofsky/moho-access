@@ -7,7 +7,6 @@ export default function Access() {
   return (
     <Grid
       sx={{
-        flex: 1,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
