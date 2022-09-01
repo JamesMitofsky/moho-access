@@ -28,7 +28,6 @@ export default function CodeOfDay({ loaded, setLoaded }) {
     }
     getCodeOfDay();
   }, []);
-  console.log(code);
 
   return (
     <Grid
