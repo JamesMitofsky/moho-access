@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Typography, Grid } from "@mui/material";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function CodeOfDay({ loaded, setLoaded }) {
-  const [codes, setCodes] = useState([]);
-  const [codeOfDay, setCodeOfDay] = useState();
+  const [code, setCode] = useState(null);
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -17,28 +16,19 @@ export default function CodeOfDay({ loaded, setLoaded }) {
 
   /* function to get all tasks from firestore in realtime */
   useEffect(() => {
-    const taskColRef = query(collection(db, "loginCodes"));
-    onSnapshot(taskColRef, (snapshot) => {
-      setCodes(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          code: doc.data().code,
-          weekday: doc.data().weekday,
-        }))
-      );
-    });
+    async function getCodeOfDay() {
+      const querySnapshot = await getDocs(collection(db, "loginCodes"));
+
+      // loop through the server documents and return the current code
+      querySnapshot.forEach((doc) => {
+        if (doc.data().weekday !== day) return;
+        setCode(doc.data().code);
+      });
+      setLoaded(true);
+    }
+    getCodeOfDay();
   }, []);
-
-  useEffect(() => {
-    currentCode();
-  }, [codes]);
-
-  const currentCode = () => {
-    if (codes.length === 0) return;
-    const code = codes.find((code) => code.weekday === day);
-    setCodeOfDay(code.code.toString());
-    setLoaded(true);
-  };
+  console.log(code);
 
   return (
     <Grid
@@ -50,7 +40,7 @@ export default function CodeOfDay({ loaded, setLoaded }) {
         flex: 1,
       }}
     >
-      {isWeekday && loaded && (
+      {isWeekday && loaded && code && (
         <QRCodeSVG
           style={{
             height: "auto",
@@ -59,9 +49,10 @@ export default function CodeOfDay({ loaded, setLoaded }) {
             marginBottom: 100,
           }}
           level="H"
-          value={codeOfDay}
+          value={code}
         />
       )}
+      {!code && "🚧 Expected code of the day not found."}
       {!isWeekday && loaded && (
         <Typography sx={{ textAlign: "center", mt: 7 }} variant="h2">
           🚧 No codes on the weekend — profitez!
