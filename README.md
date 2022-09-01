@@ -77,7 +77,7 @@ users {
 // any user which has been given access to the system
 userRoles {
 	email: EMAIL,                    // string
-	uid: UNIQUE_ID 			 // string
+	uid: UNIQUE_ID, 		 // string
 	roles: {			 // obj
 	    resident: true,
 	    admin: false
