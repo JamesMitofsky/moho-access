@@ -14,13 +14,14 @@ Connect to Firebase's Authentication and Firestore
 
 ```
 
-## Project Inspiration
-
-### My Experience
-
-I've been using the Moho QR codes to access the resident space for months, and getting the photo of the correct day's code on my phone to line up with the code scanner was a hassel.
+## The Problem & its Solution
 
 ### Context
+|![IMG_7179 2](https://user-images.githubusercontent.com/12516538/187898609-4bcfa4e4-8021-4c66-a2eb-75259ccdf6a4.jpg)|![IMG_7177 2](https://user-images.githubusercontent.com/12516538/187898620-2e9d7d2f-53d8-4797-9fac-95f300b9b10d.jpg)|
+|---|---|
+
+
+
 
 The Moho coworking space currently has authentication solutions to their private resident space:
 
@@ -28,6 +29,8 @@ The Moho coworking space currently has authentication solutions to their private
    - This works perfectly for people actually holding the resident status, as they're the principal occupants of the space.
 2. A QR code which opens turnstile gates into the resident space.
    - This is much more suited to the enterprises which rent out various rooms contained within the resident space. Because this groups are often large, their presence brief, and the scope of their access limited to getting past the turnstile, their needs can be met with a simpler solution.
+   
+In my experience, I've been using the Moho QR codes to access the resident space for months, and getting the photo of the correct day's code on my phone to line up with the code scanner was a hassel.
 
 ### The Opportunity
 
