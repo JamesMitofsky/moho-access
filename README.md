@@ -14,35 +14,7 @@ Install all dependencies & begin running the development server:
 ```
 npm i && npm run dev
 ```
-
-Connect to Firebase's [Authentication](https://firebase.google.com/docs/auth) and [Firestore](https://firebase.google.com/docs/firestore). The Moho Auth application is using the following structure of collections:
-```js
-// qr code information for scanner login at Moho
-loginCodes {
-    code: QR_CODE_VALUE, // number
-    weekday: DAY_OF_WEEK // string
-}
-
-// any users who successfully registered through Firebase Auth
-// each user document in this collection should have a document ID which is identical to the user's UID
-users {
-	authProvider: CREATION_POINT,	 // string
-	created: FIREBASE_TIMESTAMP_OBJ, // obj
-	email: EMAIL,                    // string
-	name: NAME, 			 // string
-	uid: UNIQUE_ID 			 // string
-}
-
-// any user which has been given access to the system
-userRoles {
-	email: EMAIL,                    // string
-	uid: UNIQUE_ID 			 // string
-	roles: {			 // obj
-	    resident: true,
-	    admin: false
-	}
-}
-```
+<a href="#database-structure">See database setup section.</a>
 
 ## Purpose of Application
 
@@ -79,6 +51,40 @@ Improve convenience and security by moving the QR code to a web-app.
 
 * Code distribution: Contrary to losing control over a paper or photo copy of a QR code, in a digital system, access can be assigned and revoked from an admin panel. Even without integration into the turnstile hardware, dynamically closing access is an easy first step to begin tying up loose ends.
 
+## Technical Information
+
+### Database Structure
+
+Connect to Firebase's [Authentication](https://firebase.google.com/docs/auth) and [Firestore](https://firebase.google.com/docs/firestore). In this use case, the following collection structure is being used:
+
+```js
+// qr code information for scanner login at Moho
+loginCodes {
+    code: QR_CODE_VALUE, // number
+    weekday: DAY_OF_WEEK // string
+}
+
+// any users who successfully registered through Firebase Auth
+// each user document in this collection should have a document ID which is identical to the user's UID
+users {
+	authProvider: CREATION_POINT,	 // string
+	created: FIREBASE_TIMESTAMP_OBJ, // obj
+	email: EMAIL,                    // string
+	name: NAME, 			 // string
+	uid: UNIQUE_ID 			 // string
+}
+
+// any user which has been given access to the system
+userRoles {
+	email: EMAIL,                    // string
+	uid: UNIQUE_ID 			 // string
+	roles: {			 // obj
+	    resident: true,
+	    admin: false
+	}
+}
+```
+
 ## Notes
 
 - Env file _must_ be outside of the src directory; [source](https://stackoverflow.com/a/72453980/5395435).
@@ -87,5 +93,5 @@ Improve convenience and security by moving the QR code to a web-app.
 
 ## To Do
 
-[] Local storage the QR code by day with an expiration timer to (1) 24 cycles or (2) a midnight reset.
-[] Add url based entry for enterprise names that can be submitted to the database
+- [ ] Local storage the QR code by day with an expiration timer to (1) 24 cycles or (2) a midnight reset.
+- [ ] Add url based entry for enterprise names that can be submitted to the database
