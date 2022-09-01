@@ -1,5 +1,7 @@
 # Moho Auth
 Making authenticating into the Moho resident space simple, scalable, & secure. 👍
+
+<img height="26" src="https://img.shields.io/github/deployments/jamesmitofsky/moho-authentification/production"/>
 <table>
 	<tr>
 	  <td><img width="400" src="https://user-images.githubusercontent.com/12516538/187898620-2e9d7d2f-53d8-4797-9fac-95f300b9b10d.jpg"/></td>
