@@ -22,7 +22,8 @@ export default function CodeOfDay({ loaded, setLoaded }) {
       // loop through the server documents and return the current code
       querySnapshot.forEach((doc) => {
         if (doc.data().weekday !== day) return;
-        setCode(doc.data().code);
+        const currentCode = doc.data().code.toString();
+        setCode(currentCode);
       });
       setLoaded(true);
     }
