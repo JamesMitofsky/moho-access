@@ -1,4 +1,11 @@
 # Moho Auth
+<table>
+	<tr>
+		<td><img height="400px" src="https://user-images.githubusercontent.com/12516538/187898620-2e9d7d2f-53d8-4797-9fac-95f300b9b10d.jpg"/></td>
+      <td><img height="400px" src="https://user-images.githubusercontent.com/12516538/187910135-ecf15635-da18-4650-80cc-cc46df382a8f.png"/></td>
+		<td><img height="400px" src="https://user-images.githubusercontent.com/12516538/187898609-4bcfa4e4-8021-4c66-a2eb-75259ccdf6a4.jpg"/></td>      
+	</tr>
+</table>
 
 ## Getting Started
 
@@ -17,11 +24,6 @@ Connect to Firebase's Authentication and Firestore
 ## The Problem & its Solution
 
 ### Context
-|![IMG_7179 2](https://user-images.githubusercontent.com/12516538/187898609-4bcfa4e4-8021-4c66-a2eb-75259ccdf6a4.jpg)|![IMG_7177 2](https://user-images.githubusercontent.com/12516538/187898620-2e9d7d2f-53d8-4797-9fac-95f300b9b10d.jpg)|
-|---|---|
-
-
-
 
 The Moho coworking space currently has authentication solutions to their private resident space:
 
