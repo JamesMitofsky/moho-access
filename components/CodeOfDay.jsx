@@ -52,7 +52,6 @@ export default function CodeOfDay({ loaded, setLoaded }) {
           value={code}
         />
       )}
-      {!code && "🚧 Expected code of the day not found."}
       {!isWeekday && loaded && (
         <Typography sx={{ textAlign: "center", mt: 7 }} variant="h2">
           🚧 No codes on the weekend — profitez!
