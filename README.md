@@ -79,8 +79,8 @@ userRoles {
 	email: EMAIL,                    // string
 	uid: UNIQUE_ID, 		 // string
 	roles: {			 // obj
-	    resident: true,
-	    admin: false
+	    resident: BOOL,		 // bool
+	    admin: BOOL			 // bool
 	}
 }
 ```
