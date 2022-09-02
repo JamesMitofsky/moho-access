@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { useState } from "react";
 import Loading from "../components/Loading";
 
-export default function Access() {
+export default function Code() {
   const [loaded, setLoaded] = useState(false);
 
   return (

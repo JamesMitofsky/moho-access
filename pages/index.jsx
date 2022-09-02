@@ -23,7 +23,7 @@ export default function App() {
     }
     // has state.js determined user is authorized to access QR codes?
     if (user.authorized) {
-      Router.push("/access");
+      Router.push("/code");
     }
   }, [user]);
 
