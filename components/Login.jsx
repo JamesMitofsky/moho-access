@@ -51,7 +51,7 @@ const Login = () => {
           Login
         </Button>
         <Button variant="contained" onClick={signInWithGoogle}>
-          Sign-in with Goolge
+          Sign-in with Google
         </Button>
       </Grid>
       <Grid component="form">
