@@ -15,21 +15,6 @@ export default function CodeOfDay({ loaded, setLoaded }) {
   const isWeekday = weekdays.includes(day);
 
   useEffect(() => {
-    // before looking for code, check if it exists locally
-    function checkLocalStorage() {
-      const localObj = JSON.parse(localStorage.getItem("code"));
-
-      // if the object exists & the day is the same, use this local version
-      if (localObj?.weekday === day) {
-        const codeValue = localObj.code.toString();
-        setCode(codeValue);
-        setLoaded(true);
-
-        // exit function, returning true to prevent further execution in getCodeOfDay() context
-        return true;
-      }
-    }
-
     async function getCodeOfDay() {
       const code = checkLocalStorage();
       // if the code was received locally, skip server request
@@ -48,10 +33,24 @@ export default function CodeOfDay({ loaded, setLoaded }) {
         const codeValue = codeObj.code.toString();
         setCode(codeValue);
       });
-      setLoaded(true);
+    }
+
+    // before looking for code, check if it exists locally
+    function checkLocalStorage() {
+      const localObj = JSON.parse(localStorage.getItem("code"));
+
+      // if the object exists & the day is the same, use this local version
+      if (localObj?.weekday === day) {
+        const codeValue = localObj.code.toString();
+        setCode(codeValue);
+
+        // exit function, returning true to prevent further execution in getCodeOfDay() context
+        return true;
+      }
     }
     getCodeOfDay();
-  }, []);
+    setLoaded(true);
+  }, [code, loaded]);
 
   return (
     <Grid
