@@ -5,7 +5,7 @@ import { db } from "../services/firebase";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function CodeOfDay({ loaded, setLoaded }) {
-  const [code, setCode] = useState(null);
+  const [code, setCode] = useState("");
 
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -50,7 +50,7 @@ export default function CodeOfDay({ loaded, setLoaded }) {
     }
     getCodeOfDay();
     setLoaded(true);
-  }, [code, loaded]);
+  }, []);
 
   return (
     <Grid
