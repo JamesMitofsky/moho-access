@@ -1,35 +1,20 @@
 import { useEffect, useState } from "react";
 import { Typography, Grid } from "@mui/material";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../services/firebase";
 import { QRCodeSVG } from "qrcode.react";
-import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 import existsLocally from "../functions/checkLocalStorage";
 
-export default function CodeOfDay({ loaded, setLoaded }) {
+export default function CodeOfDay({ loaded, setLoaded, incomingCode }) {
   const [code, setCode] = useState("");
 
   useEffect(() => {
     async function getCodeOfDay() {
       // return true if it exists, skipping server call
-      const code = existsLocally();
-      if (code) {
-        setCode(code);
+      const localCode = existsLocally();
+      if (localCode) {
+        setCode(localCode);
         return;
       }
-
-      // get codes from server
-      const querySnapshot = await getDocs(collection(db, "loginCodes"));
-      // move server data into an object
-      const arrayOfWeekdays = querySnapshot.docs.map((doc) => doc.data());
-      // get the code for the current day
-      const codeOfDay = getCodeFromWeekdays(arrayOfWeekdays);
-
-      // save to local for later consumption
-      localStorage.setItem("code", JSON.stringify(codeOfDay));
-
-      // move the string value of today's code to the actual QR code
-      setCode(codeValue.code.toString());
+      setCode(incomingCode);
     }
     getCodeOfDay();
     setLoaded(true);
