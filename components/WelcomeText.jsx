@@ -5,7 +5,7 @@ export default function WelcomeText() {
   return (
     <>
       <Typography sx={{ textAlign: "center" }} variant="h1">
-        Bienvenue à <MohoSVG />
+        Bienvenue à<MohoSVG />
         Authentification
       </Typography>
     </>
