@@ -24,6 +24,7 @@ import {
 export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
   const [keys, setKeys] = useState([]);
+  const [codes, setCodes] = useState([]);
   const [requestedKey, setRequestedKey] = useState("");
 
   // TODO:
@@ -37,11 +38,16 @@ export default function ManageKeys() {
         setKeys((prev) => [...prev, doc.data()]);
       });
     }
+    async function getCodes() {
+      const codes = await getDocs(collection(db, "loginCodes"));
+      codes.forEach((doc) => {
+        setCodes((prev) => [...prev, doc.data()]);
+      });
+    }
     getKeys();
+    getCodes();
     setLoaded(true);
   }, []);
-
-  console.log(keys);
 
   async function giveUserAccess() {
     const alreadyExists = keys.find((doc) => doc.key === requestedKey);
@@ -50,7 +56,7 @@ export default function ManageKeys() {
     if (!alreadyExists) {
       await setDoc(doc(db, "globalKeys", requestedKey), {
         key: requestedKey,
-        weekdays: [{ weekday: "Monday", code: "123" }],
+        weekdays: codes,
         created: Timestamp.now(),
       });
     } else {
