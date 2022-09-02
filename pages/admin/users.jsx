@@ -9,8 +9,8 @@ import {
   Timestamp,
 } from "firebase/firestore";
 // local db config
-import { db } from "../services/firebase";
-import WelcomeText from "../components/WelcomeText.jsx";
+import { db } from "../../services/firebase";
+import WelcomeText from "../../components/WelcomeText.jsx";
 
 import {
   Typography,
@@ -22,7 +22,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-export default function AdminPortal() {
+export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
   const [globalUsers, setGlobalUsers] = useState([]);
