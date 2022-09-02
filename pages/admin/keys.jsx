@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 // firebase library
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  collection,
+  getDocs,
+  Timestamp,
+} from "firebase/firestore";
 // local db config
 import { db } from "../../services/firebase";
 import WelcomeText from "../../components/WelcomeText.jsx";
@@ -38,15 +44,14 @@ export default function ManageKeys() {
   console.log(keys);
 
   async function giveUserAccess() {
-    // set conditions to be used in if-statement
     const alreadyExists = keys.find((doc) => doc.key === requestedKey);
+    console.log(requestedKey);
 
-    if (!alreadyExistsAsAuthorized && existsInGlobalUsers) {
-      await setDoc(doc(db, "globalKeys", existsInGlobalUsers.uid), {
-        uid: existsInGlobalUsers.uid,
-        email: existsInGlobalUsers.email,
-        roles: { resident: true },
-        Timestamp,
+    if (!alreadyExists) {
+      await setDoc(doc(db, "globalKeys", requestedKey), {
+        key: requestedKey,
+        weekdays: [{ weekday: "Monday", code: "123" }],
+        created: Timestamp.now(),
       });
     } else {
       alert(
@@ -67,14 +72,14 @@ export default function ManageKeys() {
       {loaded && (
         <>
           <WelcomeText />
-          <Typography variant="h2">Manage Keys</Typography>
+          <Typography variant="h2">Existing Keys</Typography>
           <List>{keys.map((doc) => doc.key)}</List>
           <Grid component="form">
+            <Typography variant="h2">Create a Key</Typography>
+
             <TextField
               fullWidth
-              type="email"
-              name="email"
-              placeholder="Enter email"
+              placeholder="Enter desired key"
               value={requestedKey}
               onChange={(e) => setRequestedKey(e.target.value)}
             />
