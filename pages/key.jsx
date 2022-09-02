@@ -25,17 +25,20 @@ export default function Key() {
     async function getCode() {
       const docRef = doc(db, "globalKeys", keyParam);
       const res = await getDoc(docRef);
-      setCodeData(res.data());
+      const arrayOfWeekdays = res.data().weekdays;
+      const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
+      setCodeData(qrCodeValue);
     }
-    const qrCodeValue = getCodeFromWeekdays(codeData.weekdays);
     getCode();
-  });
+    setLoaded(true);
+  }, []);
 
+  console.log(codeData);
   return (
     <>
       <h1>User KEYS PAGE</h1>
       <Loading loaded={loaded} />
-      {/* <CodeOfDay loaded={loaded} setLoaded={setLoaded} /> */}
+      <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={codeData.code} />
       {loaded && (
         <Grid
           sx={{
