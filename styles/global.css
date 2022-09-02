@@ -14,4 +14,6 @@ body,
 .mohoLogo {
   height: 4rem;
   width: auto;
+  margin-right: 0.3rem;
+  margin-left: 0.3rem;
 }
