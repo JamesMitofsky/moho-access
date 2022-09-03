@@ -11,8 +11,6 @@ import {
 } from "firebase/firestore";
 // local db config
 import { db } from "../../services/firebase";
-import WelcomeText from "../../components/WelcomeText.jsx";
-import { Link as NextLink } from "next/link";
 
 import {
   Typography,
@@ -26,8 +24,6 @@ import {
 } from "@mui/material";
 
 import Loading from "../../components/Loading.jsx";
-import AdminNav from "../../components/AdminNav";
-import MarginProvider from "../../components/layouts/MarginProvider";
 import AdminLayout from "../../components/layouts/AdminLayout";
 import AutoCopyButton from "../../components/AutoCopyButton";
 

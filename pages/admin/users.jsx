@@ -10,7 +10,6 @@ import {
 } from "firebase/firestore";
 // local db config
 import { db } from "../../services/firebase";
-import WelcomeText from "../../components/WelcomeText.jsx";
 
 import {
   Typography,
@@ -22,7 +21,9 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+
 import AdminLayout from "../../components/layouts/AdminLayout";
+
 export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
