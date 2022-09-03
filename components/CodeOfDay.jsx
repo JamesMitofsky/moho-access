@@ -1,25 +1,8 @@
 import { useEffect, useState } from "react";
-import { Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { QRCodeSVG } from "qrcode.react";
-import existsLocally from "../functions/checkLocalStorage";
 
-export default function CodeOfDay({ loaded, setLoaded, value }) {
-  const [code, setCode] = useState("");
-
-  useEffect(() => {
-    async function getCodeOfDay() {
-      // return true if it exists, skipping server call
-      const localCode = existsLocally();
-      if (localCode) {
-        setCode(localCode);
-        return;
-      }
-      setCode(value);
-    }
-    getCodeOfDay();
-    setLoaded(true);
-  }, []);
-
+export default function CodeOfDay({ value }) {
   return (
     <Grid
       sx={{
@@ -30,7 +13,7 @@ export default function CodeOfDay({ loaded, setLoaded, value }) {
         flex: 1,
       }}
     >
-      {loaded && code && (
+      {value && (
         <QRCodeSVG
           style={{
             height: "auto",
@@ -39,7 +22,7 @@ export default function CodeOfDay({ loaded, setLoaded, value }) {
             marginBottom: 100,
           }}
           level="H"
-          value={code}
+          value={value}
         />
       )}
     </Grid>

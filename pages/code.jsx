@@ -1,20 +1,45 @@
 import CodeOfDay from "../components/CodeOfDay";
 import WelcomeText from "../components/WelcomeText";
 import SignOut from "../components/SignOut";
-import { Grid } from "@mui/material";
-import { useState } from "react";
 import Loading from "../components/Loading";
-import getResidentCode from "../functions/code-access/getResidentCode";
+import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
+import { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../services/firebase";
+import NoCodeToday from "../components/NoCodeToday";
 
 export default function Code() {
   const [loaded, setLoaded] = useState(false);
+  const [code, setCode] = useState("");
 
-  const code = getResidentCode();
+  useEffect(() => {
+    async function asyncFunc() {
+      // get codes from server & move those into an object
+      const querySnapshot = await getDocs(collection(db, "loginCodes"));
+      const arrayOfWeekdays = querySnapshot.docs.map((doc) => {
+        console.log("we live", doc.data());
+        return doc.data();
+      });
+      // return today's code
+      const codeOfDay = getCodeFromWeekdays(arrayOfWeekdays);
+
+      // move string value of today's code to the actual QR code
+      if (!codeOfDay) setCode("empty");
+      setCode(codeOfDay.code.toString());
+    }
+    asyncFunc();
+    setLoaded(true);
+  }, []);
 
   return (
     <>
       <Loading loaded={loaded} />
-      <CodeOfDay loaded={loaded} setLoaded={setLoaded} incomingCode={code} />
+      {code !== "empty" ? (
+        <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={code} />
+      ) : (
+        <NoCodeToday />
+      )}
       {loaded && (
         <Grid
           sx={{
