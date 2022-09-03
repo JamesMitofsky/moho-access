@@ -16,7 +16,6 @@ import Link from "next/link";
 
 import {
   Typography,
-  CircularProgress,
   Grid,
   TextField,
   Button,
@@ -24,6 +23,8 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import Loading from "../../components/Loading.jsx";
+
 export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
   const [keys, setKeys] = useState([]);
@@ -86,24 +87,24 @@ export default function ManageKeys() {
     }
   }
 
+  const listItems = keys.map((doc) => {
+    const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
+    return (
+      <ListItem>
+        <ListItemText primary={doc.name} />
+        <Link href={constructedURL}>{constructedURL}</Link>
+      </ListItem>
+    );
+  });
+
   return (
     <>
-      {!loaded && <CircularProgress />}
+      <Loading loaded={loaded} />
       {loaded && (
         <>
           <WelcomeText />
           <Typography variant="h2">Existing Keys</Typography>
-          <List>
-            {keys.map((doc) => {
-              const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
-              return (
-                <ListItem>
-                  <ListItemText primary={doc.name} />
-                  <Link href={constructedURL}>{constructedURL}</Link>
-                </ListItem>
-              );
-            })}
-          </List>
+          <List>{listItems}</List>
           <Grid component="form">
             <Typography variant="h2">Create a Key</Typography>
 
