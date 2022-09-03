@@ -109,11 +109,9 @@ export default function ManageKeys() {
           <Typography variant="h2">Existing Keys</Typography>
           <List>{listItems}</List>
           <Grid component="form">
-            <Typography variant="h2">Create a Key</Typography>
-
             <TextField
               fullWidth
-              placeholder="Enter desired key"
+              label="Enter the name for a key"
               value={requestedName}
               onChange={(e) => setRequestedName(e.target.value)}
             />
