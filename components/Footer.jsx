@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -10,7 +10,11 @@ const Footer = () => {
         padding: 2,
       }}
     >
-      Powered by ☕️ and James Mitofsky 🤙
+      <Link target="_blank" href="https://github.com/JamesMitofsky">
+        <Typography variant="subtitle1">
+          Powered by ☕️ and James Mitofsky 🌱
+        </Typography>
+      </Link>
     </Box>
   );
 };
