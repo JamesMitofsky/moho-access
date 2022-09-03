@@ -6,6 +6,7 @@ export default function MarginProvider({ children }) {
         display: "flex",
         flexDirection: "column",
         flex: 1,
+        marginTop: 3,
       }}
     >
       {children}
