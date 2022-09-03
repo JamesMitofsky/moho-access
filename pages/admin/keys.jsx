@@ -58,7 +58,7 @@ export default function ManageKeys() {
   }, []);
 
   async function giveUserAccess() {
-    const alreadyExists = keys.find((doc) => doc.key === requestedName);
+    const alreadyExists = keys.find((doc) => doc.name === requestedName);
 
     if (!alreadyExists) {
       setRequestedName("");
