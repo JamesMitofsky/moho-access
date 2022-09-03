@@ -29,6 +29,7 @@ import Loading from "../../components/Loading.jsx";
 import AdminNav from "../../components/AdminNav";
 import MarginProvider from "../../components/layouts/MarginProvider";
 import AdminLayout from "../../components/layouts/AdminLayout";
+import AutoCopyButton from "../../components/AutoCopyButton";
 
 export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
@@ -97,9 +98,7 @@ export default function ManageKeys() {
     return (
       <ListItem divider key={doc.id}>
         <ListItemText primary={doc.name} />
-        <Link component={NextLink} href={constructedURL}>
-          {constructedURL}
-        </Link>
+        <AutoCopyButton copyItem={constructedURL} />
       </ListItem>
     );
   });
