@@ -56,7 +56,7 @@ export default function Key() {
             flex: 1,
           }}
         >
-          <h1>Global Keys</h1>
+          <WelcomeText />
         </Grid>
       )}
     </>
