@@ -1,44 +1,52 @@
 import CodeOfDay from "../components/CodeOfDay";
 import WelcomeText from "../components/WelcomeText";
-import { Grid } from "@mui/material";
-import { useState } from "react";
+import NoCodeToday from "../components/NoCodeToday";
 import Loading from "../components/Loading";
 import { getDoc, doc } from "firebase/firestore";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { db } from "../services/firebase";
 import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 
+import { Grid } from "@mui/material";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
 export default function Key() {
   const [loaded, setLoaded] = useState(false);
-  const [codeData, setCodeData] = useState([]);
+  const [codeData, setCodeData] = useState(null);
+  const [error, setError] = useState(false);
 
   // get url param for key
-  const router = useRouter();
-  const keyParam = router.query["value"];
-  console.log("myparam", keyParam);
+  const { query, isReady } = useRouter();
+  const keyParam = query["value"];
 
-  // fetch object from firestore using the key
   useEffect(() => {
     if (!keyParam) return;
-
-    async function getCode() {
+    async function asyncFunc() {
+      // fetch object from firestore using the key
       const docRef = doc(db, "globalKeys", keyParam);
       const res = await getDoc(docRef);
       const arrayOfWeekdays = res.data().weekdays;
       const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
       setCodeData(qrCodeValue);
+      setLoaded(true);
     }
-    getCode();
-    setLoaded(true);
-  }, []);
+    asyncFunc();
+  }, [isReady]);
 
-  console.log(codeData);
   return (
     <>
-      <h1>User KEYS PAGE</h1>
+      {error && "We ran into a problem. Sorry about that."}
       <Loading loaded={loaded} />
-      <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={codeData.code} />
+      {codeData ? (
+        <CodeOfDay
+          loaded={loaded}
+          setLoaded={setLoaded}
+          value={codeData.code}
+        />
+      ) : (
+        <NoCodeToday />
+      )}
       {loaded && (
         <Grid
           sx={{
@@ -48,7 +56,7 @@ export default function Key() {
             flex: 1,
           }}
         >
-          {/* <WelcomeText /> */}
+          <h1>Global Keys</h1>
         </Grid>
       )}
     </>

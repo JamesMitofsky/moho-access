@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../services/firebase";
-import getCodeFromWeekdays from "./getCodeFromWeekdays";
+import { db } from "../../services/firebase";
+import getCodeFromWeekdays from "../getCodeFromWeekdays";
 import { useEffect } from "react";
 
 export default function getResidentCode() {
@@ -17,6 +17,7 @@ export default function getResidentCode() {
       localStorage.setItem("code", JSON.stringify(codeOfDay));
 
       // move the string value of today's code to the actual QR code
+      if (!codeOfDay) return;
       return codeOfDay.code.toString();
     }
     wrapperFunc();

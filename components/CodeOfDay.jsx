@@ -3,7 +3,7 @@ import { Typography, Grid } from "@mui/material";
 import { QRCodeSVG } from "qrcode.react";
 import existsLocally from "../functions/checkLocalStorage";
 
-export default function CodeOfDay({ loaded, setLoaded, incomingCode }) {
+export default function CodeOfDay({ loaded, setLoaded, value }) {
   const [code, setCode] = useState("");
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function CodeOfDay({ loaded, setLoaded, incomingCode }) {
         setCode(localCode);
         return;
       }
-      setCode(incomingCode);
+      setCode(value);
     }
     getCodeOfDay();
     setLoaded(true);
@@ -41,11 +41,6 @@ export default function CodeOfDay({ loaded, setLoaded, incomingCode }) {
           level="H"
           value={code}
         />
-      )}
-      {!code && loaded && (
-        <Typography sx={{ textAlign: "center", mt: 7 }} variant="h2">
-          🚧 No codes on the weekend — profitez!
-        </Typography>
       )}
     </Grid>
   );

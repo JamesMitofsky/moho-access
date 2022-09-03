@@ -4,7 +4,7 @@ import SignOut from "../components/SignOut";
 import { Grid } from "@mui/material";
 import { useState } from "react";
 import Loading from "../components/Loading";
-import getResidentCode from "../functions/getResidentCode";
+import getResidentCode from "../functions/code-access/getResidentCode";
 
 export default function Code() {
   const [loaded, setLoaded] = useState(false);
