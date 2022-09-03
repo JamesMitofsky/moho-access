@@ -61,12 +61,12 @@ export default function AdminNav() {
           >
             <MenuItem onClick={handleClose}>
               <Link component={NextLink} href="/admin/users">
-                Manage Users
+                Users
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <Link component={NextLink} href="/admin/keys">
-                Manage Global Keys
+                Global Keys
               </Link>
             </MenuItem>
           </Menu>
