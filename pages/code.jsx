@@ -3,7 +3,7 @@ import WelcomeText from "../components/WelcomeText";
 import SignOut from "../components/SignOut";
 import Loading from "../components/Loading";
 import NoCodeToday from "../components/NoCodeToday";
-import MarginProvider from "../components/Layouts/MarginProvider";
+import MarginProvider from "../components/layouts/MarginProvider";
 
 import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 

@@ -1,7 +1,7 @@
 import WelcomeText from "../components/WelcomeText.jsx";
 import Login from "../components/Login.jsx";
 import Loading from "../components/Loading.jsx";
-import MarginProvider from "../components/Layouts/MarginProvider.jsx";
+import MarginProvider from "../components/layouts/MarginProvider.jsx";
 
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/state";

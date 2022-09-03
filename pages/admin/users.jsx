@@ -22,6 +22,7 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import AdminLayout from "../../components/layouts/AdminLayout";
 export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
@@ -114,11 +115,10 @@ export default function ManageUsers() {
   }
 
   return (
-    <>
+    <AdminLayout>
       {!loaded && <CircularProgress />}
       {loaded && (
         <>
-          <WelcomeText />
           <Typography variant="h2">Authorized Users</Typography>
           <List>
             {users.map((role) => (
@@ -145,6 +145,6 @@ export default function ManageUsers() {
           </Grid>
         </>
       )}
-    </>
+    </AdminLayout>
   );
 }

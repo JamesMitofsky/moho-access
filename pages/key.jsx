@@ -2,7 +2,7 @@ import CodeOfDay from "../components/CodeOfDay";
 import WelcomeText from "../components/WelcomeText";
 import NoCodeToday from "../components/NoCodeToday";
 import Loading from "../components/Loading";
-import MarginProvider from "../components/Layouts/MarginProvider";
+import MarginProvider from "../components/layouts/MarginProvider";
 
 import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 
