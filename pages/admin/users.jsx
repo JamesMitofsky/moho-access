@@ -96,7 +96,7 @@ export default function ManageUsers() {
         uid: existsInGlobalUsers.uid,
         email: existsInGlobalUsers.email,
         roles: { resident: true },
-        Timestamp,
+        created: Timestamp.now(),
       });
     } else {
       alert(
