@@ -12,6 +12,7 @@ import {
 // local db config
 import { db } from "../../services/firebase";
 import WelcomeText from "../../components/WelcomeText.jsx";
+import Link from "next/link";
 
 import {
   Typography,
@@ -94,9 +95,11 @@ export default function ManageKeys() {
           <Typography variant="h2">Existing Keys</Typography>
           <List>
             {keys.map((doc) => {
+              const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
               return (
                 <ListItem>
                   <ListItemText primary={doc.name} />
+                  <Link href={constructedURL}>{constructedURL}</Link>
                 </ListItem>
               );
             })}
