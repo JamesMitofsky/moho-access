@@ -126,15 +126,7 @@ export default function App({ Component, pageProps }) {
         />
       </Head>
       <AppWrapper>
-        <Container
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-          }}
-        >
-          <Component {...pageProps} />
-        </Container>
+        <Component {...pageProps} />
         <Footer />
       </AppWrapper>
     </ThemeProvider>

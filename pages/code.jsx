@@ -2,12 +2,15 @@ import CodeOfDay from "../components/CodeOfDay";
 import WelcomeText from "../components/WelcomeText";
 import SignOut from "../components/SignOut";
 import Loading from "../components/Loading";
+import NoCodeToday from "../components/NoCodeToday";
+import MarginProvider from "../components/Layouts/MarginProvider";
+
 import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
+
 import { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
-import NoCodeToday from "../components/NoCodeToday";
 
 export default function Code() {
   const [loaded, setLoaded] = useState(false);
@@ -32,7 +35,7 @@ export default function Code() {
   }, []);
 
   return (
-    <>
+    <MarginProvider>
       <Loading loaded={loaded} />
       {code !== "empty" ? (
         <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={code} />
@@ -52,6 +55,6 @@ export default function Code() {
           <SignOut />
         </Grid>
       )}
-    </>
+    </MarginProvider>
   );
 }

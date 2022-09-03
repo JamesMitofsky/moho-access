@@ -1,6 +1,7 @@
 import WelcomeText from "../components/WelcomeText.jsx";
 import Login from "../components/Login.jsx";
 import Loading from "../components/Loading.jsx";
+import MarginProvider from "../components/Layouts/MarginProvider.jsx";
 
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/state";
@@ -31,7 +32,7 @@ export default function App() {
   // also, forward user to a new page /QRCode or something
 
   return (
-    <>
+    <MarginProvider>
       <Loading loaded={pageLoaded} />
       {pageLoaded && (
         <>
@@ -39,6 +40,6 @@ export default function App() {
           <Login />
         </>
       )}
-    </>
+    </MarginProvider>
   );
 }

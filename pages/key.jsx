@@ -2,9 +2,12 @@ import CodeOfDay from "../components/CodeOfDay";
 import WelcomeText from "../components/WelcomeText";
 import NoCodeToday from "../components/NoCodeToday";
 import Loading from "../components/Loading";
+import MarginProvider from "../components/Layouts/MarginProvider";
+
+import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
+
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
-import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 
 import { Grid } from "@mui/material";
 import { useState } from "react";
@@ -42,7 +45,7 @@ export default function Key() {
   }, [isReady]);
 
   return (
-    <>
+    <MarginProvider>
       {error && "We ran into a problem. Sorry about that."}
       <Loading loaded={loaded} />
       {codeData ? (
@@ -66,6 +69,6 @@ export default function Key() {
           <WelcomeText />
         </Grid>
       )}
-    </>
+    </MarginProvider>
   );
 }
