@@ -5,14 +5,7 @@ export default function existsLocally() {
   const localObj = JSON.parse(rawLocalObj);
 
   // get day & subtract 1 to correct for JS starting at 0
-  const weekdays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   const d = new Date();
   const day = weekdays[d.getDay() - 1];
 
