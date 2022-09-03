@@ -2,6 +2,7 @@ html,
 body,
 #_next {
   height: 100%;
+  margin: 0;
 }
 
 #__next {
