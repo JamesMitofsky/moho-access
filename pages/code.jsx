@@ -18,7 +18,6 @@ export default function Code() {
       // get codes from server & move those into an object
       const querySnapshot = await getDocs(collection(db, "loginCodes"));
       const arrayOfWeekdays = querySnapshot.docs.map((doc) => {
-        console.log("we live", doc.data());
         return doc.data();
       });
       // return today's code
