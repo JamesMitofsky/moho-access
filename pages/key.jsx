@@ -26,7 +26,14 @@ export default function Key() {
       // fetch object from firestore using the key
       const docRef = doc(db, "globalKeys", keyParam);
       const res = await getDoc(docRef);
-      const arrayOfWeekdays = res.data().weekdays;
+      const arrayOfWeekdays = res.data()?.weekdays;
+
+      // end function if no weekday match can be found
+      if (!arrayOfWeekdays) {
+        setLoaded(true);
+        return;
+      }
+
       const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
       setCodeData(qrCodeValue);
       setLoaded(true);
