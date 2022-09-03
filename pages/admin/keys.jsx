@@ -90,7 +90,7 @@ export default function ManageKeys() {
   const listItems = keys.map((doc) => {
     const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
     return (
-      <ListItem>
+      <ListItem key={doc.id}>
         <ListItemText primary={doc.name} />
         <Link href={constructedURL}>{constructedURL}</Link>
       </ListItem>
