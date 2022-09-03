@@ -12,13 +12,14 @@ import {
 // local db config
 import { db } from "../../services/firebase";
 import WelcomeText from "../../components/WelcomeText.jsx";
-import Link from "next/link";
+import { Link as NextLink } from "next/link";
 
 import {
   Typography,
   Grid,
   TextField,
   Button,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -92,7 +93,9 @@ export default function ManageKeys() {
     return (
       <ListItem key={doc.id}>
         <ListItemText primary={doc.name} />
-        <Link href={constructedURL}>{constructedURL}</Link>
+        <Link component={NextLink} href={constructedURL}>
+          {constructedURL}
+        </Link>
       </ListItem>
     );
   });
