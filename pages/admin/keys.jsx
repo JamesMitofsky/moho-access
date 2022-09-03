@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import {
   setDoc,
   doc,
-  collection,
   getDocs,
   Timestamp,
+  collection,
+  query,
+  onSnapshot,
 } from "firebase/firestore";
 // local db config
 import { db } from "../../services/firebase";
@@ -25,7 +27,7 @@ export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
   const [keys, setKeys] = useState([]);
   const [codes, setCodes] = useState([]);
-  const [requestedKey, setRequestedKey] = useState("");
+  const [requestedName, setRequestedName] = useState("");
 
   // TODO:
   // add drop down list for type of access to be provisioned (admin, resident, etc) (maybe functions can be used for day pass)
@@ -33,9 +35,13 @@ export default function ManageKeys() {
 
   useEffect(() => {
     async function getKeys() {
-      const keys = await getDocs(collection(db, "globalKeys"));
-      keys.forEach((doc) => {
-        setKeys((prev) => [...prev, doc.data()]);
+      const q = query(collection(db, "globalKeys"));
+      onSnapshot(q, (querySnapshot) => {
+        const keysArray = [];
+        querySnapshot.forEach((doc) => {
+          keysArray.push(doc.data());
+        });
+        setKeys(keysArray);
       });
     }
     async function getCodes() {
@@ -50,12 +56,19 @@ export default function ManageKeys() {
   }, []);
 
   async function giveUserAccess() {
-    const alreadyExists = keys.find((doc) => doc.key === requestedKey);
-    console.log(requestedKey);
+    const alreadyExists = keys.find((doc) => doc.key === requestedName);
 
     if (!alreadyExists) {
-      await setDoc(doc(db, "globalKeys", requestedKey), {
-        key: requestedKey,
+      setRequestedName("");
+      await setDoc(doc(db, "globalKeys", requestedName), {
+        name: requestedName,
+        urlSafe: requestedName
+          // remove all non-alphanumeric values except for spaces
+          .replace(/[^a-zA-Z0-9- ]/g, "")
+          // replace spaces with dashes
+          .replace(/\s+/g, "-")
+          // set to lowercase
+          .toLowerCase(),
         weekdays: codes,
         created: Timestamp.now(),
       });
@@ -79,15 +92,23 @@ export default function ManageKeys() {
         <>
           <WelcomeText />
           <Typography variant="h2">Existing Keys</Typography>
-          <List>{keys.map((doc) => doc.key)}</List>
+          <List>
+            {keys.map((doc) => {
+              return (
+                <ListItem>
+                  <ListItemText primary={doc.name} />
+                </ListItem>
+              );
+            })}
+          </List>
           <Grid component="form">
             <Typography variant="h2">Create a Key</Typography>
 
             <TextField
               fullWidth
               placeholder="Enter desired key"
-              value={requestedKey}
-              onChange={(e) => setRequestedKey(e.target.value)}
+              value={requestedName}
+              onChange={(e) => setRequestedName(e.target.value)}
             />
             <Button onClick={giveUserAccess} variant="contained">
               Add Key
