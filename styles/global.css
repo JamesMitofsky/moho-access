@@ -13,7 +13,11 @@ body,
 }
 
 .mohoLogo {
-  height: 4rem;
   width: auto;
   margin: 0px 0.4rem 0 0.75rem;
+}
+
+/* move the navbar logo down to better align with text */
+.MuiToolbar-root svg.mohoLogo {
+  margin-bottom: -0.7px;
 }

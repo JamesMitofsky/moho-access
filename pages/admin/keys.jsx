@@ -24,7 +24,10 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+
 import Loading from "../../components/Loading.jsx";
+import AdminNav from "../../components/AdminNav";
+import MarginProvider from "../../components/layouts/MarginProvider";
 
 export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
@@ -105,24 +108,26 @@ export default function ManageKeys() {
       <Loading loaded={loaded} />
       {loaded && (
         <>
-          <WelcomeText />
-          <Typography variant="h2">Global Access Keys</Typography>
-          <Typography variant="subtitle1">
-            The key-words listed below are active, and anyone who knows them can
-            access Moho .{" "}
-          </Typography>
-          <List>{listItems}</List>
-          <Grid component="form">
-            <TextField
-              fullWidth
-              label="Enter the name for a key"
-              value={requestedName}
-              onChange={(e) => setRequestedName(e.target.value)}
-            />
-            <Button onClick={giveUserAccess} variant="contained">
-              Add Key
-            </Button>
-          </Grid>
+          <AdminNav />
+          <MarginProvider>
+            <Typography variant="h2">Global Access Keys</Typography>
+            <Typography variant="subtitle1">
+              The key-words listed below are active, and anyone who knows them
+              can access Moho .{" "}
+            </Typography>
+            <List>{listItems}</List>
+            <Grid component="form">
+              <TextField
+                fullWidth
+                label="Enter the name for a key"
+                value={requestedName}
+                onChange={(e) => setRequestedName(e.target.value)}
+              />
+              <Button onClick={giveUserAccess} variant="contained">
+                Add Key
+              </Button>
+            </Grid>
+          </MarginProvider>
         </>
       )}
     </>
