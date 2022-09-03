@@ -25,6 +25,7 @@ const theme = createTheme({
   typography: {
     h1: { fontSize: 40, fontWeight: 500, marginTop: 15, marginBottom: 15 },
     h2: { fontSize: 30, fontWeight: 200 },
+    subtitle1: { fontSize: 13, fontWeight: 200 },
   },
   palette: {
     mode: "light",

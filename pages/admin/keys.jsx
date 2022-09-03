@@ -91,7 +91,7 @@ export default function ManageKeys() {
   const listItems = keys.map((doc) => {
     const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
     return (
-      <ListItem key={doc.id}>
+      <ListItem divider key={doc.id}>
         <ListItemText primary={doc.name} />
         <Link component={NextLink} href={constructedURL}>
           {constructedURL}
@@ -106,7 +106,11 @@ export default function ManageKeys() {
       {loaded && (
         <>
           <WelcomeText />
-          <Typography variant="h2">Existing Keys</Typography>
+          <Typography variant="h2">Global Access Keys</Typography>
+          <Typography variant="subtitle1">
+            The key-words listed below are active, and anyone who knows them can
+            access Moho .{" "}
+          </Typography>
           <List>{listItems}</List>
           <Grid component="form">
             <TextField
