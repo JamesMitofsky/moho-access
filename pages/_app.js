@@ -33,9 +33,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ['"Antonio"', "sans-serif"].join(","),
+    fontSize: 16,
     h1: { fontSize: 40, fontWeight: 500, marginTop: 15, marginBottom: 15 },
-    h2: { fontSize: 30, fontWeight: 200 },
-    subtitle1: { fontSize: 13, fontWeight: 200 },
+    h2: { fontSize: 20, fontWeight: 200 },
+    subtitle1: { fontSize: 10, fontWeight: 200 },
   },
   palette: {
     mode: "light",

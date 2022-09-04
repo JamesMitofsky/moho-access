@@ -31,7 +31,6 @@ export default function AdminNav() {
     <AppBar position="static">
       <Toolbar>
         <Typography
-          variant="h3"
           sx={{
             flexGrow: 1,
             fontSize: 30,
@@ -40,7 +39,7 @@ export default function AdminNav() {
           }}
         >
           <Link sx={{ color: "white" }} href="/">
-            <MohoSVG color={"white"} height={50} />
+            <MohoSVG color={"white"} height={45} />
             AUTH
           </Link>
         </Typography>
