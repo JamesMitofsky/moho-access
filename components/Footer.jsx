@@ -1,6 +1,9 @@
 import { Box, Typography, Link } from "@mui/material";
+import { useAppContext } from "../context/state";
 
 const Footer = () => {
+  const user = useAppContext();
+  const isAdmin = user?.authorized;
   return (
     <Box
       component="footer"
@@ -10,11 +13,18 @@ const Footer = () => {
         padding: 2,
       }}
     >
-      <Link target="_blank" href="https://github.com/JamesMitofsky">
-        <Typography variant="subtitle1">
+      <Typography variant="subtitle1">
+        <Link target="_blank" href="https://github.com/JamesMitofsky">
           Powered by ☕️ and James Mitofsky 🌱
-        </Typography>
-      </Link>
+        </Link>
+        {isAdmin && (
+          <>
+            <Link sx={{ marginLeft: 5 }} href="/admin/users">
+              Admin Menu
+            </Link>
+          </>
+        )}
+      </Typography>
     </Box>
   );
 };

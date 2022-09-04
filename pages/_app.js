@@ -1,5 +1,4 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Container } from "@mui/material";
 import "../styles/global.css";
 import Footer from "../components/Footer";
 import { AppWrapper } from "../context/state";
