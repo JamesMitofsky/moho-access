@@ -33,9 +33,8 @@ export default function AdminNav() {
         <Typography
           sx={{
             flexGrow: 1,
-            fontSize: 30,
-            fontWeight: 400,
-            fontFamily: "Roboto",
+            fontSize: 27,
+            fontWeight: 600,
           }}
         >
           <Link sx={{ color: "white" }} href="/">
