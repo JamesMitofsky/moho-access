@@ -22,13 +22,15 @@ const Login = () => {
       gap={4}
     >
       <Grid component="form">
-        <Typography variant="h2">Login</Typography>
+        <Typography sx={{ mb: 1 }} variant="h2">
+          Login
+        </Typography>
         <TextField
           fullWidth
           type="email"
           name="email"
           autoComplete="email"
-          placeholder="Enter email"
+          label="Enter email"
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
         />
@@ -37,7 +39,7 @@ const Login = () => {
           type="password"
           name="password"
           autoComplete="current-password"
-          placeholder="Password"
+          label="Password"
           value={loginPassword}
           onChange={(e) => setLoginPassword(e.target.value)}
         />
@@ -55,25 +57,27 @@ const Login = () => {
         </Button>
       </Grid>
       <Grid component="form">
-        <Typography variant="h2">Register</Typography>
+        <Typography sx={{ mb: 1 }} variant="h2">
+          Register
+        </Typography>
         <TextField
           fullWidth
           type="name"
-          placeholder="Enter name"
+          label="Enter name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <TextField
           fullWidth
           type="email"
-          placeholder="Enter email"
+          label="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           fullWidth
           type="password"
-          placeholder="Password"
+          label="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
