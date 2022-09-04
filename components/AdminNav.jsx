@@ -1,4 +1,11 @@
-import { AppBar, Toolbar, Typography, IconButton, Link } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Link,
+  Box,
+} from "@mui/material";
 import { Link as NextLink } from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -37,10 +44,10 @@ export default function AdminNav() {
             AUTH
           </Link>
         </Typography>
-        <div>
+        <Box>
           <IconButton
             size="large"
-            aria-label="account of current user"
+            aria-label="admin navigation options"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleMenu}
@@ -80,7 +87,7 @@ export default function AdminNav() {
             </MenuItem>
             <MenuItem onClick={() => auth.signOut()}>Sign-Out</MenuItem>
           </Menu>
-        </div>
+        </Box>
       </Toolbar>
     </AppBar>
   );
