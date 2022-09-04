@@ -27,7 +27,10 @@ export default function Code() {
       const codeOfDay = getCodeFromWeekdays(arrayOfWeekdays);
 
       // move string value of today's code to the actual QR code
-      if (!codeOfDay) setCode("empty");
+      if (!codeOfDay) {
+        setCode("empty");
+        return;
+      }
       setCode(codeOfDay.code.toString());
     }
     asyncFunc();
