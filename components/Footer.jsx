@@ -13,7 +13,7 @@ const Footer = () => {
         padding: 2,
       }}
     >
-      <Typography variant="subtitle1">
+      <Typography sx={{ fontSize: 15 }}>
         <Link target="_blank" href="https://github.com/JamesMitofsky">
           Powered by ☕️ and James Mitofsky 🌱
         </Link>
