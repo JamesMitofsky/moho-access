@@ -6,6 +6,7 @@ import "../styles/global.css";
 import Footer from "../components/Footer";
 import { AppWrapper } from "../context/state";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const theme = createTheme({
   components: {
@@ -47,6 +48,11 @@ const theme = createTheme({
 });
 
 export default function App({ Component, pageProps }) {
+  // determine if admin directory for theming purposes
+  const router = useRouter();
+  const pathName = router.pathname;
+  const isAdmin = pathName.includes("admin");
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -67,8 +73,13 @@ export default function App({ Component, pageProps }) {
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         {/* <meta name="msapplication-config" content="/icons/browserconfig.xml" /> */}
+
         <meta name="msapplication-TileColor" content="#ea5e57" />
-        <meta name="theme-color" content="#ffffff" />
+        {isAdmin ? (
+          <meta name="theme-color" content="#ea5e57" />
+        ) : (
+          <meta name="theme-color" content="#ffffff" />
+        )}
         <meta name="msapplication-tap-highlight" content="no" />
 
         <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
