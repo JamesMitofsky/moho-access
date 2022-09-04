@@ -5,6 +5,7 @@ import {
 } from "../services/firebase";
 import { useState } from "react";
 import { Typography, TextField, Button, Grid } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -13,6 +14,13 @@ const Login = () => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const [loading, setLoading] = useState({
+    register: false,
+    loginEmail: false,
+    loginGoogle: false,
+  });
+
   return (
     <Grid
       display="flex"
@@ -44,17 +52,26 @@ const Login = () => {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
 
-        <Button
+        <LoadingButton
           variant="contained"
+          loading={loading.loginEmail}
           onClick={() => {
+            setLoading({ ...loading, loginEmail: true });
             signInWithEmailAndPassword(loginEmail, loginPassword);
           }}
         >
           Login
-        </Button>
-        <Button variant="contained" onClick={signInWithGoogle}>
+        </LoadingButton>
+        <LoadingButton
+          variant="contained"
+          loading={loading.loginGoogle}
+          onClick={() => {
+            setLoading({ ...loading, loginGoogle: true });
+            signInWithGoogle();
+          }}
+        >
           Sign-in with Google
-        </Button>
+        </LoadingButton>
       </Grid>
       <Grid component="form">
         <Typography sx={{ mb: 1 }} variant="h2">
@@ -81,14 +98,16 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
+        <LoadingButton
+          loading={loading.register}
           variant="outlined"
           onClick={() => {
+            setLoading({ ...loading, register: true });
             registerWithEmailAndPassword(name, email, password);
           }}
         >
           Register
-        </Button>
+        </LoadingButton>
       </Grid>
     </Grid>
   );
