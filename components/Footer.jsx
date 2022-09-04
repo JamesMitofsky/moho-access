@@ -19,7 +19,7 @@ const Footer = () => {
         </Link>
         {isAdmin && (
           <>
-            <Link sx={{ marginLeft: 5 }} href="/admin/users">
+            <Link sx={{ marginLeft: 5 }} href="/admin">
               Admin Menu
             </Link>
           </>

@@ -69,13 +69,8 @@ export default function AdminNav() {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>
-              <Link component={NextLink} href="/admin/users">
-                Users
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link component={NextLink} href="/admin/keys">
-                Global Keys
+              <Link component={NextLink} href="/admin">
+                Admin Home
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
