@@ -126,7 +126,7 @@ export default function ManageUsers() {
               <ListItem divider key={role.id}>
                 <ListItemText
                   primary={role.email}
-                  secondary={objToString(role.roles)}
+                  secondary={`Type: ${objToString(role.roles)}`}
                 />
               </ListItem>
             ))}
