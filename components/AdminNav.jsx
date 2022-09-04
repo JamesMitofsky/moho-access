@@ -30,8 +30,10 @@ export default function AdminNav() {
             fontFamily: "Roboto",
           }}
         >
-          <MohoSVG color={"white"} height={50} />
-          AUTH
+          <Link sx={{ color: "white" }} href="/">
+            <MohoSVG color={"white"} height={50} />
+            AUTH
+          </Link>
         </Typography>
         <div>
           <IconButton
