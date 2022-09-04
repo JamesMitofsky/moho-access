@@ -1,4 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { CssBaseline } from "@material-ui/core";
+import AntonioFont from "typeface-antonio";
+
 import "../styles/global.css";
 import Footer from "../components/Footer";
 import { AppWrapper } from "../context/state";
@@ -21,7 +24,15 @@ const theme = createTheme({
       },
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        "@font-face": [AntonioFont],
+      },
+    },
+  },
   typography: {
+    fontFamily: ['"Antonio"', "sans-serif"].join(","),
     h1: { fontSize: 40, fontWeight: 500, marginTop: 15, marginBottom: 15 },
     h2: { fontSize: 30, fontWeight: 200 },
     subtitle1: { fontSize: 13, fontWeight: 200 },
@@ -37,6 +48,7 @@ const theme = createTheme({
 export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Head>
         <meta
           name="viewport"
