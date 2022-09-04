@@ -3,9 +3,11 @@ import { Link as NextLink } from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+
 import MohoSVG from "./MohoSVG";
 
 import { useState } from "react";
+import { auth } from "../services/firebase";
 
 export default function AdminNav() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -71,6 +73,12 @@ export default function AdminNav() {
                 Global Keys
               </Link>
             </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link component={NextLink} href="/code">
+                Your QR Code
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={() => auth.signOut()}>Sign-Out</MenuItem>
           </Menu>
         </div>
       </Toolbar>
