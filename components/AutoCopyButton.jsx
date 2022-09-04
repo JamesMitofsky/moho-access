@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export default function AutoCopyButton({ copyItem }) {
   function handleCopy() {
@@ -6,5 +7,9 @@ export default function AutoCopyButton({ copyItem }) {
     alert("Copied to clipboard!");
   }
 
-  return <Button onClick={handleCopy}>Copy Access Link</Button>;
+  return (
+    <Button endIcon={<ContentCopyIcon />} onClick={handleCopy}>
+      Copy Link
+    </Button>
+  );
 }
