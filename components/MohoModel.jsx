@@ -1,8 +1,7 @@
 import Spline from "@splinetool/react-spline";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Box } from "@mui/material";
-import Router from "next/router";
-import Loading from "../components/Loading";
+// import Loading from "../components/Loading";
 
 export default function MohoModel() {
   const [loaded, setLoaded] = useState(false);
@@ -23,7 +22,6 @@ export default function MohoModel() {
     <Box sx={{ flex: 1 }} style={styles}>
       {/* {!loaded && <Loading loaded={loaded} />} */}
       <Spline
-        onMouseDown={onMouseDown}
         onLoad={onLoad}
         scene="https://prod.spline.design/iF8skT1diJd5tAsE/scene.splinecode"
       />

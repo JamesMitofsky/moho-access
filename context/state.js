@@ -21,7 +21,7 @@ export function AppWrapper({ children }) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
       const pathName = Router.pathname;
-      if (pathName === "/key") return;
+      if (pathName === "/key" || pathName === "/about") return;
 
       // if no user is logged in, empty the user obj
       if (!userObj) {
