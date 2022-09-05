@@ -10,7 +10,7 @@ export default function AboutPage() {
         can contribute to something bigger.
       </h4>
       <p>
-        This project is powered by React, Next.js, Firebase Auth, & and Cloud
+        This project is powered by React, Next.js, Firebase Auth, and and Cloud
         Firestore.
       </p>
       <MohoModel />
