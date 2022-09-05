@@ -10,13 +10,6 @@ export default function MohoModel() {
     opacity: 0,
     transition: "all ease 4s",
   });
-  const loginRef = useRef(null);
-
-  function onMouseDown(e) {
-    if (e.target.name !== loginRef.current.name) return;
-
-    Router.push("/user-login");
-  }
 
   function onLoad(spline) {
     setStyles((prev) => ({
@@ -25,9 +18,6 @@ export default function MohoModel() {
       transition: "opacity ease 1s",
     }));
     setLoaded(true);
-    loginRef.current = spline.findObjectById(
-      "a421548e-854c-4c3c-bb47-d54f0129cff2"
-    );
   }
   return (
     <Box sx={{ flex: 1 }} style={styles}>
