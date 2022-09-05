@@ -1,22 +1,11 @@
 import MohoModel from "../components/MohoModel";
 import WelcomeText from "../components/WelcomeText";
-import { Button, Link, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function App() {
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
-        <WelcomeText />
-        <Link href="/user-login">
-          <Button variant="contained">Login / Register</Button>
-        </Link>
-      </Box>
+      <WelcomeText />
       <Box
         sx={{
           display: "flex",
