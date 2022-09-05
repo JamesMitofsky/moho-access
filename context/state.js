@@ -3,12 +3,13 @@ import firebase from "../services/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import isUserAuthorized from "../functions/isUserAuthorized";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   async function getUserInfo(userObj, userAuthorized) {
     const docRef = doc(db, "users", userObj.uid);
@@ -40,7 +41,7 @@ export function AppWrapper({ children }) {
       const userWithAuthStatus = await getUserInfo(userObj, isAuthorized);
       setUser(userWithAuthStatus);
     });
-  }, []);
+  }, [router.pathname]);
 
   return <AppContext.Provider value={user}>{children}</AppContext.Provider>;
 }
