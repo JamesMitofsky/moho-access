@@ -6,7 +6,7 @@ Making authenticating into the Moho resident space simple, scalable, & secure. ð
 <table>
 	<tr>
 	  <td><img width="400" src="https://user-images.githubusercontent.com/12516538/187898620-2e9d7d2f-53d8-4797-9fac-95f300b9b10d.jpg"/></td>
-	  <td><img width="250" src="https://user-images.githubusercontent.com/12516538/187910135-ecf15635-da18-4650-80cc-cc46df382a8f.png"/></td>
+	  <td><img width="288" src="https://user-images.githubusercontent.com/12516538/188322719-6027453f-f563-420f-a457-bbd83c46c7b0.jpg"/></td>
 	  <td><img width="400" src="https://user-images.githubusercontent.com/12516538/187898609-4bcfa4e4-8021-4c66-a2eb-75259ccdf6a4.jpg"/></td>      
 	</tr>
 </table>
