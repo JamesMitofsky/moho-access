@@ -37,7 +37,7 @@ export default function AdminNav() {
             fontWeight: 600,
           }}
         >
-          <Link sx={{ color: "white" }} href="/">
+          <Link sx={{ color: "white" }} href="/admin">
             <MohoSVG color={"white"} height={45} />
             AUTH
           </Link>
