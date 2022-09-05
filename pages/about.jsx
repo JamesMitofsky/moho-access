@@ -4,9 +4,9 @@ import MarginProvider from "../components/layouts/MarginProvider";
 export default function AboutPage() {
   return (
     <MarginProvider>
-      <h1>Hi there, I'm James!</h1>
+      <h1>Hi there, my name is James!</h1>
       <h4>
-        Programming is what I love, and I'm looking for a full time job where I
+        Programming is what I love, and I am looking for a full time job where I
         can contribute to something bigger.
       </h4>
       <p>
