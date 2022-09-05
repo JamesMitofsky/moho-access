@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../context/state";
 import Router from "next/router";
 
-export default function Login() {
+export default function userLogin() {
   const [pageLoaded, setPageLoaded] = useState(false);
   const user = useAppContext();
   useEffect(() => {
