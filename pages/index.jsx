@@ -13,7 +13,7 @@ export default function App() {
         }}
       >
         <WelcomeText />
-        <Link href="/auth">
+        <Link href="/user-login">
           <Button variant="contained">Login / Register</Button>
         </Link>
       </Box>
