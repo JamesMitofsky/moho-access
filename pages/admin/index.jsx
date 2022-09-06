@@ -26,7 +26,7 @@ export default function AdminLanding() {
           </Link>
         </Grid>
         <Grid>
-          <Typography variant="h2">Manage Keys</Typography>
+          <Typography variant="h2">Global Keys</Typography>
           <Typography variant="body1">
             This section is a good choice if an enterprise is renting the
             resident space for a day. Many people can access the space with the
@@ -36,7 +36,7 @@ export default function AdminLanding() {
             it among themselves.
           </Typography>
           <Link href="/admin/keys">
-            <Button variant="outlined">Global Keys</Button>
+            <Button variant="outlined">Manage Keys</Button>
           </Link>
         </Grid>
       </Grid>
