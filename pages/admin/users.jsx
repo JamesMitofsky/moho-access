@@ -27,6 +27,7 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import AdminLayout from "../../components/layouts/AdminLayout";
+import Loading from "../../components/Loading";
 
 export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
@@ -52,7 +53,7 @@ export default function ManageUsers() {
           email: doc.data().email,
         }))
       );
-      setLoaded(true);
+      // setLoaded(true);
     });
 
     // get all users in database
@@ -109,7 +110,7 @@ export default function ManageUsers() {
 
   return (
     <AdminLayout>
-      {!loaded && <CircularProgress />}
+      {!loaded && <Loading />}
       {loaded && (
         <>
           <Typography variant="h2">Authorized Users</Typography>
