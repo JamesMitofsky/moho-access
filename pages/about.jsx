@@ -11,8 +11,9 @@ export default function AboutPage() {
       <Typography variant="h1">Hi there, my name is James!</Typography>
       <Typography>
         Powered by React, Next.js, Firebase Auth, and and Cloud Firestore, this
-        project was really interesting to work on. I've been doing freelance
-        development for 4 years, and now I'm looking for a full time position.
+        project was really interesting to work on. I&apos;ve been doing
+        freelance development for 4 years, and now I&apos;m looking for a full
+        time position.
       </Typography>
       <Link target="_blank" href="https://github.com/JamesMitofsky">
         <Button variant="contained">Visit my GitHub!</Button>
