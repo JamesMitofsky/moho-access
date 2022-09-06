@@ -53,7 +53,7 @@ export default function ManageUsers() {
           email: doc.data().email,
         }))
       );
-      // setLoaded(true);
+      setLoaded(true);
     });
 
     // get all users in database
