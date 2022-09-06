@@ -41,10 +41,7 @@ export default function ManageKeys() {
 
   async function deleteKey(key) {
     // get document from database which matches key
-
     await deleteDoc(doc(db, "globalKeys", key.id));
-
-    // delete document
   }
 
   useEffect(() => {

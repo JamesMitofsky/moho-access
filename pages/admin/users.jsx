@@ -5,11 +5,13 @@ import {
   query,
   onSnapshot,
   doc,
+  deleteDoc,
   setDoc,
   Timestamp,
 } from "firebase/firestore";
 // local db config
 import { db } from "../../services/firebase";
+import { useAppContext } from "../../context/state";
 
 import {
   Typography,
@@ -20,7 +22,9 @@ import {
   List,
   ListItem,
   ListItemText,
+  IconButton,
 } from "@mui/material";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import AdminLayout from "../../components/layouts/AdminLayout";
 
@@ -29,6 +33,7 @@ export default function ManageUsers() {
   const [users, setUsers] = useState([]);
   const [globalUsers, setGlobalUsers] = useState([]);
   const [emailInput, setEmailInput] = useState("");
+  const user = useAppContext();
 
   // TODO:
   // add drop down list for type of access to be provisioned (admin, resident, etc) (maybe functions can be used for day pass)
@@ -63,25 +68,6 @@ export default function ManageUsers() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   setGroupedRoles(() => {
-  //     const groupedRoles = {
-  //       residents: [],
-  //       admins: [],
-  //     };
-  //     users.forEach((user) => {
-  //       if (user.roles.includes("admin")) {
-  //         groupedRoles.admins.push(role);
-  //       } else {
-  //         groupedRoles.residents.push(role);
-  //       }
-  //     });
-  //     return groupedRoles;
-  //   });
-
-  //   setLoaded(true);
-  // }, [groupedRoles]);
-
   async function giveUserAccess() {
     // set conditions to be used in if-statement
     const existsInGlobalUsers = globalUsers.find(
@@ -98,6 +84,7 @@ export default function ManageUsers() {
         roles: { resident: true },
         created: Timestamp.now(),
       });
+      setEmailInput("");
     } else {
       alert(
         `Sorry, we couldn't add this user.\n${
@@ -115,6 +102,11 @@ export default function ManageUsers() {
     return Object.keys(roles).join(", ");
   }
 
+  async function deleteRole(user) {
+    // get document from database which matches key
+    await deleteDoc(doc(db, "userRoles", user.id));
+  }
+
   return (
     <AdminLayout>
       {!loaded && <CircularProgress />}
@@ -122,21 +114,29 @@ export default function ManageUsers() {
         <>
           <Typography variant="h2">Authorized Users</Typography>
           <List>
-            {users.map((role) => (
-              <ListItem divider key={role.id}>
-                <ListItemText
-                  primary={role.email}
-                  secondary={`Type: ${objToString(role.roles)}`}
-                />
-              </ListItem>
-            ))}
+            {users.map((role) => {
+              const notCurrentUser = role.email !== user?.email;
+              return (
+                <ListItem divider key={role.id}>
+                  <ListItemText
+                    primary={role.email}
+                    secondary={`Type: ${objToString(role.roles)}`}
+                  />
+                  {notCurrentUser && (
+                    <IconButton onClick={() => deleteRole(role)}>
+                      <DeleteOutlineIcon />
+                    </IconButton>
+                  )}
+                </ListItem>
+              );
+            })}
           </List>
           <Grid component="form">
             <TextField
               fullWidth
               type="email"
               name="email"
-              placeholder="Enter email"
+              label="Enter email"
               value={emailInput}
               onChange={(e) => setEmailInput(e.target.value)}
             />
