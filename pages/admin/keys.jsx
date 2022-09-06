@@ -30,7 +30,6 @@ import AutoCopyButton from "../../components/AutoCopyButton";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export default function ManageKeys() {
-  const [loaded, setLoaded] = useState(false);
   const [keys, setKeys] = useState([]);
   const [codes, setCodes] = useState([]);
   const [requestedName, setRequestedName] = useState("");
@@ -63,9 +62,7 @@ export default function ManageKeys() {
     }
     getKeys();
     getCodes();
-    setLoaded(true);
   }, []);
-  console.log(keys);
 
   async function giveUserAccess() {
     const alreadyExists = keys.find((doc) => doc.name === requestedName);
@@ -114,8 +111,8 @@ export default function ManageKeys() {
 
   return (
     <>
-      <Loading loaded={loaded} />
-      {loaded && (
+      <Loading loaded={listItems.length > 0} />
+      {listItems.length > 0 && (
         <AdminLayout>
           <Typography variant="h2">Global Access Keys</Typography>
           <Typography variant="subtitle1">
