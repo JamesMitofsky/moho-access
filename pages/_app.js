@@ -33,10 +33,16 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['"Antonio"', "sans-serif"].join(","),
+    fontFamily: ['"Roboto"', "sans-serif"].join(","),
     fontSize: 16,
-    h1: { fontSize: 40, fontWeight: 500, marginTop: 15, marginBottom: 15 },
-    h2: { fontSize: 30, fontWeight: 200 },
+    h1: {
+      fontFamily: '"Antonio"',
+      fontSize: 40,
+      fontWeight: 500,
+      marginTop: 15,
+      marginBottom: 15,
+    },
+    h2: { fontFamily: '"Antonio"', fontSize: 30, fontWeight: 200 },
     subtitle1: { fontSize: 14, color: "grey" },
   },
   palette: {
