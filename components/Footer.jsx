@@ -14,9 +14,7 @@ const Footer = () => {
       }}
     >
       <Typography sx={{ fontSize: 15 }}>
-        <Link target="_blank" href="https://github.com/JamesMitofsky">
-          Powered by ☕️ and James Mitofsky 🌱
-        </Link>
+        <Link href="/about">Powered by ☕️ and James Mitofsky 🌱</Link>
         {isAdmin && (
           <>
             <Link sx={{ marginLeft: 5 }} href="/admin">
