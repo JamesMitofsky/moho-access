@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   setDoc,
   doc,
+  deleteDoc,
   getDocs,
   Timestamp,
   collection,
@@ -20,11 +21,13 @@ import {
   List,
   ListItem,
   ListItemText,
+  IconButton,
 } from "@mui/material";
 
 import Loading from "../../components/Loading.jsx";
 import AdminLayout from "../../components/layouts/AdminLayout";
 import AutoCopyButton from "../../components/AutoCopyButton";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export default function ManageKeys() {
   const [loaded, setLoaded] = useState(false);
@@ -36,13 +39,21 @@ export default function ManageKeys() {
   // add drop down list for type of access to be provisioned (admin, resident, etc) (maybe functions can be used for day pass)
   // check database to make sure use exists before giving them access
 
+  async function deleteKey(key) {
+    // get document from database which matches key
+
+    await deleteDoc(doc(db, "globalKeys", key.id));
+
+    // delete document
+  }
+
   useEffect(() => {
     async function getKeys() {
       const q = query(collection(db, "globalKeys"));
       onSnapshot(q, (querySnapshot) => {
         const keysArray = [];
         querySnapshot.forEach((doc) => {
-          keysArray.push(doc.data());
+          keysArray.push({ ...doc.data(), id: doc.id });
         });
         setKeys(keysArray);
       });
@@ -57,21 +68,23 @@ export default function ManageKeys() {
     getCodes();
     setLoaded(true);
   }, []);
+  console.log(keys);
 
   async function giveUserAccess() {
     const alreadyExists = keys.find((doc) => doc.name === requestedName);
+    const urlSafe = requestedName
+      // remove all non-alphanumeric values except for spaces
+      .replace(/[^a-zA-Z0-9- ]/g, "")
+      // replace spaces with dashes
+      .replace(/\s+/g, "-")
+      // set to lowercase
+      .toLowerCase();
 
     if (!alreadyExists) {
       setRequestedName("");
-      await setDoc(doc(db, "globalKeys", requestedName), {
+      await setDoc(doc(db, "globalKeys", urlSafe), {
         name: requestedName,
-        urlSafe: requestedName
-          // remove all non-alphanumeric values except for spaces
-          .replace(/[^a-zA-Z0-9- ]/g, "")
-          // replace spaces with dashes
-          .replace(/\s+/g, "-")
-          // set to lowercase
-          .toLowerCase(),
+        urlSafe,
         weekdays: codes,
         created: Timestamp.now(),
       });
@@ -93,6 +106,10 @@ export default function ManageKeys() {
     return (
       <ListItem divider key={doc.id}>
         <ListItemText primary={doc.name} />
+        <IconButton onClick={() => deleteKey(doc)}>
+          <DeleteOutlineIcon />
+        </IconButton>
+
         <AutoCopyButton copyItem={constructedURL} />
       </ListItem>
     );
