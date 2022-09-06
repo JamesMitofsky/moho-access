@@ -22,7 +22,9 @@ export default function AdminLanding() {
             access of existing individuals.
           </Typography>
           <Link href="/admin/users">
-            <Button variant="outlined">Manage Users</Button>
+            <Button fullWidth variant="outlined">
+              Manage Users
+            </Button>
           </Link>
         </Grid>
         <Grid>
@@ -36,7 +38,9 @@ export default function AdminLanding() {
             it among themselves.
           </Typography>
           <Link href="/admin/keys">
-            <Button variant="outlined">Manage Keys</Button>
+            <Button fullWidth variant="outlined">
+              Manage Keys
+            </Button>
           </Link>
         </Grid>
       </Grid>
