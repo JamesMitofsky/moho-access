@@ -1,4 +1,4 @@
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Button } from "@mui/material";
 import { useAppContext } from "../context/state";
 
 const Footer = () => {
@@ -9,19 +9,18 @@ const Footer = () => {
       component="footer"
       sx={{
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         padding: 2,
       }}
     >
+      {isAdmin && (
+        <Button sx={{ mb: 2 }} variant="contained" fullWidth href="/admin">
+          Admin Controls
+        </Button>
+      )}
       <Typography sx={{ fontSize: 15 }}>
         <Link href="/about">Powered by ☕️ and James Mitofsky 🌱</Link>
-        {isAdmin && (
-          <>
-            <Link sx={{ marginLeft: 5 }} href="/admin">
-              Admin Menu
-            </Link>
-          </>
-        )}
       </Typography>
     </Box>
   );
