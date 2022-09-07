@@ -9,59 +9,99 @@ import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-import { Grid } from "@mui/material";
+import { Grid, TextField, Button } from "@mui/material";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function Key() {
   const [loaded, setLoaded] = useState(false);
   const [codeData, setCodeData] = useState(null);
-  const [error, setError] = useState(false);
+  const [param, setParam] = useState(null);
+  const [needInput, setNeedInput] = useState(false);
 
   // get url param for key
   const { query, isReady } = useRouter();
-  const keyParam = query["value"];
-
   useEffect(() => {
-    if (!keyParam) return;
-    async function asyncFunc() {
-      // fetch object from firestore using the key
-      const docRef = doc(db, "globalKeys", keyParam);
-      const res = await getDoc(docRef);
-      const arrayOfWeekdays = res.data()?.weekdays;
+    query["value"] && setParam(query["value"]);
+  }, []);
 
-      // end function if no weekday match can be found
-      if (!arrayOfWeekdays) {
-        setLoaded(true);
-        return;
-      }
-
-      const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
-      setCodeData(qrCodeValue);
+  async function databaseSearch() {
+    if (!param) {
+      setNeedInput(true);
       setLoaded(true);
+      return;
     }
-    asyncFunc();
-  }, [isReady]);
+
+    // fetch object from firestore using the key
+    const docRef = doc(db, "globalKeys", param);
+    const res = await getDoc(docRef);
+    if (!res.exists()) {
+      setNeedInput(true);
+      setLoaded(true);
+      return;
+    }
+    const arrayOfWeekdays = res.data()?.weekdays;
+
+    // end function if no weekday match can be found -- this could mean there wasn't even a matching key
+    if (!arrayOfWeekdays) setNeedInput(true);
+
+    const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
+    setCodeData(qrCodeValue);
+    setLoaded(true);
+  }
+  useEffect(() => {
+    databaseSearch();
+
+    // run the effect on either condition
+    // 1. the first time once params are ready from React
+    // 2. the input state has changed
+  }, [isReady, needInput]);
+
+  function searchForParam() {
+    setNeedInput(false);
+    databaseSearch();
+  }
+
+  function inputSubmitted() {
+    Router.push({ pathname: "/key", query: { value: param } });
+    setNeedInput(false);
+    searchForParam();
+  }
 
   return (
     <MarginProvider>
-      {error && "We ran into a problem. Sorry about that."}
+      <Grid
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flex: 1,
+        }}
+      >
+        {needInput && (
+          <>
+            <WelcomeText />
+            <TextField
+              fullWidth
+              label="Enter your key name"
+              value={param}
+              onChange={(e) => setParam(e.target.value)}
+            />
+            <Button onClick={inputSubmitted}>Search</Button>
+          </>
+        )}
+
+        {loaded && !needInput && codeData && (
+          <>
+            <CodeOfDay value={codeData.code} />
+            {!codeData && <NoCodeToday />}
+            <WelcomeText />
+          </>
+        )}
+      </Grid>
+
       <Loading loaded={loaded} />
-      {loaded && <CodeOfDay value={codeData.code} />}
-      {loaded && (
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            flex: 1,
-          }}
-        >
-          {!codeData && <NoCodeToday />}
-          <WelcomeText />
-        </Grid>
-      )}
     </MarginProvider>
   );
 }
