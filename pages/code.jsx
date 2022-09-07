@@ -8,7 +8,7 @@ import MarginProvider from "../components/layouts/MarginProvider";
 import getCodeFromWeekdays from "../functions/getCodeFromWeekdays";
 
 import { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
 
@@ -55,7 +55,9 @@ export default function Code() {
           }}
         >
           <WelcomeText />
-          <SignOut />
+          <Box sx={{ flex: 1, display: "flex", alignItems: "flex-end" }}>
+            <SignOut />
+          </Box>
         </Grid>
       )}
     </MarginProvider>

@@ -5,8 +5,8 @@ export default function SignOut() {
   ``;
   return (
     <Button
+      size="small"
       variant="outlined"
-      fullWidth
       type="submit"
       onClick={() => auth.signOut()}
     >
