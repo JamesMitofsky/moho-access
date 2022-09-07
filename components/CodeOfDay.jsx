@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { QRCodeSVG } from "qrcode.react";
 

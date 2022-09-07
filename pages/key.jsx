@@ -48,15 +48,7 @@ export default function Key() {
     <MarginProvider>
       {error && "We ran into a problem. Sorry about that."}
       <Loading loaded={loaded} />
-      {codeData ? (
-        <CodeOfDay
-          loaded={loaded}
-          setLoaded={setLoaded}
-          value={codeData.code}
-        />
-      ) : (
-        <NoCodeToday />
-      )}
+      {loaded && <CodeOfDay value={codeData.code} />}
       {loaded && (
         <Grid
           sx={{
@@ -66,6 +58,7 @@ export default function Key() {
             flex: 1,
           }}
         >
+          {!codeData && <NoCodeToday />}
           <WelcomeText />
         </Grid>
       )}
