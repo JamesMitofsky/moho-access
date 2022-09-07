@@ -1,6 +1,8 @@
 import { Link, Typography, Button } from "@mui/material";
 import AdminLayout from "../../components/layouts/AdminLayout";
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import KeyIcon from "@mui/icons-material/Key";
 
 export default function AdminLanding() {
   return (
@@ -22,7 +24,11 @@ export default function AdminLanding() {
             access of existing individuals.
           </Typography>
           <Link href="/admin/users">
-            <Button fullWidth variant="outlined">
+            <Button
+              startIcon={<SupervisorAccountIcon />}
+              fullWidth
+              variant="outlined"
+            >
               Manage Users
             </Button>
           </Link>
@@ -38,7 +44,7 @@ export default function AdminLanding() {
             it among themselves.
           </Typography>
           <Link href="/admin/keys">
-            <Button fullWidth variant="outlined">
+            <Button startIcon={<KeyIcon />} fullWidth variant="outlined">
               Manage Keys
             </Button>
           </Link>

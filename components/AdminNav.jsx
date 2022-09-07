@@ -5,11 +5,17 @@ import {
   IconButton,
   Link,
   Box,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import { Link as NextLink } from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+
+import LogoutIcon from "@mui/icons-material/Logout";
+import QrCodeIcon from "@mui/icons-material/QrCode";
+import HomeIcon from "@mui/icons-material/Home";
 
 import MohoSVG from "./MohoSVG";
 
@@ -68,17 +74,25 @@ export default function AdminNav() {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-              <Link component={NextLink} href="/admin">
-                Admin Home
-              </Link>
+            <MenuItem component={Link} href="/admin" onClick={handleClose}>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Admin Home" />
             </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link component={NextLink} href="/code">
-                Your QR Code
-              </Link>
+
+            <MenuItem component={Link} href="/code" onClick={handleClose}>
+              <ListItemIcon>
+                <QrCodeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Your QR Code" />
             </MenuItem>
-            <MenuItem onClick={() => auth.signOut()}>Sign-Out</MenuItem>
+            <MenuItem onClick={() => auth.signOut()}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign Out" />
+            </MenuItem>
           </Menu>
         </Box>
       </Toolbar>

@@ -4,8 +4,12 @@ import {
   registerWithEmailAndPassword,
 } from "../services/firebase";
 import { useState } from "react";
-import { Typography, TextField, Button, Grid } from "@mui/material";
+import { Typography, TextField, Grid } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
+
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import GoogleIcon from "@mui/icons-material/Google";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -53,6 +57,7 @@ const Login = () => {
         />
 
         <LoadingButton
+          startIcon={<MailOutlineIcon />}
           variant="contained"
           loading={loading.loginEmail}
           onClick={() => {
@@ -63,6 +68,7 @@ const Login = () => {
           Login
         </LoadingButton>
         <LoadingButton
+          startIcon={<GoogleIcon />}
           variant="contained"
           loading={loading.loginGoogle}
           onClick={() => {
@@ -101,6 +107,7 @@ const Login = () => {
         <LoadingButton
           loading={loading.register}
           variant="outlined"
+          startIcon={<AddCircleOutlineIcon />}
           onClick={() => {
             setLoading({ ...loading, register: true });
             registerWithEmailAndPassword(name, email, password);
