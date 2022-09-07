@@ -22,6 +22,7 @@ import {
   ListItem,
   ListItemText,
   IconButton,
+  Link,
 } from "@mui/material";
 
 import Loading from "../../components/Loading.jsx";
@@ -99,7 +100,7 @@ export default function ManageKeys() {
     const constructedURL = `https://moho-auth.vercel.app/key?value=${doc.urlSafe}`;
     return (
       <ListItem divider key={doc.id}>
-        <ListItemText primary={doc.name} />
+        <ListItemText primary={doc.name} secondary={doc.urlSafe} />
         <IconButton onClick={() => deleteKey(doc)}>
           <DeleteOutlineIcon />
         </IconButton>
@@ -117,7 +118,12 @@ export default function ManageKeys() {
           <Typography variant="h2">Global Access Keys</Typography>
           <Typography variant="subtitle1">
             The key-words listed below are active, and anyone who knows them can
-            access Moho .{" "}
+            access Moho . Below each name is the unique key version of the
+            submitted name. These keywords can be searched for from the{" "}
+            <Link target="_blank" href="/key">
+              public portal for keys
+            </Link>
+            .
           </Typography>
           <List>{listItems}</List>
           <Grid component="form">
