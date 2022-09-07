@@ -1,6 +1,7 @@
 import { Box, Typography, Link, Button } from "@mui/material";
 import { useAppContext } from "../context/state";
 import { useRouter } from "next/router";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const Footer = () => {
   const user = useAppContext();
@@ -21,7 +22,13 @@ const Footer = () => {
       }}
     >
       {isAdmin && !isAdminView && (
-        <Button sx={{ mb: 2 }} variant="contained" fullWidth href="/admin">
+        <Button
+          startIcon={<AdminPanelSettingsIcon />}
+          sx={{ mb: 2 }}
+          variant="contained"
+          fullWidth
+          href="/admin"
+        >
           Admin Controls
         </Button>
       )}
