@@ -25,7 +25,7 @@ const Footer = () => {
           Admin Controls
         </Button>
       )}
-      <Typography sx={{ fontSize: 15 }}>
+      <Typography sx={{ fontSize: 15, mb: 2.5, mt: 2.5 }}>
         <Link href="/about">Powered by ☕️ and James Mitofsky 🌱</Link>
       </Typography>
     </Box>
