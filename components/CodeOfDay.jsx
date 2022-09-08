@@ -21,7 +21,7 @@ export default function CodeOfDay({ value }) {
             marginBottom: 100,
           }}
           level="H"
-          value={value}
+          value={value.toString()}
         />
       )}
     </Grid>

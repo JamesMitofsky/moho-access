@@ -30,12 +30,6 @@ export default function Key() {
     // don't continue evaluating function until certain there's no URL param inbound
     if (!isReady) return;
 
-    // check if there's any key in the URL for a param
-    // if (query === "value") {
-    //   console.log("no key found");
-    //   return;
-    // }
-
     // does correct key exist in URL?
     const codeKey = Object.keys(query).find((key) => key === "value");
     if (codeKey !== "value" || !query.value) {
@@ -44,12 +38,7 @@ export default function Key() {
       return;
     }
 
-    console.log("ran");
-
     databaseSearch();
-    // run the effect on either condition
-    // 1. the first time once params are ready from React
-    // 2. the input state has changed
   }, [isReady]);
 
   async function databaseSearch() {
@@ -65,9 +54,10 @@ export default function Key() {
     const arrayOfWeekdays = res.data()?.weekdays;
 
     const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
-    setCodeData(qrCodeValue);
+    setCodeData(qrCodeValue.code);
     setState(setStates, "showCode");
   }
+  console.log(codeData);
 
   function inputSubmitted() {
     databaseSearch();
@@ -108,7 +98,7 @@ export default function Key() {
 
         {states.showCode && (
           <>
-            <CodeOfDay value={codeData.code} />
+            <CodeOfDay value={codeData} />
             {/* {!codeData && <NoCodeToday />} */}
             <WelcomeText />
           </>
