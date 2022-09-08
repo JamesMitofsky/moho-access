@@ -70,7 +70,7 @@ export default function Key() {
   }
 
   function inputSubmitted() {
-    Router.push({ pathname: "/key", query: { value: param.userInput } });
+    databaseSearch();
   }
 
   return (
@@ -90,7 +90,15 @@ export default function Key() {
               fullWidth
               label="Enter your key name"
               value={param.userInput}
-              onChange={(e) => setParam(e.target.value)}
+              onChange={(e) =>
+                setParam(() => {
+                  Router.push({
+                    pathname: "/key",
+                    query: { value: e.target.value },
+                  });
+                  return e.target.value;
+                })
+              }
             />
             <Button fullWidth onClick={inputSubmitted}>
               Search
