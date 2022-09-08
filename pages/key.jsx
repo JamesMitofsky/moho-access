@@ -14,33 +14,54 @@ import { useState } from "react";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export default function Key() {
-  const [loaded, setLoaded] = useState(false);
-  const [codeData, setCodeData] = useState(null);
-  const [param, setParam] = useState(null);
-  const [needInput, setNeedInput] = useState(false);
+import setState from "../functions/setState";
 
-  // get url param for key
+export default function Key() {
+  const [codeData, setCodeData] = useState("");
+  const [param, setParam] = useState({
+    serverCall: "",
+    userInput: "",
+  });
+  const [states, setStates] = useState({
+    loading: true,
+    noCode: false,
+    showCode: false,
+  });
+
   const { query, isReady } = useRouter();
   useEffect(() => {
-    query["value"] && setParam(query["value"]);
-  }, []);
+    // don't continue evaluating function until certain there's no URL param inbound
+    if (!isReady) return;
+
+    // throw param error in two cases:
+    // 1. no param at all
+    // 2. param does not exist (handle this in async func)
+    if (!param.userInput) {
+      setState(setStates, "noCode");
+      return;
+    }
+
+    console.log("checking url");
+    checkURL();
+
+    databaseSearch();
+    // run the effect on either condition
+    // 1. the first time once params are ready from React
+    // 2. the input state has changed
+  }, [isReady, param.serverCall]);
+
+  // get url param for key
+  function checkURL() {
+    query["value"] &&
+      setParam((prev) => ({ ...prev, serverCall: query["value"] }));
+  }
 
   async function databaseSearch() {
-    if (!param) {
-      setNeedInput(true);
-      setLoaded(true);
-      return;
-    }
-
     // fetch object from firestore using the key
-    const docRef = doc(db, "globalKeys", param);
+    const docRef = doc(db, "globalKeys", param.serverCall);
     const res = await getDoc(docRef);
-    if (!res.exists()) {
-      setNeedInput(true);
-      setLoaded(true);
-      return;
-    }
+    if (!res.exists()) return;
+
     const arrayOfWeekdays = res.data()?.weekdays;
 
     // end function if no weekday match can be found -- this could mean there wasn't even a matching key
@@ -48,25 +69,11 @@ export default function Key() {
 
     const qrCodeValue = getCodeFromWeekdays(arrayOfWeekdays);
     setCodeData(qrCodeValue);
-    setLoaded(true);
-  }
-  useEffect(() => {
-    databaseSearch();
-
-    // run the effect on either condition
-    // 1. the first time once params are ready from React
-    // 2. the input state has changed
-  }, [isReady, needInput]);
-
-  function searchForParam() {
-    setNeedInput(false);
-    databaseSearch();
+    setState(setStates, "showCode");
   }
 
   function inputSubmitted() {
-    Router.push({ pathname: "/key", query: { value: param } });
-    setNeedInput(false);
-    searchForParam();
+    Router.push({ pathname: "/key", query: { value: param.userInput } });
   }
 
   return (
@@ -79,20 +86,22 @@ export default function Key() {
           flex: 1,
         }}
       >
-        {needInput && (
+        {states.noCode && (
           <>
             <WelcomeText />
             <TextField
               fullWidth
               label="Enter your key name"
-              value={param}
-              onChange={(e) => setParam(e.target.value)}
+              value={param.userInput}
+              onChange={(e) =>
+                setParam((prev) => ({ ...prev, userInput: e.target.value }))
+              }
             />
             <Button onClick={inputSubmitted}>Search</Button>
           </>
         )}
 
-        {loaded && !needInput && codeData && (
+        {states.loading && codeData && (
           <>
             <CodeOfDay value={codeData.code} />
             {!codeData && <NoCodeToday />}
@@ -101,7 +110,7 @@ export default function Key() {
         )}
       </Grid>
 
-      <Loading loaded={loaded} />
+      <Loading loaded={!states.loading} />
     </MarginProvider>
   );
 }
