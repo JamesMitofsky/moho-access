@@ -9,7 +9,7 @@ const Footer = () => {
 
   const router = useRouter();
   const pathName = router.pathname;
-  console.log(pathName);
+
   const isAdminView = pathName.includes("admin");
   return (
     <Box
