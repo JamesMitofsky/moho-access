@@ -41,7 +41,7 @@ export function AppWrapper({ children }) {
       const userWithAuthStatus = await getUserInfo(userObj, isAuthorized);
       setUser(userWithAuthStatus);
     });
-  }, [router.pathname]);
+  }, []);
 
   return <AppContext.Provider value={user}>{children}</AppContext.Provider>;
 }
