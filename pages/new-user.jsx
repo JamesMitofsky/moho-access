@@ -29,7 +29,7 @@ export default function AboutPage() {
         }}
       >
         <Typography variant="h1" sx={{ fontSize: 50 }}>
-          Hi there{fName && `, ${fName}`}!
+          Hi{fName && `, ${fName}`}! 👋
         </Typography>
       </Box>
       <Typography>
