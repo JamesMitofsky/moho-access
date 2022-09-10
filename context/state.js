@@ -14,33 +14,23 @@ export function AppWrapper({ children }) {
       const pathName = Router.pathname;
       if (pathName === "/key" || pathName === "/about") return;
 
-      // if user is already saved to local, exit logging function
-      if (user) return;
-
       // if the server finds no user, empty the local representation
       if (!userObj) {
         setUser("notLoggedIn");
         return;
       }
 
-      // if server has user but user is not a resident
-      const regWithAuth =
-        userObj.roles?.admin === true || userObj.roles?.resident === true;
-      if (regWithAuth) {
-        setUser(userObj);
+      // if user signs in for first time, record their info (returns false if no auth is returned)
+      const userWithAuth = await isUserAuthorized(userObj.uid, userObj);
+
+      if (userWithAuth) {
+        setUser(userWithAuth);
+        return;
+      } else {
+        // if server returned the user has no roles object attached, redirect to non-resident page
+        setUser({ ...userObj, status: "reg_nonresident" });
         return;
       }
-
-      // if server returned the user has no roles object attached, redirect to non-resident page
-      if (!userObj.roles) {
-        setUser("reg_nonresident");
-        return;
-      }
-
-      // if user signs in for first time, record their info
-      const userWithAuth = await isUserAuthorized(userObj.uid);
-
-      setUser(userWithAuth);
     });
   }, []);
 
@@ -48,19 +38,23 @@ export function AppWrapper({ children }) {
   useEffect(() => {
     // exit if user has not yet been assigned to state
     if (!user) return;
-    console.log(user);
+
+    // if server has user
+    const userHasRole =
+      user.roles?.admin === true || user.roles?.resident === true;
+
     const pathName = Router.pathname;
 
     // send authorized users to code from the login page
-    if (user.roles?.resident === true || user.roles?.admin === true) {
-      // exit if not the login page
+    if (userHasRole) {
+      // if located on the login page, redirect logged in user to the code
       if (pathName !== "/") return;
       Router.push("/code");
       return;
     }
 
     // exit if user has not authenticated (regardless of authroization status)
-    if (user === "reg_nonresident") {
+    if (user.status === "reg_nonresident") {
       Router.push("/new-user");
       return;
     }

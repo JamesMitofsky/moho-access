@@ -2,8 +2,21 @@ import MarginProvider from "../components/layouts/MarginProvider";
 import { Typography, Box } from "@mui/material";
 import WelcomeText from "../components/WelcomeText";
 import SignOut from "../components/SignOut";
+import { useAppContext } from "../context/state";
+import { useEffect, useState } from "react";
 
 export default function AboutPage() {
+  const user = useAppContext();
+  const [fName, setFName] = useState(null);
+
+  useEffect(() => {
+    // don't run if user hasn't yet been assigned
+    if (!user) return;
+    const fullName = user?._delegate.displayName;
+    const firstName = fullName.split(" ")[0];
+    setFName(firstName);
+  }, [user]);
+
   return (
     <MarginProvider>
       <WelcomeText />
@@ -16,7 +29,7 @@ export default function AboutPage() {
         }}
       >
         <Typography variant="h1" sx={{ fontSize: 50 }}>
-          Hi there!
+          Hi there{fName && `, ${fName}`}!
         </Typography>
       </Box>
       <Typography>
