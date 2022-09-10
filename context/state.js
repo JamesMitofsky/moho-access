@@ -8,12 +8,9 @@ const AppContext = createContext();
 export function AppWrapper({ children }) {
   const [user, setUser] = useState(null);
 
+  // assign user to state
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
-      // PUBLIC ROUTES; do not respect auth rules for these paths
-      const pathName = Router.pathname;
-      if (pathName === "/key" || pathName === "/about") return;
-
       // if the server finds no user, empty the local representation
       if (!userObj) {
         setUser("notLoggedIn");
@@ -39,11 +36,13 @@ export function AppWrapper({ children }) {
     // exit if user has not yet been assigned to state
     if (!user) return;
 
+    // PUBLIC ROUTES; do not respect auth rules for these paths
+    const pathName = Router.pathname;
+    if (pathName === "/key" || pathName === "/about") return;
+
     // if server has user
     const userHasRole =
       user.roles?.admin === true || user.roles?.resident === true;
-
-    const pathName = Router.pathname;
 
     // send authorized users to code from the login page
     if (userHasRole) {
