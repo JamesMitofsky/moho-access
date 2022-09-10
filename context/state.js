@@ -31,10 +31,8 @@ export function AppWrapper({ children }) {
         return;
       }
 
-      // if server has user but user is not a resident
-      const regNonResident =
-        userObj.roles?.resident === false || userObj.roles?.admin === false;
-      if (regNonResident) {
+      // if server returned the user has no roles object attached, redirect to non-resident page
+      if (!userObj.roles) {
         setUser("reg_nonresident");
         return;
       }
