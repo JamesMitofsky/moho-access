@@ -5,7 +5,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const Footer = () => {
   const user = useAppContext();
-  const isAdmin = user?.authorized;
+  const isAdmin = user?.roles.admin === true;
 
   const router = useRouter();
   const pathName = router.pathname;
