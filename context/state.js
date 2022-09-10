@@ -36,7 +36,7 @@ export function AppWrapper({ children }) {
 
     // exit if user has not authenticated (regardless of authroization status)
     if (user === "empty") {
-      Router.push("/new-user-welcome");
+      Router.push("/new-user");
       return;
     }
 
