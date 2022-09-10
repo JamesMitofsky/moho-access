@@ -1,6 +1,7 @@
 import MarginProvider from "../components/layouts/MarginProvider";
 import { Typography, Box } from "@mui/material";
 import WelcomeText from "../components/WelcomeText";
+import SignOut from "../components/SignOut";
 
 export default function AboutPage() {
   return (
@@ -22,6 +23,7 @@ export default function AboutPage() {
         Thanks for registering with Moho Auth! If you are a resident, ask your
         contact at Moho to approve your account with credentials.
       </Typography>
+      <SignOut />
     </MarginProvider>
   );
 }

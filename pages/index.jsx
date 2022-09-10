@@ -11,20 +11,14 @@ export default function UserLogin() {
   const [pageLoaded, setPageLoaded] = useState(false);
   const user = useAppContext();
   useEffect(() => {
-    // if user has been checked for but does not exist
-
     // has user been evaluated by state.js?
     if (!user) return;
 
     // has state.js determined no user is logged in?
-    const notLoggedIn = user === "empty";
+    const notLoggedIn = user === "notLoggedIn";
     if (notLoggedIn) {
       setPageLoaded(true);
       return;
-    }
-    // has state.js determined user is authorized to access QR codes?
-    if (user.roles.resident === true || user.roles.admin === true) {
-      Router.push("/code");
     }
   }, [user]);
 

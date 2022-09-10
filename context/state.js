@@ -10,17 +10,36 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
+      // PUBLIC ROUTES; do not respect auth rules for these paths
       const pathName = Router.pathname;
       if (pathName === "/key" || pathName === "/about") return;
 
-      // if no user is logged in, empty the user obj
+      // if user is already saved to local, exit logging function
+      if (user) return;
+
+      // if the server finds no user, empty the local representation
       if (!userObj) {
-        setUser("empty");
+        setUser("notLoggedIn");
         return;
       }
 
-      // if user is already saved to system, exit logging function
-      if (user) return;
+      // if server has user but user is not a resident
+      if (userObj && userObj.roles?.admin === true) {
+        setUser(userObj);
+        return;
+      }
+
+      // if server has user but user is not a resident
+      if (userObj && userObj.roles?.resident === true) {
+        setUser(userObj);
+        return;
+      }
+
+      // if server has user but user is not a resident
+      if (userObj && userObj.roles?.resident !== true) {
+        setUser("reg_nonresident");
+        return;
+      }
 
       // if user signs in for first time, record their info
       const userWithAuth = await isUserAuthorized(userObj.uid);
@@ -33,15 +52,25 @@ export function AppWrapper({ children }) {
   useEffect(() => {
     // exit if user has not yet been assigned to state
     if (!user) return;
+    console.log(user);
+
+    if (user.roles?.resident === true || user.roles?.admin === true) {
+      Router.push("/code");
+      return;
+    }
 
     // exit if user has not authenticated (regardless of authroization status)
-    if (user === "empty") {
+    if (user === "reg_nonresident") {
       Router.push("/new-user");
       return;
     }
 
+    if (user === "notLoggedIn") {
+      Router.push("/");
+      return;
+    }
+
     // if user is not authorized, redirect to key page
-    console.log(user);
   }, [user]);
 
   return <AppContext.Provider value={user}>{children}</AppContext.Provider>;
