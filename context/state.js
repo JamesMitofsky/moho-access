@@ -42,8 +42,6 @@ export function AppWrapper({ children }) {
 
     // if user is not authorized, redirect to key page
     console.log(user);
-    if (user.roles.admin === true || user.roles.resident === true)
-      Router.push("/code");
   }, [user]);
 
   return <AppContext.Provider value={user}>{children}</AppContext.Provider>;
