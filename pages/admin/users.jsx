@@ -15,7 +15,10 @@ import { useAppContext } from "../../context/state";
 
 import {
   Typography,
-  CircularProgress,
+  InputLabel,
+  FormControl,
+  MenuItem,
+  Select,
   Grid,
   TextField,
   Button,
@@ -33,8 +36,13 @@ export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
   const [globalUsers, setGlobalUsers] = useState([]);
-  const [emailInput, setEmailInput] = useState("");
   const user = useAppContext();
+
+  const [emailInput, setEmailInput] = useState("");
+  const [roleRequest, setRoleRequest] = useState("");
+  const handleChange = (event) => {
+    setRoleRequest(event.target.value);
+  };
 
   // TODO:
   // add drop down list for type of access to be provisioned (admin, resident, etc) (maybe functions can be used for day pass)
@@ -77,12 +85,16 @@ export default function ManageUsers() {
     const alreadyExistsAsAuthorized = users.find(
       (user) => user.email === emailInput
     );
+    const roleSelected = roleRequest !== "";
 
-    if (!alreadyExistsAsAuthorized && existsInGlobalUsers) {
+    const allowServerRequest =
+      !alreadyExistsAsAuthorized && existsInGlobalUsers && roleSelected;
+
+    if (allowServerRequest) {
       await setDoc(doc(db, "userRoles", existsInGlobalUsers.uid), {
         uid: existsInGlobalUsers.uid,
         email: existsInGlobalUsers.email,
-        roles: { resident: true },
+        roles: { [roleRequest]: true },
         created: Timestamp.now(),
       });
       setEmailInput("");
@@ -142,8 +154,24 @@ export default function ManageUsers() {
               onChange={(e) => setEmailInput(e.target.value)}
             />
             <Button onClick={giveUserAccess} variant="contained">
-              Add Resident
+              Authorize User
             </Button>
+            <FormControl sx={{ m: 0.4, minWidth: 150 }}>
+              <InputLabel size="small" id="role-selector">
+                Select Role
+              </InputLabel>
+              <Select
+                size="small"
+                labelId="role-selector"
+                value={roleRequest}
+                label="Select Role<"
+                autoWidth
+                onChange={handleChange}
+              >
+                <MenuItem value={"resident"}>Resident</MenuItem>
+                <MenuItem value={"admin"}>Admin</MenuItem>
+              </Select>
+            </FormControl>
           </Grid>
         </>
       )}
