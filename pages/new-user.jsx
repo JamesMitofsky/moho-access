@@ -41,7 +41,7 @@ export default function AboutPage() {
         to approve your account credentials.
       </Typography>
       <Typography sx={{ mt: 2 }}>
-        We'll get you up and running in no time!
+        We&apos;ll get you up and running in no time!
       </Typography>
       <SignOut />
     </MarginProvider>
