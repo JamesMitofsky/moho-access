@@ -11,13 +11,13 @@ export function AppWrapper({ children }) {
   // assign user to state
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (thisUser) => {
-      const userObj = thisUser._delegate;
-
       // if the server finds no user, empty the local representation
-      if (!userObj) {
+      if (!thisUser) {
         setUser("notLoggedIn");
         return;
       }
+
+      const userObj = thisUser._delegate;
 
       // if user signs in for first time, record their info (returns false if no auth is returned)
       const userWithAuth = await isUserAuthorized(thisUser.uid, userObj);
