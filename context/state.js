@@ -24,19 +24,17 @@ export function AppWrapper({ children }) {
       }
 
       // if server has user but user is not a resident
-      if (userObj && userObj.roles?.admin === true) {
+      const regWithAuth =
+        userObj.roles?.admin === true || userObj.roles?.resident === true;
+      if (regWithAuth) {
         setUser(userObj);
         return;
       }
 
       // if server has user but user is not a resident
-      if (userObj && userObj.roles?.resident === true) {
-        setUser(userObj);
-        return;
-      }
-
-      // if server has user but user is not a resident
-      if (userObj && userObj.roles?.resident !== true) {
+      const regNonResident =
+        userObj.roles?.resident === false || userObj.roles?.admin === false;
+      if (regNonResident) {
         setUser("reg_nonresident");
         return;
       }
@@ -53,8 +51,12 @@ export function AppWrapper({ children }) {
     // exit if user has not yet been assigned to state
     if (!user) return;
     console.log(user);
+    const pathName = Router.pathname;
 
+    // send authorized users to code from the login page
     if (user.roles?.resident === true || user.roles?.admin === true) {
+      // exit if not the login page
+      if (pathName !== "/") return;
       Router.push("/code");
       return;
     }
