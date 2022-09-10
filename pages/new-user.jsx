@@ -12,7 +12,7 @@ export default function AboutPage() {
   useEffect(() => {
     // don't run if user hasn't yet been assigned
     if (!user) return;
-    const fullName = user?._delegate.displayName;
+    const fullName = user?.displayName;
     const firstName = fullName.split(" ")[0];
     setFName(firstName);
   }, [user]);
