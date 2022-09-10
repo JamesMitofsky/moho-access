@@ -39,7 +39,7 @@ export default function ManageUsers() {
   const user = useAppContext();
 
   const [emailInput, setEmailInput] = useState("");
-  const [roleRequest, setRoleRequest] = useState("");
+  const [roleRequest, setRoleRequest] = useState("resident");
   const handleChange = (event) => {
     setRoleRequest(event.target.value);
   };
