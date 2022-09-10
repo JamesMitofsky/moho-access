@@ -88,34 +88,17 @@ export default function App({ Component, pageProps }) {
         )}
         <meta name="msapplication-tap-highlight" content="no" />
 
-        <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          href="/icons/touch-icon-ipad.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/icons/touch-icon-iphone-retina.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="167x167"
-          href="/icons/touch-icon-ipad-retina.png"
-        />
-
         <link
           rel="icon"
           type="image/png"
-          sizes="32x32"
-          href="/icons/favicon-32x32.png"
+          sizes="256x256"
+          href="/icons/icon-256x256.png"
         />
         <link
           rel="icon"
           type="image/png"
-          sizes="16x16"
-          href="/icons/favicon-16x16.png"
+          sizes="512x512"
+          href="/icons/icon-512x512.png"
         />
         <link rel="manifest" href="/manifest.json" />
         <link
@@ -149,10 +132,6 @@ export default function App({ Component, pageProps }) {
         />
         <meta property="og:site_name" content="Moho Auth" />
         <meta property="og:url" content="https://moho-auth.vercel.app" />
-        <meta
-          property="og:image"
-          content="https://moho-auth.vercel.app/icons/apple-touch-icon.png"
-        />
       </Head>
       <AppWrapper>
         <Component {...pageProps} />
