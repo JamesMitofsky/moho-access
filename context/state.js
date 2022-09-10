@@ -1,22 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import firebase from "../services/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../services/firebase";
 import isUserAuthorized from "../functions/isUserAuthorized";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [user, setUser] = useState(null);
-  const router = useRouter();
-
-  async function getUserInfo(userObj, userAuthorized) {
-    const docRef = doc(db, "users", userObj.uid);
-    const docSnap = await getDoc(docRef);
-    const userWithAuth = { ...docSnap.data(), authorized: userAuthorized };
-    return userWithAuth;
-  }
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userObj) => {
@@ -25,7 +15,6 @@ export function AppWrapper({ children }) {
 
       // if no user is logged in, empty the user obj
       if (!userObj) {
-        Router.push("/");
         setUser("empty");
         return;
       }
@@ -34,14 +23,28 @@ export function AppWrapper({ children }) {
       if (user) return;
 
       // if user signs in for first time, record their info
-      const isAuthorized = await isUserAuthorized(userObj.uid, [
-        "admin",
-        "resident",
-      ]);
-      const userWithAuthStatus = await getUserInfo(userObj, isAuthorized);
-      setUser(userWithAuthStatus);
+      const userWithAuth = await isUserAuthorized(userObj.uid);
+
+      setUser(userWithAuth);
     });
   }, []);
+
+  // handle routing
+  useEffect(() => {
+    // exit if user has not yet been assigned to state
+    if (!user) return;
+
+    // exit if user has not authenticated (regardless of authroization status)
+    if (user === "empty") {
+      Router.push("/new-user-welcome");
+      return;
+    }
+
+    // if user is not authorized, redirect to key page
+    console.log(user);
+    if (user.roles.admin === true || user.roles.resident === true)
+      Router.push("/code");
+  }, [user]);
 
   return <AppContext.Provider value={user}>{children}</AppContext.Provider>;
 }
