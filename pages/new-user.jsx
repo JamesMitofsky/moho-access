@@ -1,5 +1,5 @@
 import MarginProvider from "../components/layouts/MarginProvider";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Link } from "@mui/material";
 import WelcomeText from "../components/WelcomeText";
 import SignOut from "../components/SignOut";
 import { useAppContext } from "../context/state";
@@ -33,8 +33,15 @@ export default function AboutPage() {
         </Typography>
       </Box>
       <Typography>
-        Thanks for registering with Moho Auth! If you are a resident, ask your
-        contact at Moho to approve your account with credentials.
+        Thanks for registering with Moho Auth! If you are a resident, reach out
+        to your contact at Moho or{" "}
+        <Link target="_blank" href="mailto:jamesmitofsky@gmail.com">
+          James Mitofsky
+        </Link>{" "}
+        to approve your account credentials.
+      </Typography>
+      <Typography sx={{ mt: 2 }}>
+        We'll get you up and running in no time!
       </Typography>
       <SignOut />
     </MarginProvider>
