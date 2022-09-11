@@ -1,6 +1,6 @@
 # Moho Auth
 
-Making authenticating into the Moho resident space 👌 simple, 📈 scalable, & 🔐 secure.
+A PWA to make authenticating into the Moho resident space 👌 simple, 📈 scalable, & 🔐 secure.
 
 <table>
 	<tr>
@@ -19,6 +19,19 @@ npm i && npm run dev
 ```
 
 <a href="#database-structure">See database setup section.</a>
+
+## How It Works
+
+### Access
+
+The app provides two types of access to the QR codes which unlock Moho's resident space. Authorization can be based on:
+
+1. **Individuals** who have registered an account & then been authorized by an admin.
+2. **Global Keys**, where anyone who knows the value of the key has access (eg. anyone who knew a hypothetical key like _`github-at-moho`_ would be able to bypass authentication by using the <a href="https://moho-auth.vercel.app/key">/key</a> directory).
+
+### Database Security
+
+Access to the codes & the app are secured by rules on the server. These rules are beyond the control of any app user, regardless of their level of database access. This means Cloud Firestore processes these [security rules](https://firebase.google.com/docs/firestore/security/get-started) secretely, immutably, & only for expected domains.
 
 ## Development Motivation & Reasoning
 
