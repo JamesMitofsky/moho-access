@@ -10,7 +10,7 @@ A PWA to make authenticating into the Moho resident space 👌 simple, 📈 scal
 	</tr>
 </table>
 
-## 💾 Install / Get Started
+## Install / Get Started
 
 Install all dependencies & begin running the development server:
 
