@@ -8,7 +8,7 @@ export default function AutoCopyButton({ copyItem }) {
 
   return (
     <Button endIcon={<ContentCopyIcon />} onClick={handleCopy}>
-      Copy Link
+      Copier le Lien
     </Button>
   );
 }
