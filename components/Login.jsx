@@ -35,14 +35,14 @@ const Login = () => {
     >
       <Grid component="form">
         <Typography sx={{ mb: 1 }} variant="h2">
-          Login
+          Connexion
         </Typography>
         <TextField
           fullWidth
           type="email"
           name="email"
           autoComplete="email"
-          label="Enter email"
+          label="Courriel"
           value={loginEmail}
           onChange={(e) => setLoginEmail(e.target.value)}
         />
@@ -51,7 +51,7 @@ const Login = () => {
           type="password"
           name="password"
           autoComplete="current-password"
-          label="Password"
+          label="Mot de pass"
           value={loginPassword}
           onChange={(e) => setLoginPassword(e.target.value)}
         />
@@ -65,7 +65,7 @@ const Login = () => {
             signInWithEmailAndPassword(loginEmail, loginPassword);
           }}
         >
-          Login
+          Connexion
         </LoadingButton>
         <LoadingButton
           startIcon={<GoogleIcon />}
@@ -76,31 +76,31 @@ const Login = () => {
             signInWithGoogle();
           }}
         >
-          Sign-in with Google
+          Connexion avec Google
         </LoadingButton>
       </Grid>
       <Grid component="form">
         <Typography sx={{ mb: 1 }} variant="h2">
-          Register
+          S'Inscrire
         </Typography>
         <TextField
           fullWidth
           type="name"
-          label="Enter name"
+          label="Votre nom"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <TextField
           fullWidth
           type="email"
-          label="Enter email"
+          label="Courriel"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           fullWidth
           type="password"
-          label="Password"
+          label="Mot de pass"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -113,7 +113,7 @@ const Login = () => {
             registerWithEmailAndPassword(name, email, password);
           }}
         >
-          Register
+          S'Inscrire
         </LoadingButton>
       </Grid>
     </Grid>
