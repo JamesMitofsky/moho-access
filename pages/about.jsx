@@ -4,7 +4,7 @@ import { Typography, Link, Button, Box } from "@mui/material";
 import WelcomeText from "../components/WelcomeText";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import portrait from "../public/images/portrait.jpeg";
-import Image from "next/future/image";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
