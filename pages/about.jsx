@@ -9,12 +9,11 @@ import Image from "next/future/image";
 export default function AboutPage() {
   return (
     <MarginProvider>
-      <WelcomeText />
-
       <Link sx={{ display: "flex", alignItems: "center" }} href="/code">
         <ArrowBackIcon />
         Return to QR code
       </Link>
+      <WelcomeText />
       <Box
         sx={{
           display: "flex",
