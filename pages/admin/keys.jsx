@@ -115,13 +115,14 @@ export default function ManageKeys() {
       <Loading loaded={listItems.length > 0} />
       {listItems.length > 0 && (
         <AdminLayout>
-          <Typography variant="h2">Global Access Keys</Typography>
+          <Typography variant="h2">Les Clés Globales</Typography>
           <Typography variant="subtitle1">
-            The key-words listed below are active, and anyone who knows them can
-            access Moho . Below each name is the unique key version of the
-            submitted name. These keywords can be searched for from the{" "}
+            Les mots clés énumérés ci-dessous sont actifs, et toute personne qui
+            les connaît peut accéder à Moho . Sous chaque nom se trouve la
+            version clé unique de la nom soumis. Ces mots-clés peuvent être
+            recherchés à partir{" "}
             <Link target="_blank" href="/key">
-              public portal for keys
+              du portail public des clés
             </Link>
             .
           </Typography>
@@ -134,7 +135,7 @@ export default function ManageKeys() {
               onChange={(e) => setRequestedName(e.target.value)}
             />
             <Button onClick={giveUserAccess} variant="contained">
-              Add Key
+              Ajouter un Clé
             </Button>
           </Grid>
         </AdminLayout>

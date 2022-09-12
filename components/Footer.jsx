@@ -29,11 +29,11 @@ const Footer = () => {
           fullWidth
           href="/admin"
         >
-          Admin Controls
+          Commandes d'Administration
         </Button>
       )}
       <Typography sx={{ fontSize: 15, mb: 2.5, mt: 2.5 }}>
-        <Link href="/about">Powered by ☕️ and James Mitofsky 🌱</Link>
+        <Link href="/about">Réalisé par 🌱 James Mitofsky</Link>
       </Typography>
     </Box>
   );

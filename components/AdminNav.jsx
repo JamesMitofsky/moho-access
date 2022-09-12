@@ -78,20 +78,20 @@ export default function AdminNav() {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Admin Home" />
+              <ListItemText primary="Maison d’Admin" />
             </MenuItem>
 
             <MenuItem component={Link} href="/code" onClick={handleClose}>
               <ListItemIcon>
                 <QrCodeIcon />
               </ListItemIcon>
-              <ListItemText primary="Your QR Code" />
+              <ListItemText primary="Votre QR Code" />
             </MenuItem>
             <MenuItem onClick={() => auth.signOut()}>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary="Sign Out" />
+              <ListItemText primary="Déconnexion" />
             </MenuItem>
           </Menu>
         </Box>

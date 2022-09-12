@@ -29,19 +29,16 @@ export default function AboutPage() {
         }}
       >
         <Typography variant="h1" sx={{ fontSize: 50 }}>
-          Hi{fName && `, ${fName}`}! 👋
+          Salut{fName && `, ${fName}`}! 👋
         </Typography>
       </Box>
       <Typography>
-        Thanks for registering with Moho Auth! If you are a resident, reach out
-        to your contact at Moho or{" "}
+        C'est parti! Merci de vous être inscrit auprès de Moho Auth! Si vous
+        êtes résident, contactez votre contact chez Moho ou{" "}
         <Link target="_blank" href="mailto:jamesmitofsky@gmail.com">
-          James Mitofsky
+          James
         </Link>{" "}
-        to approve your account credentials.
-      </Typography>
-      <Typography sx={{ mt: 2 }}>
-        We&apos;ll get you up and running in no time!
+        pour approuver vos identifiants de compte.
       </Typography>
       <SignOut />
     </MarginProvider>

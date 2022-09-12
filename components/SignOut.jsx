@@ -12,7 +12,7 @@ export default function SignOut() {
       onClick={() => auth.signOut()}
       startIcon={<LogoutIcon />}
     >
-      Sign Out
+      Déconnexion
     </Button>
   );
 }

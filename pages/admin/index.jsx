@@ -9,19 +9,20 @@ export default function AdminLanding() {
     <AdminLayout>
       <Grid container spacing={5}>
         <Grid>
-          <Typography variant="h1">Admin Home</Typography>
+          <Typography variant="h1">Maison d’Administration</Typography>
           <Typography variant="body1">
-            From here you can update the two ways of accessing the resident
-            space: individual people (called users) and global eys that work
-            like a blank check for anyone who knows the code.
+            De là, vous pouvez mettre à jour les deux façons d’accéder à
+            l’espace résident : les personnes individuelles (appelés
+            utilisateurs) et clés globales qui fonctionnent comme un chèque en
+            blanc pour toute personne qui connaît le code.
           </Typography>
         </Grid>
         <Grid>
-          <Typography variant="h2">Authorized Users</Typography>
+          <Typography variant="h2">Les Utilisateurs</Typography>
           <Typography variant="body1">
-            Here, you can authorize individual people who have registered
-            themselves (they need to visit the registration page) & update the
-            access of existing individuals.
+            Ici, vous pouvez autoriser les personnes qui se sont inscrites
+            (elles doivent visiter la page d’inscription) et mettre à jour
+            l’accès des personnes existantes.
           </Typography>
           <Link href="/admin/users">
             <Button
@@ -29,23 +30,23 @@ export default function AdminLanding() {
               fullWidth
               variant="outlined"
             >
-              Manage Users
+              Gérer les Utilisateurs
             </Button>
           </Link>
         </Grid>
         <Grid>
-          <Typography variant="h2">Global Keys</Typography>
+          <Typography variant="h2">Les Clés Globales</Typography>
           <Typography variant="body1">
-            This section is a good choice if an enterprise is renting the
-            resident space for a day. Many people can access the space with the
-            same key. For example, if Quonto was holding a big event at Moho,
-            this is a great time to create a global key which anyone can use
-            during their time here. Send them one link, and they can distribute
-            it among themselves.
+            Cette section est un bon choix si une entreprise loue l’espace
+            résident pour une journée. Beaucoup de gens peuvent accéder à
+            l’espace avec la même clé. Par exemple, si Quonto organisait un
+            grand événement à Moho, c’est le moment idéal pour créer une clé
+            mondiale que n’importe qui peut utiliser pendant son séjour ici.
+            Envoyez-leur un lien, et ils pourront le distribuer entre eux.
           </Typography>
           <Link href="/admin/keys">
             <Button startIcon={<KeyIcon />} fullWidth variant="outlined">
-              Manage Keys
+              Gérer les Clés
             </Button>
           </Link>
         </Grid>

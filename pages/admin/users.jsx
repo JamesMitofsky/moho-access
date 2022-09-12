@@ -125,7 +125,7 @@ export default function ManageUsers() {
       {!loaded && <Loading />}
       {loaded && (
         <>
-          <Typography variant="h2">Authorized Users</Typography>
+          <Typography variant="h2">Utilisateurs Autorisés</Typography>
           <List>
             {users.map((role) => {
               const notCurrentUser = role.email !== user?.email;
@@ -154,11 +154,11 @@ export default function ManageUsers() {
               onChange={(e) => setEmailInput(e.target.value)}
             />
             <Button onClick={giveUserAccess} variant="contained">
-              Authorize User
+              Autorise l'Utilisateur
             </Button>
             <FormControl sx={{ m: 0.4, minWidth: 150 }}>
               <InputLabel size="small" id="role-selector">
-                Select Role
+                Choisir le rôle
               </InputLabel>
               <Select
                 size="small"
@@ -168,7 +168,7 @@ export default function ManageUsers() {
                 autoWidth
                 onChange={handleChange}
               >
-                <MenuItem value={"resident"}>Resident</MenuItem>
+                <MenuItem value={"resident"}>Résident</MenuItem>
                 <MenuItem value={"admin"}>Admin</MenuItem>
               </Select>
             </FormControl>
