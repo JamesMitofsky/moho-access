@@ -45,12 +45,15 @@ export function AppWrapper({ children }) {
     if (pathName === "/key" || pathName === "/about") return;
 
     // if server has user
-    const userHasRole = user.roles?.admin || user.roles?.resident;
+    const userHasRole = user.roles.admin || user.roles.resident;
+    console.log(userHasRole);
 
     // send authorized users to code from the login page
     if (userHasRole) {
-      // if located on the login page, redirect logged in user to the code
-      if (pathName !== "/") return;
+      // exit if not located on "login" or "welcome" pages
+      if (pathName !== "/" && pathName !== "/new-user") return;
+
+      // push to the code view
       Router.push("/code");
       return;
     }
