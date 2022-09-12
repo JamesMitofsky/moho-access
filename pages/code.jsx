@@ -12,6 +12,8 @@ import { Grid, Box } from "@mui/material";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
 
+import Head from "next/head";
+
 export default function Code() {
   const [loaded, setLoaded] = useState(false);
   const [code, setCode] = useState("");
@@ -38,28 +40,33 @@ export default function Code() {
   }, []);
 
   return (
-    <MarginProvider>
-      <Loading loaded={loaded} />
-      {code !== "empty" ? (
-        <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={code} />
-      ) : (
-        <NoCodeToday />
-      )}
-      {loaded && (
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            flex: 1,
-          }}
-        >
-          <WelcomeText />
-          <Box sx={{ flex: 1, display: "flex", alignItems: "flex-end" }}>
-            <SignOut />
-          </Box>
-        </Grid>
-      )}
-    </MarginProvider>
+    <>
+      <Head>
+        <title>Code</title>
+      </Head>
+      <MarginProvider>
+        <Loading loaded={loaded} />
+        {code !== "empty" ? (
+          <CodeOfDay loaded={loaded} setLoaded={setLoaded} value={code} />
+        ) : (
+          <NoCodeToday />
+        )}
+        {loaded && (
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              flex: 1,
+            }}
+          >
+            <WelcomeText />
+            <Box sx={{ flex: 1, display: "flex", alignItems: "flex-end" }}>
+              <SignOut />
+            </Box>
+          </Grid>
+        )}
+      </MarginProvider>
+    </>
   );
 }

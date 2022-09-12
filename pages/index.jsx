@@ -5,7 +5,8 @@ import MarginProvider from "../components/layouts/MarginProvider.jsx";
 
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/state";
-import Router from "next/router";
+
+import Head from "next/head";
 
 export default function UserLogin() {
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -26,14 +27,19 @@ export default function UserLogin() {
   // also, forward user to a new page /QRCode or something
 
   return (
-    <MarginProvider>
-      <Loading loaded={pageLoaded} />
-      {pageLoaded && (
-        <>
-          <WelcomeText />
-          <Login />
-        </>
-      )}
-    </MarginProvider>
+    <>
+      <Head>
+        <title>Moho Auth</title>
+      </Head>
+      <MarginProvider>
+        <Loading loaded={pageLoaded} />
+        {pageLoaded && (
+          <>
+            <WelcomeText />
+            <Login />
+          </>
+        )}
+      </MarginProvider>
+    </>
   );
 }
