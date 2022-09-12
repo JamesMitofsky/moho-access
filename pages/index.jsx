@@ -15,7 +15,7 @@ export default function UserLogin() {
     if (!user) return;
 
     // has state.js determined no user is logged in?
-    const notLoggedIn = user === "notLoggedIn";
+    const notLoggedIn = user.roles.unregistered;
     if (notLoggedIn) {
       setPageLoaded(true);
       return;

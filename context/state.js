@@ -13,7 +13,7 @@ export function AppWrapper({ children }) {
     firebase.auth().onAuthStateChanged(async (thisUser) => {
       // if the server finds no user, empty the local representation
       if (!thisUser) {
-        setUser("notLoggedIn");
+        setUser({ roles: { unregistered: true } });
         return;
       }
 
@@ -27,11 +27,13 @@ export function AppWrapper({ children }) {
         return;
       } else {
         // if server returned the user has no roles object attached, redirect to non-resident page
-        setUser({ ...userObj, status: "reg_nonresident" });
+        setUser({ ...userObj, roles: { reg_nonresident: true } });
         return;
       }
     });
   }, []);
+
+  console.log(user);
 
   // handle routing
   useEffect(() => {
@@ -43,8 +45,7 @@ export function AppWrapper({ children }) {
     if (pathName === "/key" || pathName === "/about") return;
 
     // if server has user
-    const userHasRole =
-      user.roles?.admin === true || user.roles?.resident === true;
+    const userHasRole = user.roles?.admin || user.roles?.resident;
 
     // send authorized users to code from the login page
     if (userHasRole) {
@@ -55,12 +56,12 @@ export function AppWrapper({ children }) {
     }
 
     // exit if user has not authenticated (regardless of authroization status)
-    if (user.status === "reg_nonresident") {
+    if (user.roles.reg_nonresident) {
       Router.push("/new-user");
       return;
     }
 
-    if (user === "notLoggedIn") {
+    if (user.roles.unregistered) {
       Router.push("/");
       return;
     }
