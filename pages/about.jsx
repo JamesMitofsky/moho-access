@@ -1,7 +1,6 @@
 import MohoModel from "../components/MohoModel";
 import MarginProvider from "../components/layouts/MarginProvider";
 import { Typography, Link, Button, Box } from "@mui/material";
-import WelcomeText from "../components/WelcomeText";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import portrait from "../public/images/portrait.jpeg";
 import Image from "next/future/image";
@@ -39,7 +38,7 @@ export default function AboutPage() {
         <MohoModel />
         <Link
           target="_blank"
-          href="https://github.com/JamesMitofsky/Moho-Login"
+          href="https://github.com/JamesMitofsky/Moho-Access"
         >
           <Button fullWidth variant="contained">
             Retrouver ce projet sur GitHub

@@ -22,7 +22,7 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>Bienvenue à Moho Auth</title>
+        <title>Bienvenue à Moho Access</title>
       </Head>
 
       <MarginProvider>
@@ -40,7 +40,7 @@ export default function AboutPage() {
           </Typography>
         </Box>
         <Typography>
-          C'est parti! Merci de vous être inscrit auprès de Moho Auth! Si vous
+          C'est parti! Merci de vous être inscrit auprès de Moho Access! Si vous
           êtes résident, contactez votre contact chez Moho ou{" "}
           <Link target="_blank" href="mailto:jamesmitofsky@gmail.com">
             James

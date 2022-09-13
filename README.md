@@ -1,4 +1,4 @@
-# Moho Auth
+# Moho Access
 
 A PWA to make authenticating into the Moho resident space 👌 simple, 📈 scalable, & 🔐 secure.
 

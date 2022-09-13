@@ -29,7 +29,7 @@ export default function UserLogin() {
   return (
     <>
       <Head>
-        <title>Moho Auth</title>
+        <title>Moho Access</title>
       </Head>
       <MarginProvider>
         <Loading loaded={pageLoaded} />
