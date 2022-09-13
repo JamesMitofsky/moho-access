@@ -32,6 +32,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AdminLayout from "../../components/layouts/AdminLayout";
 import Loading from "../../components/Loading";
 
+import Head from "next/head";
+
 export default function ManageUsers() {
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
@@ -121,60 +123,65 @@ export default function ManageUsers() {
   }
 
   return (
-    <AdminLayout>
-      {!loaded && <Loading />}
-      {loaded && (
-        <>
-          <Typography variant="h2">Utilisateurs Autorisés</Typography>
-          <List>
-            {users.map((role) => {
-              const notCurrentUser = role.email !== user?.email;
-              return (
-                <ListItem divider key={role.id}>
-                  <ListItemText
-                    primary={role.email}
-                    secondary={`Type: ${objToString(role.roles)}`}
-                  />
-                  {notCurrentUser && (
-                    <IconButton onClick={() => deleteRole(role)}>
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  )}
-                </ListItem>
-              );
-            })}
-          </List>
-          <Grid component="form">
-            <TextField
-              fullWidth
-              type="email"
-              name="email"
-              label="Enter email"
-              value={emailInput}
-              onChange={(e) => setEmailInput(e.target.value)}
-            />
-            <Button onClick={giveUserAccess} variant="contained">
-              Autorise l'Utilisateur
-            </Button>
-            <FormControl sx={{ m: 0.4, minWidth: 150 }}>
-              <InputLabel size="small" id="role-selector">
-                Choisir le rôle
-              </InputLabel>
-              <Select
-                size="small"
-                labelId="role-selector"
-                value={roleRequest}
-                label="Select Role<"
-                autoWidth
-                onChange={handleChange}
-              >
-                <MenuItem value={"resident"}>Résident</MenuItem>
-                <MenuItem value={"admin"}>Admin</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-        </>
-      )}
-    </AdminLayout>
+    <>
+      <Head>
+        <title>Gérer les Utilisateurs</title>
+      </Head>
+      <AdminLayout>
+        {!loaded && <Loading />}
+        {loaded && (
+          <>
+            <Typography variant="h2">Utilisateurs Autorisés</Typography>
+            <List>
+              {users.map((role) => {
+                const notCurrentUser = role.email !== user?.email;
+                return (
+                  <ListItem divider key={role.id}>
+                    <ListItemText
+                      primary={role.email}
+                      secondary={`Type: ${objToString(role.roles)}`}
+                    />
+                    {notCurrentUser && (
+                      <IconButton onClick={() => deleteRole(role)}>
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    )}
+                  </ListItem>
+                );
+              })}
+            </List>
+            <Grid component="form">
+              <TextField
+                fullWidth
+                type="email"
+                name="email"
+                label="Enter email"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+              />
+              <Button onClick={giveUserAccess} variant="contained">
+                Autorise l'Utilisateur
+              </Button>
+              <FormControl sx={{ m: 0.4, minWidth: 150 }}>
+                <InputLabel size="small" id="role-selector">
+                  Choisir le rôle
+                </InputLabel>
+                <Select
+                  size="small"
+                  labelId="role-selector"
+                  value={roleRequest}
+                  label="Select Role<"
+                  autoWidth
+                  onChange={handleChange}
+                >
+                  <MenuItem value={"resident"}>Résident</MenuItem>
+                  <MenuItem value={"admin"}>Admin</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </>
+        )}
+      </AdminLayout>
+    </>
   );
 }

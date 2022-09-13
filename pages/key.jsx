@@ -10,9 +10,12 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../services/firebase";
 
 import { Grid, TextField, Button } from "@mui/material";
+
 import { useState } from "react";
-import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
+
+import Head from "next/head";
+import Router, { useRouter } from "next/router";
 
 import setState from "../functions/setState";
 
@@ -64,48 +67,53 @@ export default function Key() {
   }
 
   return (
-    <MarginProvider>
-      <Grid
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          flex: 1,
-        }}
-      >
-        {states.noCode && (
-          <>
-            <WelcomeText />
-            <TextField
-              fullWidth
-              label="Enter your key name"
-              value={param.userInput}
-              onChange={(e) =>
-                setParam(() => {
-                  Router.push({
-                    pathname: "/key",
-                    query: { value: e.target.value },
-                  });
-                  return e.target.value;
-                })
-              }
-            />
-            <Button fullWidth onClick={inputSubmitted}>
-              Search
-            </Button>
-          </>
-        )}
+    <>
+      <Head>
+        <title>Votre Clé — {query["value"]}</title>
+      </Head>
+      <MarginProvider>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: 1,
+          }}
+        >
+          {states.noCode && (
+            <>
+              <WelcomeText />
+              <TextField
+                fullWidth
+                label="Enter your key name"
+                value={param.userInput}
+                onChange={(e) =>
+                  setParam(() => {
+                    Router.push({
+                      pathname: "/key",
+                      query: { value: e.target.value },
+                    });
+                    return e.target.value;
+                  })
+                }
+              />
+              <Button fullWidth onClick={inputSubmitted}>
+                Search
+              </Button>
+            </>
+          )}
 
-        {states.showCode && (
-          <>
-            <CodeOfDay value={codeData} />
-            {/* {!codeData && <NoCodeToday />} */}
-            <WelcomeText />
-          </>
-        )}
-      </Grid>
+          {states.showCode && (
+            <>
+              <CodeOfDay value={codeData} />
+              {/* {!codeData && <NoCodeToday />} */}
+              <WelcomeText />
+            </>
+          )}
+        </Grid>
 
-      <Loading loaded={!states.loading} />
-    </MarginProvider>
+        <Loading loaded={!states.loading} />
+      </MarginProvider>
+    </>
   );
 }

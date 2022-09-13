@@ -30,6 +30,8 @@ import AdminLayout from "../../components/layouts/AdminLayout";
 import AutoCopyButton from "../../components/AutoCopyButton";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
+import Head from "next/head";
+
 export default function ManageKeys() {
   const [keys, setKeys] = useState([]);
   const [codes, setCodes] = useState([]);
@@ -112,6 +114,9 @@ export default function ManageKeys() {
 
   return (
     <>
+      <Head>
+        <title>Gérer les Clés</title>
+      </Head>
       <Loading loaded={listItems.length > 0} />
       {listItems.length > 0 && (
         <AdminLayout>
