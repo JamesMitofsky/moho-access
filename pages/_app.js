@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@material-ui/core";
 import "@fontsource/antonio";
+import "@fontsource/roboto";
 
 import "../styles/global.css";
 import Footer from "../components/Footer";
@@ -26,7 +27,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['"Antonio"', "sans-serif"].join(","),
+    fontFamily: ['"Antonio"', "Roboto"].join(","),
     fontSize: 16,
     h1: {
       fontFamily: '"Roboto"',
@@ -63,13 +64,13 @@ export default function App({ Component, pageProps }) {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
 
-        <meta name="application-name" content="Moho Auth" />
+        <meta name="application-name" content="Moho Access" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Moho Auth" />
+        <meta name="apple-mobile-web-app-title" content="Moho Access" />
         <meta
           name="description"
-          content="Making authenticating into the Moho resident space simple, scalable, and secure. 👍"
+          content="Pour accéder à l’espace résident à Moho.👍"
         />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -102,31 +103,27 @@ export default function App({ Component, pageProps }) {
           color="#5bbad5"
         />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-        />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://moho-auth.vercel.app" />
-        <meta name="twitter:title" content="Moho Auth" />
+        <meta name="twitter:url" content="https://moho-access.vercel.app" />
+        <meta name="twitter:title" content="Moho Access" />
         <meta
           name="twitter:description"
-          content="Making authenticating into the Moho resident space simple, scalable, and secure. 👍"
+          content="Pour accéder à l’espace résident à Moho.👍"
         />
         <meta
           name="twitter:image"
-          content="https://moho-auth.vercel.app/icons/android-chrome-192x192.png"
+          content="https://moho-access.vercel.app/icons/android-chrome-192x192.png"
         />
-        <meta name="twitter:creator" content="@DavidWShadow" />
+        <meta name="twitter:creator" content="@joinMoHo" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Moho Auth" />
+        <meta property="og:title" content="Moho Access" />
         <meta
           property="og:description"
-          content="Making authenticating into the Moho resident space simple, scalable, and secure. 👍"
+          content="Pour accéder à l’espace résident à Moho.👍"
         />
-        <meta property="og:site_name" content="Moho Auth" />
-        <meta property="og:url" content="https://moho-auth.vercel.app" />
+        <meta property="og:site_name" content="Moho Access" />
+        <meta property="og:url" content="https://moho-access.vercel.app" />
       </Head>
       <AppWrapper>
         <Component {...pageProps} />
