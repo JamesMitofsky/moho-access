@@ -113,7 +113,7 @@ const Login = () => {
 
         <LoadingButton
           startIcon={<LoginIcon />}
-          variant="contained"
+          variant="outlined"
           loading={loading.loginEmail}
           onClick={() => {
             setLoading({ ...loading, loginEmail: true });
