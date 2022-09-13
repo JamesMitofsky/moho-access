@@ -8,7 +8,8 @@ export default function WelcomeText() {
         sx={{ textAlign: "center", fontFamily: "'Antonio'" }}
         variant="h1"
       >
-        BIENVENUE A<MohoSVG color={"#f16760"} height={65} />
+        BIENVENUE SUR
+        <MohoSVG color={"#f16760"} height={65} />
         LOGIN
       </Typography>
     </>
