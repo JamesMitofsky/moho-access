@@ -1,6 +1,6 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@material-ui/core";
-import AntonioFont from "typeface-antonio";
+import "@fontsource/antonio";
 
 import "../styles/global.css";
 import Footer from "../components/Footer";
@@ -25,24 +25,18 @@ const theme = createTheme({
       },
     },
   },
-  overrides: {
-    MuiCssBaseline: {
-      "@global": {
-        "@font-face": [AntonioFont],
-      },
-    },
-  },
   typography: {
-    fontFamily: ['"Roboto"', "sans-serif"].join(","),
+    fontFamily: ['"Antonio"', "sans-serif"].join(","),
     fontSize: 16,
     h1: {
-      fontFamily: '"Antonio"',
+      fontFamily: '"Roboto"',
       fontSize: 40,
       fontWeight: 500,
       marginTop: 15,
       marginBottom: 15,
     },
-    h2: { fontFamily: '"Antonio"', fontSize: 30, fontWeight: 200 },
+    h2: { fontFamily: '"Roboto"', fontSize: 30, fontWeight: 200 },
+    body1: { fontFamily: '"Roboto"', fontSize: 16, fontWeight: 200 },
     subtitle1: { fontSize: 14, color: "grey" },
   },
   palette: {
