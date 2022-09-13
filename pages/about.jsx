@@ -37,21 +37,24 @@ export default function AboutPage() {
           </Typography>
         </Box>
         <MohoModel />
-        <Typography>
-          🇺🇸 Moho Auth is written using React, Next.js, Firebase Auth, and Cloud
+        <Link
+          target="_blank"
+          href="https://github.com/JamesMitofsky/Moho-Login"
+        >
+          <Button fullWidth variant="contained">
+            Retrouver ce projet sur GitHub
+          </Button>
+        </Link>
+        <Typography sx={{ mt: 2, mb: 2 }}>
+          🇺🇸 This PWA is written using React, Next.js, Firebase Auth, and Cloud
           Firestore. I've been freelance developing for the last 4 years, and
           now I'm looking to join a company. Feel free to get in touch!
         </Typography>
-        <Typography sx={{ mt: 2, mb: 2 }}>
-          🇫🇷 Moho Auth est écrit en utilisant React, Next.js, Firebase Auth et
+        <Typography>
+          🇫🇷 Ce PWA est écrit en utilisant React, Next.js, Firebase Auth et
           Cloud Firestore. J'etudie du code depuis 4 ans, et maintenant je
           cherche à rejoindre une entreprise. N’hésitez pas à entrer en contact!
         </Typography>
-        <Link target="_blank" href="https://github.com/JamesMitofsky">
-          <Button fullWidth variant="contained">
-            Visiter mon GitHub!
-          </Button>
-        </Link>
       </MarginProvider>
     </>
   );

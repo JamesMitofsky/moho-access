@@ -8,7 +8,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Link as NextLink } from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -45,7 +44,7 @@ export default function AdminNav() {
         >
           <Link sx={{ color: "white", fontFamily: "'Antonio'" }} href="/admin">
             <MohoSVG color={"white"} height={45} />
-            AUTH
+            LOGIN
           </Link>
         </Typography>
         <Box>
