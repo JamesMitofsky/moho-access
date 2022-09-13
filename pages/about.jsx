@@ -17,9 +17,8 @@ export default function AboutPage() {
       <MarginProvider>
         <Link sx={{ display: "flex", alignItems: "center" }} href="/code">
           <ArrowBackIcon />
-          Return to QR code
+          QR code
         </Link>
-        <WelcomeText />
         <Box
           sx={{
             display: "flex",
@@ -29,23 +28,28 @@ export default function AboutPage() {
           }}
         >
           <Image
-            style={{ width: 120, height: "auto", borderRadius: "50%" }}
+            style={{ width: 90, height: "auto", borderRadius: "50%" }}
             src={portrait}
             alt="Portrait of James Mitofsky"
           />
-          <Typography variant="h1" sx={{ fontSize: 60, marginLeft: 3 }}>
-            Hi there, I&apos;m James!
+          <Typography variant="h1" sx={{ fontSize: 35, marginLeft: 3 }}>
+            Salut, je suis James!
           </Typography>
         </Box>
         <MohoModel />
         <Typography>
-          Moho Auth is written using React, Next.js, Firebase Auth, and Cloud
-          Firestore. I&apos;ve been freelance developing for the last 4 years,
-          and now I&apos;m looking to join a company. Feel free to get in touch!
+          🇺🇸 Moho Auth is written using React, Next.js, Firebase Auth, and Cloud
+          Firestore. I've been freelance developing for the last 4 years, and
+          now I'm looking to join a company. Feel free to get in touch!
+        </Typography>
+        <Typography sx={{ mt: 2, mb: 2 }}>
+          🇫🇷 Moho Auth est écrit en utilisant React, Next.js, Firebase Auth et
+          Cloud Firestore. J'etudie du code depuis 4 ans, et maintenant je
+          cherche à rejoindre une entreprise. N’hésitez pas à entrer en contact!
         </Typography>
         <Link target="_blank" href="https://github.com/JamesMitofsky">
           <Button fullWidth variant="contained">
-            Check out my GitHub
+            Visiter mon GitHub!
           </Button>
         </Link>
       </MarginProvider>

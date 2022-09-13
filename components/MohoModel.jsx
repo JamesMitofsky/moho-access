@@ -19,7 +19,7 @@ export default function MohoModel() {
     setLoaded(true);
   }
   return (
-    <Box sx={{ flex: 1, minHeight: 300 }} style={styles}>
+    <Box sx={{ flex: 1, minHeight: 400, maxHeight: 500 }} style={styles}>
       {/* {!loaded && <Loading loaded={loaded} />} */}
       <Spline
         onLoad={onLoad}
