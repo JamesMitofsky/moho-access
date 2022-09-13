@@ -1,6 +1,6 @@
 {
-  "name": "Moho Auth",
-  "short_name": "Moho Auth",
+  "name": "Moho Login",
+  "short_name": "Moho Login",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",
