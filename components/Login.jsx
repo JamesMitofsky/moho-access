@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Typography, TextField, Grid } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LoginIcon from "@mui/icons-material/Login";
 import GoogleIcon from "@mui/icons-material/Google";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
@@ -31,43 +31,14 @@ const Login = () => {
       flexDirection="column"
       justifyContent="space-around"
       alignItems="space-around"
-      gap={4}
+      gap={5}
     >
       <Grid component="form">
-        <Typography sx={{ mb: 1 }} variant="h2">
-          Connexion
+        <Typography sx={{ mb: 1, mt: 2 }} variant="h2">
+          Google Authentification
         </Typography>
-        <TextField
-          fullWidth
-          type="email"
-          name="email"
-          autoComplete="email"
-          label="Courriel"
-          value={loginEmail}
-          onChange={(e) => setLoginEmail(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          type="password"
-          name="password"
-          autoComplete="current-password"
-          label="Mot de pass"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-
         <LoadingButton
-          startIcon={<MailOutlineIcon />}
-          variant="contained"
-          loading={loading.loginEmail}
-          onClick={() => {
-            setLoading({ ...loading, loginEmail: true });
-            signInWithEmailAndPassword(loginEmail, loginPassword);
-          }}
-        >
-          Connexion
-        </LoadingButton>
-        <LoadingButton
+          fullWidth
           startIcon={<GoogleIcon />}
           variant="contained"
           loading={loading.loginGoogle}
@@ -76,12 +47,12 @@ const Login = () => {
             signInWithGoogle();
           }}
         >
-          Connexion avec Google
+          s'inscrire / connecter
         </LoadingButton>
       </Grid>
       <Grid component="form">
         <Typography sx={{ mb: 1 }} variant="h2">
-          S'Inscrire
+          S'Inscrire avec Email
         </Typography>
         <TextField
           fullWidth
@@ -100,7 +71,7 @@ const Login = () => {
         <TextField
           fullWidth
           type="password"
-          label="Mot de pass"
+          label="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -114,6 +85,42 @@ const Login = () => {
           }}
         >
           S'Inscrire
+        </LoadingButton>
+      </Grid>
+
+      <Grid component="form">
+        <Typography sx={{ mb: 1 }} variant="h2">
+          Connexion avec Email
+        </Typography>
+        <TextField
+          fullWidth
+          type="email"
+          name="email"
+          autoComplete="email"
+          label="Courriel"
+          value={loginEmail}
+          onChange={(e) => setLoginEmail(e.target.value)}
+        />
+        <TextField
+          fullWidth
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          label="Mot de passe"
+          value={loginPassword}
+          onChange={(e) => setLoginPassword(e.target.value)}
+        />
+
+        <LoadingButton
+          startIcon={<LoginIcon />}
+          variant="contained"
+          loading={loading.loginEmail}
+          onClick={() => {
+            setLoading({ ...loading, loginEmail: true });
+            signInWithEmailAndPassword(loginEmail, loginPassword);
+          }}
+        >
+          Connexion
         </LoadingButton>
       </Grid>
     </Grid>
