@@ -9,7 +9,7 @@ export default function WelcomeText() {
         variant="h1"
       >
         BIENVENUE SUR
-        <MohoSVG color={"#f16760"} height={58} />
+        <MohoSVG color={"#f16760"} height={56} />
         LOGIN
       </Typography>
     </>
