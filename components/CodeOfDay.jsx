@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { QRCodeSVG } from "qrcode.react";
 
 export default function CodeOfDay({ value }) {
@@ -8,8 +8,10 @@ export default function CodeOfDay({ value }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-around",
         flex: 1,
+        marginTop: 3,
+        gap: 7,
       }}
     >
       {value && (
@@ -17,13 +19,13 @@ export default function CodeOfDay({ value }) {
           style={{
             height: "auto",
             width: 230,
-            marginTop: 100,
-            marginBottom: 100,
+            margin: 0,
           }}
           level="H"
           value={value.toString()}
         />
       )}
+      <Typography variant="subtitle2">Actif de 9h à 19h</Typography>
     </Grid>
   );
 }

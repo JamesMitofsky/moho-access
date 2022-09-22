@@ -57,11 +57,12 @@ export default function Code() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              justifyContent: "flex-end",
               flex: 1,
             }}
           >
             <WelcomeText />
-            <Box sx={{ flex: 1, display: "flex", alignItems: "flex-end" }}>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <SignOut />
             </Box>
           </Grid>

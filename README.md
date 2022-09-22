@@ -115,7 +115,3 @@ userRoles {
 - How to get started with Firebase in a React app; [source](https://blog.logrocket.com/build-crud-application-react-firebase-web-sdk-v9/).
 - Adding auth into React with Firebast; [source](https://enlear.academy/how-to-implement-firebase-authentication-with-react-ff6f75746399).
 - For the useEffect hook to track route changes, it must be added to the dependencies array; [source](https://stackoverflow.com/a/70700558/5395435).
-
-## To Do
-
-- [ ] Greet enterprise with their name. Maybe also allow the upload of an enterprise logo?? That could be cool.
