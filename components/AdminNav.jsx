@@ -44,7 +44,7 @@ export default function AdminNav() {
         >
           <Link sx={{ color: "white", fontFamily: "'Antonio'" }} href="/admin">
             <MohoSVG color={"white"} height={45} />
-            ACESS
+            ACCESS
           </Link>
         </Typography>
         <Box>
