@@ -7,14 +7,14 @@ export default function WelcomeText() {
       <Typography
         sx={{
           textAlign: "center",
-          fontSize: 35,
+          fontSize: 54.2,
           fontFamily: "'Antonio'",
           color: "#f16760",
           fontWeight: 500,
         }}
         variant="h1"
       >
-        <MohoSVG color={"#f16760"} height={56} />
+        <MohoSVG color={"#f16760"} height={86} />
         ACCESS
       </Typography>
     </>
