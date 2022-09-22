@@ -4,7 +4,7 @@ A PWA to make authenticating into the Moho resident space 👌 simple, 📈 scal
 
 <table>
 	<tr>
-	  <td><img width="230"  src="https://user-images.githubusercontent.com/12516538/191760558-31d4a2be-856c-4624-a656-02374fe6fca9.png"/></td>
+	  <td><img width="230"  src="https://user-images.githubusercontent.com/12516538/191761263-0e1839b3-3d3b-4a4e-90c2-54f46b6c8f43.png"/></td>
 	  <td><img width="410" src="https://user-images.githubusercontent.com/12516538/187898609-4bcfa4e4-8021-4c66-a2eb-75259ccdf6a4.jpg"/></td>
 	  <td><img width="230"  src="https://user-images.githubusercontent.com/12516538/191760562-686e9b5a-46a0-4a2a-a006-cd214200c6d5.png"/></td>
 	</tr>
