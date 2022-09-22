@@ -35,7 +35,7 @@ const Login = () => {
     >
       <Grid component="form">
         <Typography sx={{ mb: 1, mt: 2 }} variant="h2">
-          Google Authentification
+          Connexion Rapide
         </Typography>
         <LoadingButton
           fullWidth
