@@ -40,6 +40,7 @@ const theme = createTheme({
     h3: { fontFamily: '"Roboto"', fontSize: 24, fontWeight: 200 },
     body1: { fontFamily: '"Roboto"', fontSize: 16, fontWeight: 200 },
     subtitle1: { fontSize: 14, color: "grey" },
+    subtitle2: { fontSize: 14, fontWeight: 200, color: "grey" },
   },
   palette: {
     mode: "light",
