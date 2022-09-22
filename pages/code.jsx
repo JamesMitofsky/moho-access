@@ -57,7 +57,7 @@ export default function Code() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "flex-end",
+              justifyContent: "space-around",
               flex: 1,
             }}
           >
