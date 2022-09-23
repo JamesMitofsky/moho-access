@@ -10,7 +10,7 @@ export default function CodeOfDay({ value }) {
         alignItems: "center",
         justifyContent: "space-around",
         flex: 1,
-        marginTop: 3,
+        marginTop: 5,
         gap: 7,
       }}
     >
@@ -18,7 +18,7 @@ export default function CodeOfDay({ value }) {
         <QRCodeSVG
           style={{
             height: "auto",
-            width: 230,
+            width: 190,
             margin: 0,
           }}
           level="H"
