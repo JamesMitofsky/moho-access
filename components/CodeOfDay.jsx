@@ -10,7 +10,7 @@ export default function CodeOfDay({ value }) {
         alignItems: "center",
         justifyContent: "space-around",
         flex: 1,
-        marginTop: 5,
+        marginTop: 10,
         gap: 7,
       }}
     >
