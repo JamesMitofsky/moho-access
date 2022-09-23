@@ -50,8 +50,8 @@ export default function AboutPage() {
           now I'm looking to join a company. Feel free to get in touch!
         </Typography>
         <Typography>
-          🇫🇷 Ce PWA est écrit en utilisant React, Next.js, Firebase Auth et
-          Cloud Firestore. J'etudie du code depuis 4 ans, et maintenant je
+          🇫🇷 Cette PWA est écrit en utilisant React, Next.js, Firebase Auth et
+          Cloud Firestore. J'etudie le code depuis 4 ans, et maintenant je
           cherche à rejoindre une entreprise. N’hésitez pas à entrer en contact!
         </Typography>
       </MarginProvider>
