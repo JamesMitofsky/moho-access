@@ -15,7 +15,7 @@ export default function AdminLanding() {
       <AdminLayout>
         <Grid container spacing={5}>
           <Grid>
-            <Typography variant="h1">Maison d’Administration</Typography>
+            <Typography variant="h1">Accueil</Typography>
             <Typography variant="body1">
               De là, vous pouvez mettre à jour les deux façons d’accéder à
               l’espace résident : les personnes individuelles (appelés

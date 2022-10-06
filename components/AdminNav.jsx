@@ -77,7 +77,7 @@ export default function AdminNav() {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Maison d’Admin" />
+              <ListItemText primary="Accueil" />
             </MenuItem>
 
             <MenuItem component={Link} href="/code" onClick={handleClose}>
