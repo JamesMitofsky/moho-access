@@ -10,7 +10,7 @@ export default function AdminLanding() {
   return (
     <>
       <Head>
-        <title>Maison d'd’Administration</title>
+        <title>Accueil</title>
       </Head>
       <AdminLayout>
         <Grid container spacing={5}>
